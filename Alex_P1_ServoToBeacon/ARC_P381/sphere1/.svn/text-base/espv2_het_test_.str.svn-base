@@ -1,0 +1,4204 @@
+<?xml version="1.0"?>
+<!-- This strategy holds the translation of all the SECTIONS commands -->
+<!-- reachable from the command line held in Z:\SPHERES\SCode\Ames_repo\TestProjects\SmartphoneIva\ExpV2_HET_Test\sphere1\espv2_het_test.arg MODULE GBL  MODULE CLK  MODULE PRD  MODULE HWI  MODULE SWI  MODULE IDL -->
+
+
+<strategy
+   version="6"
+   host="windows"
+   name="espv2_het_test_"
+   full_path="Z:\\SPHERES\\SCode\\Ames_repo\\TestProjects\\SmartphoneIva\\ExpV2_HET_Test\\sphere1\\espv2_het_test_.str"
+   comment="This strategy holds the translation of all the SECTIONS commands \nreachable from the command line held in Z:\\SPHERES\\SCode\\Ames_repo\\TestProjects\\SmartphoneIva\\ExpV2_HET_Test\\sphere1\\espv2_het_test.arg MODULE GBL  MODULE CLK  MODULE PRD  MODULE HWI  MODULE SWI  MODULE IDL "
+   tracking=".\\espv2_het_test.arg"
+   dont_expand_iterators="1"
+   size_warnings="7"
+>
+
+   <!-- CHANGE  stack  size OF  c6x  TO  08000h -->
+   <instr
+      op="4c"
+      s0="Memory Maps\\c6x"
+      s1="stack"
+      u3="8000"
+   />
+
+   <!-- NEW  child output file  OF  Output Files  WITH  full_path=.\Release\espv2_het_test.out  HOLDING  map c6x -->
+   <instr
+      op="27"
+      s0="Output Files"
+      s1=".\\Release\\espv2_het_test.out"
+      s2="Memory Maps\\c6x"
+      u3="1938ed0"
+   />
+
+   <!-- REQUIRE  bios.a62\knl_tick.o62\.bios  BE IN  run_view -->
+   <instr
+      dont_undo="1"
+      op="25"
+      s0="Memory Maps\\c6x\\run_view"
+      s1="All Input Files\\iority\\bios.a62\\knl_tick.o62\\.bios"
+      u2="1"
+   />
+
+   <!-- REQUIRE  bios.a62\clk_start6x.o62\.bios  BE IN  run_view -->
+   <instr
+      dont_undo="1"
+      op="25"
+      s0="Memory Maps\\c6x\\run_view"
+      s1="All Input Files\\iority\\bios.a62\\clk_start6x.o62\\.bios"
+      u2="1"
+   />
+
+   <!-- NEW  child output section  OF  run_view\Need Not Place  WITH  name=.vers, data_kind=hole, specl_kind=copy -->
+   <instr
+      op="45"
+      s0="Memory Maps\\c6x\\run_view\\Need Not Place"
+      s1=".vers"
+      u3="8"
+      u4="5"
+   />
+
+   <!-- CHANGE  dont inherit fill  OF  run_view\Need Not Place\.vers  TO  TRUE -->
+   <instr
+      op="3c"
+      s0="Memory Maps\\c6x\\run_view\\Need Not Place\\.vers"
+      u1="1"
+   />
+
+   <!-- CHANGE  comment  OF  run_view\Need Not Place\.vers  TO  " version information " -->
+   <instr
+      op="46"
+      s0="Memory Maps\\c6x\\run_view\\Need Not Place\\.vers"
+      s1=" version information "
+   />
+
+   <!-- NEW  child output section  OF  run_view\IDRAM  WITH  name=.clk, data_kind=hole -->
+   <instr
+      op="22"
+      s0="Memory Maps\\c6x\\run_view\\IDRAM"
+      s1=".clk"
+      u3="8"
+   />
+
+   <!-- CHANGE  dont inherit fill  OF  run_view\IDRAM\.clk  TO  TRUE -->
+   <instr
+      op="3c"
+      s0="Memory Maps\\c6x\\run_view\\IDRAM\\.clk"
+      u1="1"
+   />
+
+   <!-- CHANGE  force load placement  OF  run_view\IDRAM\.clk  TO  TRUE -->
+   <instr
+      op="55"
+      s0="Memory Maps\\c6x\\run_view\\IDRAM\\.clk"
+      u1="1"
+   />
+
+   <!-- ADD  children of run_view\Not Yet Placed  WITH  kind=any section, base name=.clk  TO  run_view\IDRAM\.clk -->
+   <instr
+      op="8"
+      s0="Memory Maps\\c6x\\run_view\\IDRAM\\.clk"
+      s1="Memory Maps\\c6x\\run_view\\Not Yet Placed"
+      u2="4"
+      u3="40000054"
+      u4="1"
+      s5="TEMPLATE"
+      s6=".clk"
+      u8="1014"
+      u17="0"
+   />
+
+   <!-- CHANGE  alloc_kind  OF  run_view\IDRAM  TO  legacy_region -->
+   <instr
+      op="23"
+      s0="Memory Maps\\c6x\\run_view\\IDRAM"
+      u1="f"
+   />
+
+   <!-- NEW  child output section  OF  run_view\IDRAM  WITH  name=.prd, data_kind=hole -->
+   <instr
+      op="22"
+      s0="Memory Maps\\c6x\\run_view\\IDRAM"
+      s1=".prd"
+      u3="8"
+   />
+
+   <!-- CHANGE  dont inherit fill  OF  run_view\IDRAM\.prd  TO  TRUE -->
+   <instr
+      op="3c"
+      s0="Memory Maps\\c6x\\run_view\\IDRAM\\.prd"
+      u1="1"
+   />
+
+   <!-- CHANGE  force load placement  OF  run_view\IDRAM\.prd  TO  TRUE -->
+   <instr
+      op="55"
+      s0="Memory Maps\\c6x\\run_view\\IDRAM\\.prd"
+      u1="1"
+   />
+
+   <!-- ADD  children of run_view\Not Yet Placed  WITH  kind=any section, base name=.prd  TO  run_view\IDRAM\.prd -->
+   <instr
+      op="8"
+      s0="Memory Maps\\c6x\\run_view\\IDRAM\\.prd"
+      s1="Memory Maps\\c6x\\run_view\\Not Yet Placed"
+      u2="4"
+      u3="40000054"
+      u4="1"
+      s5="TEMPLATE"
+      s6=".prd"
+      u8="1014"
+      u17="0"
+   />
+
+   <!-- NEW  child output section  OF  run_view\VECS  WITH  name=.hwi_vec, data_kind=hole -->
+   <instr
+      op="22"
+      s0="Memory Maps\\c6x\\run_view\\VECS"
+      s1=".hwi_vec"
+      u3="8"
+   />
+
+   <!-- CHANGE  dont inherit fill  OF  run_view\VECS\.hwi_vec  TO  TRUE -->
+   <instr
+      op="3c"
+      s0="Memory Maps\\c6x\\run_view\\VECS\\.hwi_vec"
+      u1="1"
+   />
+
+   <!-- ALIGN  run address of run_view\VECS\.hwi_vec  TO  absolute address ==  00h -->
+   <instr
+      op="2f"
+      s0="Memory Maps\\c6x\\run_view\\VECS\\.hwi_vec"
+      u2="ffffffff"
+   />
+
+   <!-- CHANGE  force load placement  OF  run_view\VECS\.hwi_vec  TO  TRUE -->
+   <instr
+      op="55"
+      s0="Memory Maps\\c6x\\run_view\\VECS\\.hwi_vec"
+      u1="1"
+   />
+
+   <!-- ALIGN  load address of run_view\VECS\.hwi_vec  TO  absolute address ==  00h -->
+   <instr
+      op="30"
+      s0="Memory Maps\\c6x\\run_view\\VECS\\.hwi_vec"
+      u2="ffffffff"
+   />
+
+   <!-- ADD  children of run_view\Not Yet Placed  WITH  kind=any section, base name=.hwi_vec  TO  run_view\VECS\.hwi_vec -->
+   <instr
+      op="8"
+      s0="Memory Maps\\c6x\\run_view\\VECS\\.hwi_vec"
+      s1="Memory Maps\\c6x\\run_view\\Not Yet Placed"
+      u2="4"
+      u3="40000054"
+      u4="1"
+      s5="TEMPLATE"
+      s6=".hwi_vec"
+      u8="2014"
+      u17="0"
+   />
+
+   <!-- NEW  child output section  OF  run_view\IDRAM  WITH  name=.swi, data_kind=hole -->
+   <instr
+      op="22"
+      s0="Memory Maps\\c6x\\run_view\\IDRAM"
+      s1=".swi"
+      u3="8"
+   />
+
+   <!-- CHANGE  dont inherit fill  OF  run_view\IDRAM\.swi  TO  TRUE -->
+   <instr
+      op="3c"
+      s0="Memory Maps\\c6x\\run_view\\IDRAM\\.swi"
+      u1="1"
+   />
+
+   <!-- CHANGE  force load placement  OF  run_view\IDRAM\.swi  TO  TRUE -->
+   <instr
+      op="55"
+      s0="Memory Maps\\c6x\\run_view\\IDRAM\\.swi"
+      u1="1"
+   />
+
+   <!-- ADD  children of run_view\Not Yet Placed  WITH  kind=any section, base name=.swi  TO  run_view\IDRAM\.swi -->
+   <instr
+      op="8"
+      s0="Memory Maps\\c6x\\run_view\\IDRAM\\.swi"
+      s1="Memory Maps\\c6x\\run_view\\Not Yet Placed"
+      u2="4"
+      u3="40000054"
+      u4="1"
+      s5="TEMPLATE"
+      s6=".swi"
+      u8="1014"
+      u17="0"
+   />
+
+   <!-- NEW  child output section  OF  run_view\IDRAM  WITH  name=.idl, data_kind=hole, alloc_kind=struct -->
+   <instr
+      op="22"
+      s0="Memory Maps\\c6x\\run_view\\IDRAM"
+      s1=".idl"
+      u3="a"
+   />
+
+   <!-- CHANGE  dont inherit fill  OF  run_view\IDRAM\.idl  TO  TRUE -->
+   <instr
+      op="3c"
+      s0="Memory Maps\\c6x\\run_view\\IDRAM\\.idl"
+      u1="1"
+   />
+
+   <!-- CHANGE  force load placement  OF  run_view\IDRAM\.idl  TO  TRUE -->
+   <instr
+      op="55"
+      s0="Memory Maps\\c6x\\run_view\\IDRAM\\.idl"
+      u1="1"
+   />
+
+   <!-- NEW  child output section  OF  run_view\IDRAM\.idl  WITH  name=FROM_ALL_FILES_5, data_kind=hole -->
+   <instr
+      op="a"
+      s0="Memory Maps\\c6x\\run_view\\IDRAM\\.idl"
+      s1="FROM_ALL_FILES_5"
+      u3="8"
+   />
+
+   <!-- ADD  children of run_view\Not Yet Placed  WITH  kind=any section, base name=.idl  TO  run_view\IDRAM\.idl\FROM_ALL_FILES_5 -->
+   <instr
+      op="8"
+      s0="Memory Maps\\c6x\\run_view\\IDRAM\\.idl\\FROM_ALL_FILES_5"
+      s1="Memory Maps\\c6x\\run_view\\Not Yet Placed"
+      u2="4"
+      u3="40000054"
+      u4="1"
+      s5="TEMPLATE"
+      s6=".idl"
+      u8="1014"
+      u17="0"
+   />
+
+   <!-- NEW  child output section  OF  run_view\IDRAM\.idl  WITH  name=FROM_ALL_FILES_6, data_kind=hole -->
+   <instr
+      op="a"
+      s0="Memory Maps\\c6x\\run_view\\IDRAM\\.idl"
+      s1="FROM_ALL_FILES_6"
+      u3="8"
+   />
+
+   <!-- ADD  children of run_view\Not Yet Placed  WITH  kind=any section, base name=.idlcal  TO  run_view\IDRAM\.idl\FROM_ALL_FILES_6 -->
+   <instr
+      op="8"
+      s0="Memory Maps\\c6x\\run_view\\IDRAM\\.idl\\FROM_ALL_FILES_6"
+      s1="Memory Maps\\c6x\\run_view\\Not Yet Placed"
+      u2="4"
+      u3="40000054"
+      u4="1"
+      s5="TEMPLATE"
+      s6=".idlcal"
+      u8="1014"
+      u17="0"
+   />
+
+   <!-- NEW  child output section  OF  run_view\IDRAM  WITH  name=.sysdata, data_kind=hole -->
+   <instr
+      op="22"
+      s0="Memory Maps\\c6x\\run_view\\IDRAM"
+      s1=".sysdata"
+      u3="8"
+   />
+
+   <!-- CHANGE  dont inherit fill  OF  run_view\IDRAM\.sysdata  TO  TRUE -->
+   <instr
+      op="3c"
+      s0="Memory Maps\\c6x\\run_view\\IDRAM\\.sysdata"
+      u1="1"
+   />
+
+   <!-- CHANGE  force load placement  OF  run_view\IDRAM\.sysdata  TO  TRUE -->
+   <instr
+      op="55"
+      s0="Memory Maps\\c6x\\run_view\\IDRAM\\.sysdata"
+      u1="1"
+   />
+
+   <!-- NEW  child output section  OF  run_view\IDRAM  WITH  name=.args, data_kind=hole, alloc_kind=struct -->
+   <instr
+      op="22"
+      s0="Memory Maps\\c6x\\run_view\\IDRAM"
+      s1=".args"
+      u3="a"
+   />
+
+   <!-- CHANGE  dont inherit fill  OF  run_view\IDRAM\.args  TO  TRUE -->
+   <instr
+      op="3c"
+      s0="Memory Maps\\c6x\\run_view\\IDRAM\\.args"
+      u1="1"
+   />
+
+   <!-- CHANGE  force load placement  OF  run_view\IDRAM\.args  TO  TRUE -->
+   <instr
+      op="55"
+      s0="Memory Maps\\c6x\\run_view\\IDRAM\\.args"
+      u1="1"
+   />
+
+   <!-- CHANGE  fill_holes  OF  run_view\IDRAM\.args  TO  TRUE -->
+   <instr
+      op="10"
+      s0="Memory Maps\\c6x\\run_view\\IDRAM\\.args"
+      u1="1"
+   />
+
+   <!-- NEW  child output section  OF  run_view\IDRAM\.args  WITH  name=FROM_ALL_FILES_7, data_kind=hole -->
+   <instr
+      op="a"
+      s0="Memory Maps\\c6x\\run_view\\IDRAM\\.args"
+      s1="FROM_ALL_FILES_7"
+      u3="8"
+   />
+
+   <!-- ADD  children of run_view\Not Yet Placed  WITH  kind=any section, base name=.args  TO  run_view\IDRAM\.args\FROM_ALL_FILES_7 -->
+   <instr
+      op="8"
+      s0="Memory Maps\\c6x\\run_view\\IDRAM\\.args\\FROM_ALL_FILES_7"
+      s1="Memory Maps\\c6x\\run_view\\Not Yet Placed"
+      u2="4"
+      u3="40000054"
+      u4="1"
+      s5="TEMPLATE"
+      s6=".args"
+      u8="1014"
+      u17="0"
+   />
+
+   <!-- NEW  child output section  OF  run_view\IDRAM\.args  WITH  name=HOLE_8, data_kind=hole -->
+   <instr
+      op="a"
+      s0="Memory Maps\\c6x\\run_view\\IDRAM\\.args"
+      s1="HOLE_8"
+      u3="8"
+   />
+
+   <!-- CHANGE  min_size  OF  run_view\IDRAM\.args\HOLE_8  TO  04h -->
+   <instr
+      op="17"
+      s0="Memory Maps\\c6x\\run_view\\IDRAM\\.args\\HOLE_8"
+      u1="4"
+   />
+
+   <!-- CHANGE  max_size  OF  run_view\IDRAM\.args\HOLE_8  TO  04h -->
+   <instr
+      op="18"
+      s0="Memory Maps\\c6x\\run_view\\IDRAM\\.args\\HOLE_8"
+      u1="4"
+   />
+
+   <!-- NEW  child output section  OF  run_view\IDRAM  WITH  name=.trcdata, data_kind=hole -->
+   <instr
+      op="22"
+      s0="Memory Maps\\c6x\\run_view\\IDRAM"
+      s1=".trcdata"
+      u3="8"
+   />
+
+   <!-- CHANGE  dont inherit fill  OF  run_view\IDRAM\.trcdata  TO  TRUE -->
+   <instr
+      op="3c"
+      s0="Memory Maps\\c6x\\run_view\\IDRAM\\.trcdata"
+      u1="1"
+   />
+
+   <!-- CHANGE  force load placement  OF  run_view\IDRAM\.trcdata  TO  TRUE -->
+   <instr
+      op="55"
+      s0="Memory Maps\\c6x\\run_view\\IDRAM\\.trcdata"
+      u1="1"
+   />
+
+   <!-- NEW  child output section  OF  run_view\IDRAM  WITH  name=.trace, data_kind=hole, alloc_kind=struct -->
+   <instr
+      op="22"
+      s0="Memory Maps\\c6x\\run_view\\IDRAM"
+      s1=".trace"
+      u3="a"
+   />
+
+   <!-- CHANGE  dont inherit fill  OF  run_view\IDRAM\.trace  TO  TRUE -->
+   <instr
+      op="3c"
+      s0="Memory Maps\\c6x\\run_view\\IDRAM\\.trace"
+      u1="1"
+   />
+
+   <!-- CHANGE  force load placement  OF  run_view\IDRAM\.trace  TO  TRUE -->
+   <instr
+      op="55"
+      s0="Memory Maps\\c6x\\run_view\\IDRAM\\.trace"
+      u1="1"
+   />
+
+   <!-- CHANGE  fill_holes  OF  run_view\IDRAM\.trace  TO  TRUE -->
+   <instr
+      op="10"
+      s0="Memory Maps\\c6x\\run_view\\IDRAM\\.trace"
+      u1="1"
+   />
+
+   <!-- NEW  child output section  OF  run_view\IDRAM\.trace  WITH  name=HOLE_9, data_kind=hole -->
+   <instr
+      op="a"
+      s0="Memory Maps\\c6x\\run_view\\IDRAM\\.trace"
+      s1="HOLE_9"
+      u3="8"
+   />
+
+   <!-- CHANGE  min_size  OF  run_view\IDRAM\.trace\HOLE_9  TO  0200h -->
+   <instr
+      op="17"
+      s0="Memory Maps\\c6x\\run_view\\IDRAM\\.trace\\HOLE_9"
+      u1="200"
+   />
+
+   <!-- CHANGE  max_size  OF  run_view\IDRAM\.trace\HOLE_9  TO  0200h -->
+   <instr
+      op="18"
+      s0="Memory Maps\\c6x\\run_view\\IDRAM\\.trace\\HOLE_9"
+      u1="200"
+   />
+
+   <!-- NEW  child output section  OF  run_view\IDRAM  WITH  name=.mem, data_kind=hole -->
+   <instr
+      op="22"
+      s0="Memory Maps\\c6x\\run_view\\IDRAM"
+      s1=".mem"
+      u3="8"
+   />
+
+   <!-- CHANGE  dont inherit fill  OF  run_view\IDRAM\.mem  TO  TRUE -->
+   <instr
+      op="3c"
+      s0="Memory Maps\\c6x\\run_view\\IDRAM\\.mem"
+      u1="1"
+   />
+
+   <!-- CHANGE  force load placement  OF  run_view\IDRAM\.mem  TO  TRUE -->
+   <instr
+      op="55"
+      s0="Memory Maps\\c6x\\run_view\\IDRAM\\.mem"
+      u1="1"
+   />
+
+   <!-- NEW  child output section  OF  run_view\IDRAM  WITH  name=.sys, data_kind=hole -->
+   <instr
+      op="22"
+      s0="Memory Maps\\c6x\\run_view\\IDRAM"
+      s1=".sys"
+      u3="8"
+   />
+
+   <!-- CHANGE  dont inherit fill  OF  run_view\IDRAM\.sys  TO  TRUE -->
+   <instr
+      op="3c"
+      s0="Memory Maps\\c6x\\run_view\\IDRAM\\.sys"
+      u1="1"
+   />
+
+   <!-- CHANGE  force load placement  OF  run_view\IDRAM\.sys  TO  TRUE -->
+   <instr
+      op="55"
+      s0="Memory Maps\\c6x\\run_view\\IDRAM\\.sys"
+      u1="1"
+   />
+
+   <!-- NEW  child output section  OF  run_view\IDRAM  WITH  name=.sysregs, data_kind=hole -->
+   <instr
+      op="22"
+      s0="Memory Maps\\c6x\\run_view\\IDRAM"
+      s1=".sysregs"
+      u3="8"
+   />
+
+   <!-- CHANGE  dont inherit fill  OF  run_view\IDRAM\.sysregs  TO  TRUE -->
+   <instr
+      op="3c"
+      s0="Memory Maps\\c6x\\run_view\\IDRAM\\.sysregs"
+      u1="1"
+   />
+
+   <!-- CHANGE  force load placement  OF  run_view\IDRAM\.sysregs  TO  TRUE -->
+   <instr
+      op="55"
+      s0="Memory Maps\\c6x\\run_view\\IDRAM\\.sysregs"
+      u1="1"
+   />
+
+   <!-- NEW  child output section  OF  run_view\IDRAM  WITH  name=.sts, data_kind=hole -->
+   <instr
+      op="22"
+      s0="Memory Maps\\c6x\\run_view\\IDRAM"
+      s1=".sts"
+      u3="8"
+   />
+
+   <!-- CHANGE  dont inherit fill  OF  run_view\IDRAM\.sts  TO  TRUE -->
+   <instr
+      op="3c"
+      s0="Memory Maps\\c6x\\run_view\\IDRAM\\.sts"
+      u1="1"
+   />
+
+   <!-- CHANGE  force load placement  OF  run_view\IDRAM\.sts  TO  TRUE -->
+   <instr
+      op="55"
+      s0="Memory Maps\\c6x\\run_view\\IDRAM\\.sts"
+      u1="1"
+   />
+
+   <!-- NEW  child output section  OF  run_view\IDRAM  WITH  name=.MBX_CommEXPv2$que, data_kind=hole, alloc_kind=struct -->
+   <instr
+      op="22"
+      s0="Memory Maps\\c6x\\run_view\\IDRAM"
+      s1=".MBX_CommEXPv2$que"
+      u3="a"
+   />
+
+   <!-- CHANGE  dont inherit fill  OF  run_view\IDRAM\.MBX_CommEXPv2$que  TO  TRUE -->
+   <instr
+      op="3c"
+      s0="Memory Maps\\c6x\\run_view\\IDRAM\\.MBX_CommEXPv2$que"
+      u1="1"
+   />
+
+   <!-- ALIGN  run address of run_view\IDRAM\.MBX_CommEXPv2$que  TO  an address with 2 0's in the LSBs -->
+   <instr
+      op="2f"
+      s0="Memory Maps\\c6x\\run_view\\IDRAM\\.MBX_CommEXPv2$que"
+      u2="3"
+   />
+
+   <!-- CHANGE  force load placement  OF  run_view\IDRAM\.MBX_CommEXPv2$que  TO  TRUE -->
+   <instr
+      op="55"
+      s0="Memory Maps\\c6x\\run_view\\IDRAM\\.MBX_CommEXPv2$que"
+      u1="1"
+   />
+
+   <!-- ALIGN  load address of run_view\IDRAM\.MBX_CommEXPv2$que  TO  an address with 2 0's in the LSBs -->
+   <instr
+      op="30"
+      s0="Memory Maps\\c6x\\run_view\\IDRAM\\.MBX_CommEXPv2$que"
+      u2="3"
+   />
+
+   <!-- NEW  child output section  OF  run_view\IDRAM\.MBX_CommEXPv2$que  WITH  name=HOLE_10, data_kind=hole -->
+   <instr
+      op="a"
+      s0="Memory Maps\\c6x\\run_view\\IDRAM\\.MBX_CommEXPv2$que"
+      s1="HOLE_10"
+      u3="8"
+   />
+
+   <!-- CHANGE  min_size  OF  run_view\IDRAM\.MBX_CommEXPv2$que\HOLE_10  TO  051e0h -->
+   <instr
+      op="17"
+      s0="Memory Maps\\c6x\\run_view\\IDRAM\\.MBX_CommEXPv2$que\\HOLE_10"
+      u1="51e0"
+   />
+
+   <!-- CHANGE  max_size  OF  run_view\IDRAM\.MBX_CommEXPv2$que\HOLE_10  TO  051e0h -->
+   <instr
+      op="18"
+      s0="Memory Maps\\c6x\\run_view\\IDRAM\\.MBX_CommEXPv2$que\\HOLE_10"
+      u1="51e0"
+   />
+
+   <!-- NEW  child output section  OF  run_view\IDRAM  WITH  name=.MBX_CommSTS_HI$que, data_kind=hole, alloc_kind=struct -->
+   <instr
+      op="22"
+      s0="Memory Maps\\c6x\\run_view\\IDRAM"
+      s1=".MBX_CommSTS_HI$que"
+      u3="a"
+   />
+
+   <!-- CHANGE  dont inherit fill  OF  run_view\IDRAM\.MBX_CommSTS_HI$que  TO  TRUE -->
+   <instr
+      op="3c"
+      s0="Memory Maps\\c6x\\run_view\\IDRAM\\.MBX_CommSTS_HI$que"
+      u1="1"
+   />
+
+   <!-- ALIGN  run address of run_view\IDRAM\.MBX_CommSTS_HI$que  TO  an address with 2 0's in the LSBs -->
+   <instr
+      op="2f"
+      s0="Memory Maps\\c6x\\run_view\\IDRAM\\.MBX_CommSTS_HI$que"
+      u2="3"
+   />
+
+   <!-- CHANGE  force load placement  OF  run_view\IDRAM\.MBX_CommSTS_HI$que  TO  TRUE -->
+   <instr
+      op="55"
+      s0="Memory Maps\\c6x\\run_view\\IDRAM\\.MBX_CommSTS_HI$que"
+      u1="1"
+   />
+
+   <!-- ALIGN  load address of run_view\IDRAM\.MBX_CommSTS_HI$que  TO  an address with 2 0's in the LSBs -->
+   <instr
+      op="30"
+      s0="Memory Maps\\c6x\\run_view\\IDRAM\\.MBX_CommSTS_HI$que"
+      u2="3"
+   />
+
+   <!-- NEW  child output section  OF  run_view\IDRAM\.MBX_CommSTS_HI$que  WITH  name=HOLE_11, data_kind=hole -->
+   <instr
+      op="a"
+      s0="Memory Maps\\c6x\\run_view\\IDRAM\\.MBX_CommSTS_HI$que"
+      s1="HOLE_11"
+      u3="8"
+   />
+
+   <!-- CHANGE  min_size  OF  run_view\IDRAM\.MBX_CommSTS_HI$que\HOLE_11  TO  0c30h -->
+   <instr
+      op="17"
+      s0="Memory Maps\\c6x\\run_view\\IDRAM\\.MBX_CommSTS_HI$que\\HOLE_11"
+      u1="c30"
+   />
+
+   <!-- CHANGE  max_size  OF  run_view\IDRAM\.MBX_CommSTS_HI$que\HOLE_11  TO  0c30h -->
+   <instr
+      op="18"
+      s0="Memory Maps\\c6x\\run_view\\IDRAM\\.MBX_CommSTS_HI$que\\HOLE_11"
+      u1="c30"
+   />
+
+   <!-- NEW  child output section  OF  run_view\IDRAM  WITH  name=.MBX_CommSTL_HI$que, data_kind=hole, alloc_kind=struct -->
+   <instr
+      op="22"
+      s0="Memory Maps\\c6x\\run_view\\IDRAM"
+      s1=".MBX_CommSTL_HI$que"
+      u3="a"
+   />
+
+   <!-- CHANGE  dont inherit fill  OF  run_view\IDRAM\.MBX_CommSTL_HI$que  TO  TRUE -->
+   <instr
+      op="3c"
+      s0="Memory Maps\\c6x\\run_view\\IDRAM\\.MBX_CommSTL_HI$que"
+      u1="1"
+   />
+
+   <!-- ALIGN  run address of run_view\IDRAM\.MBX_CommSTL_HI$que  TO  an address with 2 0's in the LSBs -->
+   <instr
+      op="2f"
+      s0="Memory Maps\\c6x\\run_view\\IDRAM\\.MBX_CommSTL_HI$que"
+      u2="3"
+   />
+
+   <!-- CHANGE  force load placement  OF  run_view\IDRAM\.MBX_CommSTL_HI$que  TO  TRUE -->
+   <instr
+      op="55"
+      s0="Memory Maps\\c6x\\run_view\\IDRAM\\.MBX_CommSTL_HI$que"
+      u1="1"
+   />
+
+   <!-- ALIGN  load address of run_view\IDRAM\.MBX_CommSTL_HI$que  TO  an address with 2 0's in the LSBs -->
+   <instr
+      op="30"
+      s0="Memory Maps\\c6x\\run_view\\IDRAM\\.MBX_CommSTL_HI$que"
+      u2="3"
+   />
+
+   <!-- NEW  child output section  OF  run_view\IDRAM\.MBX_CommSTL_HI$que  WITH  name=HOLE_12, data_kind=hole -->
+   <instr
+      op="a"
+      s0="Memory Maps\\c6x\\run_view\\IDRAM\\.MBX_CommSTL_HI$que"
+      s1="HOLE_12"
+      u3="8"
+   />
+
+   <!-- CHANGE  min_size  OF  run_view\IDRAM\.MBX_CommSTL_HI$que\HOLE_12  TO  0c30h -->
+   <instr
+      op="17"
+      s0="Memory Maps\\c6x\\run_view\\IDRAM\\.MBX_CommSTL_HI$que\\HOLE_12"
+      u1="c30"
+   />
+
+   <!-- CHANGE  max_size  OF  run_view\IDRAM\.MBX_CommSTL_HI$que\HOLE_12  TO  0c30h -->
+   <instr
+      op="18"
+      s0="Memory Maps\\c6x\\run_view\\IDRAM\\.MBX_CommSTL_HI$que\\HOLE_12"
+      u1="c30"
+   />
+
+   <!-- NEW  child output section  OF  run_view\IDRAM  WITH  name=.mbx, data_kind=hole -->
+   <instr
+      op="22"
+      s0="Memory Maps\\c6x\\run_view\\IDRAM"
+      s1=".mbx"
+      u3="8"
+   />
+
+   <!-- CHANGE  dont inherit fill  OF  run_view\IDRAM\.mbx  TO  TRUE -->
+   <instr
+      op="3c"
+      s0="Memory Maps\\c6x\\run_view\\IDRAM\\.mbx"
+      u1="1"
+   />
+
+   <!-- CHANGE  force load placement  OF  run_view\IDRAM\.mbx  TO  TRUE -->
+   <instr
+      op="55"
+      s0="Memory Maps\\c6x\\run_view\\IDRAM\\.mbx"
+      u1="1"
+   />
+
+   <!-- NEW  child output section  OF  run_view\IDRAM  WITH  name=.sem, data_kind=hole -->
+   <instr
+      op="22"
+      s0="Memory Maps\\c6x\\run_view\\IDRAM"
+      s1=".sem"
+      u3="8"
+   />
+
+   <!-- CHANGE  dont inherit fill  OF  run_view\IDRAM\.sem  TO  TRUE -->
+   <instr
+      op="3c"
+      s0="Memory Maps\\c6x\\run_view\\IDRAM\\.sem"
+      u1="1"
+   />
+
+   <!-- CHANGE  force load placement  OF  run_view\IDRAM\.sem  TO  TRUE -->
+   <instr
+      op="55"
+      s0="Memory Maps\\c6x\\run_view\\IDRAM\\.sem"
+      u1="1"
+   />
+
+   <!-- NEW  child output section  OF  run_view\IDRAM  WITH  name=.switch, data_kind=hole -->
+   <instr
+      op="22"
+      s0="Memory Maps\\c6x\\run_view\\IDRAM"
+      s1=".switch"
+      u3="8"
+   />
+
+   <!-- CHANGE  dont inherit fill  OF  run_view\IDRAM\.switch  TO  TRUE -->
+   <instr
+      op="3c"
+      s0="Memory Maps\\c6x\\run_view\\IDRAM\\.switch"
+      u1="1"
+   />
+
+   <!-- CHANGE  force load placement  OF  run_view\IDRAM\.switch  TO  TRUE -->
+   <instr
+      op="55"
+      s0="Memory Maps\\c6x\\run_view\\IDRAM\\.switch"
+      u1="1"
+   />
+
+   <!-- NEW  child output section  OF  run_view\IDRAM  WITH  name=.pip0, data_kind=hole -->
+   <instr
+      op="22"
+      s0="Memory Maps\\c6x\\run_view\\IDRAM"
+      s1=".pip0"
+      u3="8"
+   />
+
+   <!-- CHANGE  dont inherit fill  OF  run_view\IDRAM\.pip0  TO  TRUE -->
+   <instr
+      op="3c"
+      s0="Memory Maps\\c6x\\run_view\\IDRAM\\.pip0"
+      u1="1"
+   />
+
+   <!-- CHANGE  comment  OF  run_view\IDRAM\.pip0  TO  " PIP_comm_TX buffer " -->
+   <instr
+      op="46"
+      s0="Memory Maps\\c6x\\run_view\\IDRAM\\.pip0"
+      s1=" PIP_comm_TX buffer "
+   />
+
+   <!-- CHANGE  force load placement  OF  run_view\IDRAM\.pip0  TO  TRUE -->
+   <instr
+      op="55"
+      s0="Memory Maps\\c6x\\run_view\\IDRAM\\.pip0"
+      u1="1"
+   />
+
+   <!-- NEW  child output section  OF  run_view\IDRAM  WITH  name=.pip, data_kind=hole -->
+   <instr
+      op="22"
+      s0="Memory Maps\\c6x\\run_view\\IDRAM"
+      s1=".pip"
+      u3="8"
+   />
+
+   <!-- CHANGE  dont inherit fill  OF  run_view\IDRAM\.pip  TO  TRUE -->
+   <instr
+      op="3c"
+      s0="Memory Maps\\c6x\\run_view\\IDRAM\\.pip"
+      u1="1"
+   />
+
+   <!-- CHANGE  force load placement  OF  run_view\IDRAM\.pip  TO  TRUE -->
+   <instr
+      op="55"
+      s0="Memory Maps\\c6x\\run_view\\IDRAM\\.pip"
+      u1="1"
+   />
+
+   <!-- ADD  children of run_view\Not Yet Placed  WITH  kind=any section, base name=.pip  TO  run_view\IDRAM\.pip -->
+   <instr
+      op="8"
+      s0="Memory Maps\\c6x\\run_view\\IDRAM\\.pip"
+      s1="Memory Maps\\c6x\\run_view\\Not Yet Placed"
+      u2="4"
+      u3="40000054"
+      u4="1"
+      s5="TEMPLATE"
+      s6=".pip"
+      u8="1014"
+      u17="0"
+   />
+
+   <!-- NEW  child output section  OF  run_view\IDRAM  WITH  name=.trace$buf, data_kind=hole -->
+   <instr
+      op="22"
+      s0="Memory Maps\\c6x\\run_view\\IDRAM"
+      s1=".trace$buf"
+      u3="8"
+   />
+
+   <!-- CHANGE  dont inherit fill  OF  run_view\IDRAM\.trace$buf  TO  TRUE -->
+   <instr
+      op="3c"
+      s0="Memory Maps\\c6x\\run_view\\IDRAM\\.trace$buf"
+      u1="1"
+   />
+
+   <!-- CHANGE  comment  OF  run_view\IDRAM\.trace$buf  TO  " trace buffer " -->
+   <instr
+      op="46"
+      s0="Memory Maps\\c6x\\run_view\\IDRAM\\.trace$buf"
+      s1=" trace buffer "
+   />
+
+   <!-- ALIGN  run address of run_view\IDRAM\.trace$buf  TO  an address with 10 0's in the LSBs -->
+   <instr
+      op="2f"
+      s0="Memory Maps\\c6x\\run_view\\IDRAM\\.trace$buf"
+      u2="3ff"
+   />
+
+   <!-- CHANGE  force load placement  OF  run_view\IDRAM\.trace$buf  TO  TRUE -->
+   <instr
+      op="55"
+      s0="Memory Maps\\c6x\\run_view\\IDRAM\\.trace$buf"
+      u1="1"
+   />
+
+   <!-- ALIGN  load address of run_view\IDRAM\.trace$buf  TO  an address with 10 0's in the LSBs -->
+   <instr
+      op="30"
+      s0="Memory Maps\\c6x\\run_view\\IDRAM\\.trace$buf"
+      u2="3ff"
+   />
+
+   <!-- CHANGE  fill_val  OF  run_view\IDRAM\.trace$buf  TO  0ffffffffh -->
+   <instr
+      op="f"
+      s0="Memory Maps\\c6x\\run_view\\IDRAM\\.trace$buf"
+      u1="ffffffff"
+   />
+
+   <!-- CHANGE  fill_holes  OF  run_view\IDRAM\.trace$buf  TO  TRUE -->
+   <instr
+      op="10"
+      s0="Memory Maps\\c6x\\run_view\\IDRAM\\.trace$buf"
+      u1="1"
+   />
+
+   <!-- NEW  child output section  OF  run_view\IDRAM  WITH  name=.LOG_system$buf, data_kind=hole -->
+   <instr
+      op="22"
+      s0="Memory Maps\\c6x\\run_view\\IDRAM"
+      s1=".LOG_system$buf"
+      u3="8"
+   />
+
+   <!-- CHANGE  dont inherit fill  OF  run_view\IDRAM\.LOG_system$buf  TO  TRUE -->
+   <instr
+      op="3c"
+      s0="Memory Maps\\c6x\\run_view\\IDRAM\\.LOG_system$buf"
+      u1="1"
+   />
+
+   <!-- CHANGE  comment  OF  run_view\IDRAM\.LOG_system$buf  TO  " LOG_system buffer " -->
+   <instr
+      op="46"
+      s0="Memory Maps\\c6x\\run_view\\IDRAM\\.LOG_system$buf"
+      s1=" LOG_system buffer "
+   />
+
+   <!-- ALIGN  run address of run_view\IDRAM\.LOG_system$buf  TO  an address with 8 0's in the LSBs -->
+   <instr
+      op="2f"
+      s0="Memory Maps\\c6x\\run_view\\IDRAM\\.LOG_system$buf"
+      u2="ff"
+   />
+
+   <!-- CHANGE  force load placement  OF  run_view\IDRAM\.LOG_system$buf  TO  TRUE -->
+   <instr
+      op="55"
+      s0="Memory Maps\\c6x\\run_view\\IDRAM\\.LOG_system$buf"
+      u1="1"
+   />
+
+   <!-- ALIGN  load address of run_view\IDRAM\.LOG_system$buf  TO  an address with 8 0's in the LSBs -->
+   <instr
+      op="30"
+      s0="Memory Maps\\c6x\\run_view\\IDRAM\\.LOG_system$buf"
+      u2="ff"
+   />
+
+   <!-- CHANGE  fill_val  OF  run_view\IDRAM\.LOG_system$buf  TO  0ffffffffh -->
+   <instr
+      op="f"
+      s0="Memory Maps\\c6x\\run_view\\IDRAM\\.LOG_system$buf"
+      u1="ffffffff"
+   />
+
+   <!-- CHANGE  fill_holes  OF  run_view\IDRAM\.LOG_system$buf  TO  TRUE -->
+   <instr
+      op="10"
+      s0="Memory Maps\\c6x\\run_view\\IDRAM\\.LOG_system$buf"
+      u1="1"
+   />
+
+   <!-- NEW  child output section  OF  run_view\IDRAM  WITH  name=.printf, data_kind=hole, specl_kind=copy -->
+   <instr
+      op="22"
+      s0="Memory Maps\\c6x\\run_view\\IDRAM"
+      s1=".printf"
+      u3="8"
+      u4="5"
+   />
+
+   <!-- CHANGE  dont inherit fill  OF  run_view\IDRAM\.printf  TO  TRUE -->
+   <instr
+      op="3c"
+      s0="Memory Maps\\c6x\\run_view\\IDRAM\\.printf"
+      u1="1"
+   />
+
+   <!-- CHANGE  force load placement  OF  run_view\IDRAM\.printf  TO  TRUE -->
+   <instr
+      op="55"
+      s0="Memory Maps\\c6x\\run_view\\IDRAM\\.printf"
+      u1="1"
+   />
+
+   <!-- NEW  child output section  OF  run_view\IDRAM  WITH  name=.log, data_kind=hole -->
+   <instr
+      op="22"
+      s0="Memory Maps\\c6x\\run_view\\IDRAM"
+      s1=".log"
+      u3="8"
+   />
+
+   <!-- CHANGE  dont inherit fill  OF  run_view\IDRAM\.log  TO  TRUE -->
+   <instr
+      op="3c"
+      s0="Memory Maps\\c6x\\run_view\\IDRAM\\.log"
+      u1="1"
+   />
+
+   <!-- CHANGE  force load placement  OF  run_view\IDRAM\.log  TO  TRUE -->
+   <instr
+      op="55"
+      s0="Memory Maps\\c6x\\run_view\\IDRAM\\.log"
+      u1="1"
+   />
+
+   <!-- ADD  children of run_view\Not Yet Placed  WITH  kind=any section, base name=.log  TO  run_view\IDRAM\.log -->
+   <instr
+      op="8"
+      s0="Memory Maps\\c6x\\run_view\\IDRAM\\.log"
+      s1="Memory Maps\\c6x\\run_view\\Not Yet Placed"
+      u2="4"
+      u3="40000054"
+      u4="1"
+      s5="TEMPLATE"
+      s6=".log"
+      u8="1014"
+      u17="0"
+   />
+
+   <!-- NEW  child output section  OF  run_view\IDRAM  WITH  name=.hst, data_kind=hole -->
+   <instr
+      op="22"
+      s0="Memory Maps\\c6x\\run_view\\IDRAM"
+      s1=".hst"
+      u3="8"
+   />
+
+   <!-- CHANGE  dont inherit fill  OF  run_view\IDRAM\.hst  TO  TRUE -->
+   <instr
+      op="3c"
+      s0="Memory Maps\\c6x\\run_view\\IDRAM\\.hst"
+      u1="1"
+   />
+
+   <!-- CHANGE  force load placement  OF  run_view\IDRAM\.hst  TO  TRUE -->
+   <instr
+      op="55"
+      s0="Memory Maps\\c6x\\run_view\\IDRAM\\.hst"
+      u1="1"
+   />
+
+   <!-- NEW  child output section  OF  run_view\IDRAM  WITH  name=.dsm, data_kind=hole -->
+   <instr
+      op="22"
+      s0="Memory Maps\\c6x\\run_view\\IDRAM"
+      s1=".dsm"
+      u3="8"
+   />
+
+   <!-- CHANGE  dont inherit fill  OF  run_view\IDRAM\.dsm  TO  TRUE -->
+   <instr
+      op="3c"
+      s0="Memory Maps\\c6x\\run_view\\IDRAM\\.dsm"
+      u1="1"
+   />
+
+   <!-- CHANGE  force load placement  OF  run_view\IDRAM\.dsm  TO  TRUE -->
+   <instr
+      op="55"
+      s0="Memory Maps\\c6x\\run_view\\IDRAM\\.dsm"
+      u1="1"
+   />
+
+   <!-- NEW  child output section  OF  run_view\IDRAM  WITH  name=.TSK_datacomm_STS$stk, data_kind=hole -->
+   <instr
+      op="22"
+      s0="Memory Maps\\c6x\\run_view\\IDRAM"
+      s1=".TSK_datacomm_STS$stk"
+      u3="8"
+   />
+
+   <!-- CHANGE  dont inherit fill  OF  run_view\IDRAM\.TSK_datacomm_STS$stk  TO  TRUE -->
+   <instr
+      op="3c"
+      s0="Memory Maps\\c6x\\run_view\\IDRAM\\.TSK_datacomm_STS$stk"
+      u1="1"
+   />
+
+   <!-- CHANGE  force load placement  OF  run_view\IDRAM\.TSK_datacomm_STS$stk  TO  TRUE -->
+   <instr
+      op="55"
+      s0="Memory Maps\\c6x\\run_view\\IDRAM\\.TSK_datacomm_STS$stk"
+      u1="1"
+   />
+
+   <!-- ADD  children of run_view\Not Yet Placed  WITH  kind=any section, base name=.TSK_datacomm_STS$stk  TO  run_view\IDRAM\.TSK_datacomm_STS$stk -->
+   <instr
+      op="8"
+      s0="Memory Maps\\c6x\\run_view\\IDRAM\\.TSK_datacomm_STS$stk"
+      s1="Memory Maps\\c6x\\run_view\\Not Yet Placed"
+      u2="4"
+      u3="40000054"
+      u4="1"
+      s5="TEMPLATE"
+      s6=".TSK_datacomm_STS$stk"
+      u8="5014"
+      u17="0"
+   />
+
+   <!-- NEW  child output section  OF  run_view\IDRAM  WITH  name=.tsk, data_kind=hole -->
+   <instr
+      op="22"
+      s0="Memory Maps\\c6x\\run_view\\IDRAM"
+      s1=".tsk"
+      u3="8"
+   />
+
+   <!-- CHANGE  dont inherit fill  OF  run_view\IDRAM\.tsk  TO  TRUE -->
+   <instr
+      op="3c"
+      s0="Memory Maps\\c6x\\run_view\\IDRAM\\.tsk"
+      u1="1"
+   />
+
+   <!-- CHANGE  force load placement  OF  run_view\IDRAM\.tsk  TO  TRUE -->
+   <instr
+      op="55"
+      s0="Memory Maps\\c6x\\run_view\\IDRAM\\.tsk"
+      u1="1"
+   />
+
+   <!-- ADD  children of run_view\Not Yet Placed  WITH  kind=any section, base name=.tsk  TO  run_view\IDRAM\.tsk -->
+   <instr
+      op="8"
+      s0="Memory Maps\\c6x\\run_view\\IDRAM\\.tsk"
+      s1="Memory Maps\\c6x\\run_view\\Not Yet Placed"
+      u2="4"
+      u3="40000054"
+      u4="1"
+      s5="TEMPLATE"
+      s6=".tsk"
+      u8="1014"
+      u17="0"
+   />
+
+   <!-- NEW  child output section  OF  run_view\IDRAM  WITH  name=.TSK_idle$stk, data_kind=hole -->
+   <instr
+      op="22"
+      s0="Memory Maps\\c6x\\run_view\\IDRAM"
+      s1=".TSK_idle$stk"
+      u3="8"
+   />
+
+   <!-- CHANGE  dont inherit fill  OF  run_view\IDRAM\.TSK_idle$stk  TO  TRUE -->
+   <instr
+      op="3c"
+      s0="Memory Maps\\c6x\\run_view\\IDRAM\\.TSK_idle$stk"
+      u1="1"
+   />
+
+   <!-- CHANGE  force load placement  OF  run_view\IDRAM\.TSK_idle$stk  TO  TRUE -->
+   <instr
+      op="55"
+      s0="Memory Maps\\c6x\\run_view\\IDRAM\\.TSK_idle$stk"
+      u1="1"
+   />
+
+   <!-- ADD  children of run_view\Not Yet Placed  WITH  kind=any section, base name=.TSK_idle$stk  TO  run_view\IDRAM\.TSK_idle$stk -->
+   <instr
+      op="8"
+      s0="Memory Maps\\c6x\\run_view\\IDRAM\\.TSK_idle$stk"
+      s1="Memory Maps\\c6x\\run_view\\Not Yet Placed"
+      u2="4"
+      u3="40000054"
+      u4="1"
+      s5="TEMPLATE"
+      s6=".TSK_idle$stk"
+      u8="3014"
+      u17="0"
+   />
+
+   <!-- NEW  child output section  OF  run_view\IDRAM  WITH  name=.TSK_cp_monitor$stk, data_kind=hole -->
+   <instr
+      op="22"
+      s0="Memory Maps\\c6x\\run_view\\IDRAM"
+      s1=".TSK_cp_monitor$stk"
+      u3="8"
+   />
+
+   <!-- CHANGE  dont inherit fill  OF  run_view\IDRAM\.TSK_cp_monitor$stk  TO  TRUE -->
+   <instr
+      op="3c"
+      s0="Memory Maps\\c6x\\run_view\\IDRAM\\.TSK_cp_monitor$stk"
+      u1="1"
+   />
+
+   <!-- CHANGE  force load placement  OF  run_view\IDRAM\.TSK_cp_monitor$stk  TO  TRUE -->
+   <instr
+      op="55"
+      s0="Memory Maps\\c6x\\run_view\\IDRAM\\.TSK_cp_monitor$stk"
+      u1="1"
+   />
+
+   <!-- ADD  children of run_view\Not Yet Placed  WITH  kind=any section, base name=.TSK_cp_monitor$stk  TO  run_view\IDRAM\.TSK_cp_monitor$stk -->
+   <instr
+      op="8"
+      s0="Memory Maps\\c6x\\run_view\\IDRAM\\.TSK_cp_monitor$stk"
+      s1="Memory Maps\\c6x\\run_view\\Not Yet Placed"
+      u2="4"
+      u3="40000054"
+      u4="1"
+      s5="TEMPLATE"
+      s6=".TSK_cp_monitor$stk"
+      u8="4014"
+      u17="0"
+   />
+
+   <!-- NEW  child output section  OF  run_view\IDRAM  WITH  name=.gio, data_kind=hole -->
+   <instr
+      op="22"
+      s0="Memory Maps\\c6x\\run_view\\IDRAM"
+      s1=".gio"
+      u3="8"
+   />
+
+   <!-- CHANGE  dont inherit fill  OF  run_view\IDRAM\.gio  TO  TRUE -->
+   <instr
+      op="3c"
+      s0="Memory Maps\\c6x\\run_view\\IDRAM\\.gio"
+      u1="1"
+   />
+
+   <!-- CHANGE  force load placement  OF  run_view\IDRAM\.gio  TO  TRUE -->
+   <instr
+      op="55"
+      s0="Memory Maps\\c6x\\run_view\\IDRAM\\.gio"
+      u1="1"
+   />
+
+   <!-- NEW  child output section  OF  run_view\IDRAM  WITH  name=.TSK_datacomm_STL$stk, data_kind=hole -->
+   <instr
+      op="22"
+      s0="Memory Maps\\c6x\\run_view\\IDRAM"
+      s1=".TSK_datacomm_STL$stk"
+      u3="8"
+   />
+
+   <!-- CHANGE  dont inherit fill  OF  run_view\IDRAM\.TSK_datacomm_STL$stk  TO  TRUE -->
+   <instr
+      op="3c"
+      s0="Memory Maps\\c6x\\run_view\\IDRAM\\.TSK_datacomm_STL$stk"
+      u1="1"
+   />
+
+   <!-- CHANGE  force load placement  OF  run_view\IDRAM\.TSK_datacomm_STL$stk  TO  TRUE -->
+   <instr
+      op="55"
+      s0="Memory Maps\\c6x\\run_view\\IDRAM\\.TSK_datacomm_STL$stk"
+      u1="1"
+   />
+
+   <!-- ADD  children of run_view\Not Yet Placed  WITH  kind=any section, base name=.TSK_datacomm_STL$stk  TO  run_view\IDRAM\.TSK_datacomm_STL$stk -->
+   <instr
+      op="8"
+      s0="Memory Maps\\c6x\\run_view\\IDRAM\\.TSK_datacomm_STL$stk"
+      s1="Memory Maps\\c6x\\run_view\\Not Yet Placed"
+      u2="4"
+      u3="40000054"
+      u4="1"
+      s5="TEMPLATE"
+      s6=".TSK_datacomm_STL$stk"
+      u8="5014"
+      u17="0"
+   />
+
+   <!-- NEW  child output section  OF  run_view\IPRAM  WITH  name=.hwi, data_kind=hole -->
+   <instr
+      op="22"
+      s0="Memory Maps\\c6x\\run_view\\IPRAM"
+      s1=".hwi"
+      u3="8"
+   />
+
+   <!-- CHANGE  dont inherit fill  OF  run_view\IPRAM\.hwi  TO  TRUE -->
+   <instr
+      op="3c"
+      s0="Memory Maps\\c6x\\run_view\\IPRAM\\.hwi"
+      u1="1"
+   />
+
+   <!-- CHANGE  force load placement  OF  run_view\IPRAM\.hwi  TO  TRUE -->
+   <instr
+      op="55"
+      s0="Memory Maps\\c6x\\run_view\\IPRAM\\.hwi"
+      u1="1"
+   />
+
+   <!-- CHANGE  alloc_kind  OF  run_view\IPRAM  TO  legacy_region -->
+   <instr
+      op="23"
+      s0="Memory Maps\\c6x\\run_view\\IPRAM"
+      u1="f"
+   />
+
+   <!-- NEW  child output section  OF  run_view\IPRAM  WITH  name=.bios, data_kind=hole -->
+   <instr
+      op="22"
+      s0="Memory Maps\\c6x\\run_view\\IPRAM"
+      s1=".bios"
+      u3="8"
+   />
+
+   <!-- CHANGE  dont inherit fill  OF  run_view\IPRAM\.bios  TO  TRUE -->
+   <instr
+      op="3c"
+      s0="Memory Maps\\c6x\\run_view\\IPRAM\\.bios"
+      u1="1"
+   />
+
+   <!-- CHANGE  force load placement  OF  run_view\IPRAM\.bios  TO  TRUE -->
+   <instr
+      op="55"
+      s0="Memory Maps\\c6x\\run_view\\IPRAM\\.bios"
+      u1="1"
+   />
+
+   <!-- ADD  run_view\Not Yet Placed\.stack  TO  run_view\SBSRAM -->
+   <instr
+      op="2"
+      s0="Memory Maps\\c6x\\run_view\\Not Yet Placed\\.stack"
+      s1="Memory Maps\\c6x\\run_view\\SBSRAM"
+   />
+
+   <!-- CHANGE  dont inherit fill  OF  run_view\SBSRAM\.stack  TO  TRUE -->
+   <instr
+      force_allocate="1"
+      op="3c"
+      s0="Memory Maps\\c6x\\run_view\\SBSRAM\\.stack"
+      u1="1"
+   />
+
+   <!-- CHANGE  fill_val  OF  run_view\SBSRAM\.stack  TO  0c0ffeeh -->
+   <instr
+      force_allocate="1"
+      op="f"
+      s0="Memory Maps\\c6x\\run_view\\SBSRAM\\.stack"
+      u1="c0ffee"
+   />
+
+   <!-- CHANGE  fill_holes  OF  run_view\SBSRAM\.stack  TO  TRUE -->
+   <instr
+      force_allocate="1"
+      op="10"
+      s0="Memory Maps\\c6x\\run_view\\SBSRAM\\.stack"
+      u1="1"
+   />
+
+   <!-- NEW  child output section  OF  run_view\SDRAM  WITH  name=.bss, data_kind=hole -->
+   <instr
+      op="22"
+      s0="Memory Maps\\c6x\\run_view\\SDRAM"
+      s1=".bss"
+      u3="8"
+   />
+
+   <!-- CHANGE  dont inherit fill  OF  run_view\SDRAM\.bss  TO  TRUE -->
+   <instr
+      op="3c"
+      s0="Memory Maps\\c6x\\run_view\\SDRAM\\.bss"
+      u1="1"
+   />
+
+   <!-- CHANGE  force load placement  OF  run_view\SDRAM\.bss  TO  TRUE -->
+   <instr
+      op="55"
+      s0="Memory Maps\\c6x\\run_view\\SDRAM\\.bss"
+      u1="1"
+   />
+
+   <!-- CHANGE  alloc_kind  OF  run_view\SDRAM  TO  legacy_region -->
+   <instr
+      op="23"
+      s0="Memory Maps\\c6x\\run_view\\SDRAM"
+      u1="f"
+   />
+
+   <!-- NEW  child output section  OF  run_view\SDRAM  WITH  name=.far, data_kind=hole -->
+   <instr
+      op="22"
+      s0="Memory Maps\\c6x\\run_view\\SDRAM"
+      s1=".far"
+      u3="8"
+   />
+
+   <!-- CHANGE  dont inherit fill  OF  run_view\SDRAM\.far  TO  TRUE -->
+   <instr
+      op="3c"
+      s0="Memory Maps\\c6x\\run_view\\SDRAM\\.far"
+      u1="1"
+   />
+
+   <!-- CHANGE  force load placement  OF  run_view\SDRAM\.far  TO  TRUE -->
+   <instr
+      op="55"
+      s0="Memory Maps\\c6x\\run_view\\SDRAM\\.far"
+      u1="1"
+   />
+
+   <!-- NEW  child output section  OF  run_view\SDRAM  WITH  name=.gblinit, data_kind=hole -->
+   <instr
+      op="22"
+      s0="Memory Maps\\c6x\\run_view\\SDRAM"
+      s1=".gblinit"
+      u3="8"
+   />
+
+   <!-- CHANGE  dont inherit fill  OF  run_view\SDRAM\.gblinit  TO  TRUE -->
+   <instr
+      op="3c"
+      s0="Memory Maps\\c6x\\run_view\\SDRAM\\.gblinit"
+      u1="1"
+   />
+
+   <!-- CHANGE  force load placement  OF  run_view\SDRAM\.gblinit  TO  TRUE -->
+   <instr
+      op="55"
+      s0="Memory Maps\\c6x\\run_view\\SDRAM\\.gblinit"
+      u1="1"
+   />
+
+   <!-- NEW  child output section  OF  run_view\SDRAM  WITH  name=.TSK_estimator$stk, data_kind=hole -->
+   <instr
+      op="22"
+      s0="Memory Maps\\c6x\\run_view\\SDRAM"
+      s1=".TSK_estimator$stk"
+      u3="8"
+   />
+
+   <!-- CHANGE  dont inherit fill  OF  run_view\SDRAM\.TSK_estimator$stk  TO  TRUE -->
+   <instr
+      op="3c"
+      s0="Memory Maps\\c6x\\run_view\\SDRAM\\.TSK_estimator$stk"
+      u1="1"
+   />
+
+   <!-- CHANGE  force load placement  OF  run_view\SDRAM\.TSK_estimator$stk  TO  TRUE -->
+   <instr
+      op="55"
+      s0="Memory Maps\\c6x\\run_view\\SDRAM\\.TSK_estimator$stk"
+      u1="1"
+   />
+
+   <!-- ADD  children of run_view\Not Yet Placed  WITH  kind=any section, base name=.TSK_estimator$stk  TO  run_view\SDRAM\.TSK_estimator$stk -->
+   <instr
+      op="8"
+      s0="Memory Maps\\c6x\\run_view\\SDRAM\\.TSK_estimator$stk"
+      s1="Memory Maps\\c6x\\run_view\\Not Yet Placed"
+      u2="4"
+      u3="40000054"
+      u4="1"
+      s5="TEMPLATE"
+      s6=".TSK_estimator$stk"
+      u8="4014"
+      u17="0"
+   />
+
+   <!-- NEW  child output section  OF  run_view\SDRAM  WITH  name=frt, data_kind=hole -->
+   <instr
+      op="22"
+      s0="Memory Maps\\c6x\\run_view\\SDRAM"
+      s1="frt"
+      u3="8"
+   />
+
+   <!-- CHANGE  dont inherit fill  OF  run_view\SDRAM\frt  TO  TRUE -->
+   <instr
+      op="3c"
+      s0="Memory Maps\\c6x\\run_view\\SDRAM\\frt"
+      u1="1"
+   />
+
+   <!-- CHANGE  force load placement  OF  run_view\SDRAM\frt  TO  TRUE -->
+   <instr
+      op="55"
+      s0="Memory Maps\\c6x\\run_view\\SDRAM\\frt"
+      u1="1"
+   />
+
+   <!-- NEW  child output section  OF  run_view\SDRAM  WITH  name=.text, data_kind=hole -->
+   <instr
+      op="22"
+      s0="Memory Maps\\c6x\\run_view\\SDRAM"
+      s1=".text"
+      u3="8"
+   />
+
+   <!-- CHANGE  dont inherit fill  OF  run_view\SDRAM\.text  TO  TRUE -->
+   <instr
+      op="3c"
+      s0="Memory Maps\\c6x\\run_view\\SDRAM\\.text"
+      u1="1"
+   />
+
+   <!-- CHANGE  force load placement  OF  run_view\SDRAM\.text  TO  TRUE -->
+   <instr
+      op="55"
+      s0="Memory Maps\\c6x\\run_view\\SDRAM\\.text"
+      u1="1"
+   />
+
+   <!-- NEW  child output section  OF  run_view\SDRAM  WITH  name=.cio, data_kind=hole -->
+   <instr
+      op="22"
+      s0="Memory Maps\\c6x\\run_view\\SDRAM"
+      s1=".cio"
+      u3="8"
+   />
+
+   <!-- CHANGE  dont inherit fill  OF  run_view\SDRAM\.cio  TO  TRUE -->
+   <instr
+      op="3c"
+      s0="Memory Maps\\c6x\\run_view\\SDRAM\\.cio"
+      u1="1"
+   />
+
+   <!-- CHANGE  force load placement  OF  run_view\SDRAM\.cio  TO  TRUE -->
+   <instr
+      op="55"
+      s0="Memory Maps\\c6x\\run_view\\SDRAM\\.cio"
+      u1="1"
+   />
+
+   <!-- NEW  child output section  OF  run_view\SDRAM  WITH  name=.TSK_comm_mgr$stk, data_kind=hole -->
+   <instr
+      op="22"
+      s0="Memory Maps\\c6x\\run_view\\SDRAM"
+      s1=".TSK_comm_mgr$stk"
+      u3="8"
+   />
+
+   <!-- CHANGE  dont inherit fill  OF  run_view\SDRAM\.TSK_comm_mgr$stk  TO  TRUE -->
+   <instr
+      op="3c"
+      s0="Memory Maps\\c6x\\run_view\\SDRAM\\.TSK_comm_mgr$stk"
+      u1="1"
+   />
+
+   <!-- CHANGE  force load placement  OF  run_view\SDRAM\.TSK_comm_mgr$stk  TO  TRUE -->
+   <instr
+      op="55"
+      s0="Memory Maps\\c6x\\run_view\\SDRAM\\.TSK_comm_mgr$stk"
+      u1="1"
+   />
+
+   <!-- ADD  children of run_view\Not Yet Placed  WITH  kind=any section, base name=.TSK_comm_mgr$stk  TO  run_view\SDRAM\.TSK_comm_mgr$stk -->
+   <instr
+      op="8"
+      s0="Memory Maps\\c6x\\run_view\\SDRAM\\.TSK_comm_mgr$stk"
+      s1="Memory Maps\\c6x\\run_view\\Not Yet Placed"
+      u2="4"
+      u3="40000054"
+      u4="1"
+      s5="TEMPLATE"
+      s6=".TSK_comm_mgr$stk"
+      u8="4014"
+      u17="0"
+   />
+
+   <!-- NEW  child output section  OF  run_view\SDRAM  WITH  name=.const, data_kind=hole -->
+   <instr
+      op="22"
+      s0="Memory Maps\\c6x\\run_view\\SDRAM"
+      s1=".const"
+      u3="8"
+   />
+
+   <!-- CHANGE  dont inherit fill  OF  run_view\SDRAM\.const  TO  TRUE -->
+   <instr
+      op="3c"
+      s0="Memory Maps\\c6x\\run_view\\SDRAM\\.const"
+      u1="1"
+   />
+
+   <!-- CHANGE  force load placement  OF  run_view\SDRAM\.const  TO  TRUE -->
+   <instr
+      op="55"
+      s0="Memory Maps\\c6x\\run_view\\SDRAM\\.const"
+      u1="1"
+   />
+
+   <!-- NEW  child output section  OF  run_view\SDRAM  WITH  name=.data, data_kind=hole -->
+   <instr
+      op="22"
+      s0="Memory Maps\\c6x\\run_view\\SDRAM"
+      s1=".data"
+      u3="8"
+   />
+
+   <!-- CHANGE  dont inherit fill  OF  run_view\SDRAM\.data  TO  TRUE -->
+   <instr
+      op="3c"
+      s0="Memory Maps\\c6x\\run_view\\SDRAM\\.data"
+      u1="1"
+   />
+
+   <!-- CHANGE  force load placement  OF  run_view\SDRAM\.data  TO  TRUE -->
+   <instr
+      op="55"
+      s0="Memory Maps\\c6x\\run_view\\SDRAM\\.data"
+      u1="1"
+   />
+
+   <!-- NEW  child output section  OF  run_view\SDRAM  WITH  name=.MBX_CommSTL_LO$que, data_kind=hole, alloc_kind=struct -->
+   <instr
+      op="22"
+      s0="Memory Maps\\c6x\\run_view\\SDRAM"
+      s1=".MBX_CommSTL_LO$que"
+      u3="a"
+   />
+
+   <!-- CHANGE  dont inherit fill  OF  run_view\SDRAM\.MBX_CommSTL_LO$que  TO  TRUE -->
+   <instr
+      op="3c"
+      s0="Memory Maps\\c6x\\run_view\\SDRAM\\.MBX_CommSTL_LO$que"
+      u1="1"
+   />
+
+   <!-- ALIGN  run address of run_view\SDRAM\.MBX_CommSTL_LO$que  TO  an address with 2 0's in the LSBs -->
+   <instr
+      op="2f"
+      s0="Memory Maps\\c6x\\run_view\\SDRAM\\.MBX_CommSTL_LO$que"
+      u2="3"
+   />
+
+   <!-- CHANGE  force load placement  OF  run_view\SDRAM\.MBX_CommSTL_LO$que  TO  TRUE -->
+   <instr
+      op="55"
+      s0="Memory Maps\\c6x\\run_view\\SDRAM\\.MBX_CommSTL_LO$que"
+      u1="1"
+   />
+
+   <!-- ALIGN  load address of run_view\SDRAM\.MBX_CommSTL_LO$que  TO  an address with 2 0's in the LSBs -->
+   <instr
+      op="30"
+      s0="Memory Maps\\c6x\\run_view\\SDRAM\\.MBX_CommSTL_LO$que"
+      u2="3"
+   />
+
+   <!-- NEW  child output section  OF  run_view\SDRAM\.MBX_CommSTL_LO$que  WITH  name=HOLE_23, data_kind=hole -->
+   <instr
+      op="a"
+      s0="Memory Maps\\c6x\\run_view\\SDRAM\\.MBX_CommSTL_LO$que"
+      s1="HOLE_23"
+      u3="8"
+   />
+
+   <!-- CHANGE  min_size  OF  run_view\SDRAM\.MBX_CommSTL_LO$que\HOLE_23  TO  0c30h -->
+   <instr
+      op="17"
+      s0="Memory Maps\\c6x\\run_view\\SDRAM\\.MBX_CommSTL_LO$que\\HOLE_23"
+      u1="c30"
+   />
+
+   <!-- CHANGE  max_size  OF  run_view\SDRAM\.MBX_CommSTL_LO$que\HOLE_23  TO  0c30h -->
+   <instr
+      op="18"
+      s0="Memory Maps\\c6x\\run_view\\SDRAM\\.MBX_CommSTL_LO$que\\HOLE_23"
+      u1="c30"
+   />
+
+   <!-- MOVE  children of run_view\Not Yet Placed  WITH  kind=output section, base name=.pinit  TO  run_view\SDRAM -->
+   <instr
+      op="9"
+      s0="Memory Maps\\c6x\\run_view\\SDRAM"
+      s1="Memory Maps\\c6x\\run_view\\Not Yet Placed"
+      u2="4"
+      u3="40000057"
+      u4="1"
+      s5="TEMPLATE"
+      s6=".pinit"
+      u8="20001017"
+      u18="ffffffff"
+   />
+
+   <!-- ADD  run_view\Not Yet Placed\.cinit  TO  run_view\SDRAM -->
+   <instr
+      op="2"
+      s0="Memory Maps\\c6x\\run_view\\Not Yet Placed\\.cinit"
+      s1="Memory Maps\\c6x\\run_view\\SDRAM"
+   />
+
+   <!-- CHANGE  dont inherit fill  OF  run_view\SDRAM\.cinit  TO  TRUE -->
+   <instr
+      force_allocate="1"
+      op="3c"
+      s0="Memory Maps\\c6x\\run_view\\SDRAM\\.cinit"
+      u1="1"
+   />
+
+   <!-- NEW  child output section  OF  run_view\SDRAM  WITH  name=.MBX_CommSTS_LO$que, data_kind=hole, alloc_kind=struct -->
+   <instr
+      op="22"
+      s0="Memory Maps\\c6x\\run_view\\SDRAM"
+      s1=".MBX_CommSTS_LO$que"
+      u3="a"
+   />
+
+   <!-- CHANGE  dont inherit fill  OF  run_view\SDRAM\.MBX_CommSTS_LO$que  TO  TRUE -->
+   <instr
+      op="3c"
+      s0="Memory Maps\\c6x\\run_view\\SDRAM\\.MBX_CommSTS_LO$que"
+      u1="1"
+   />
+
+   <!-- ALIGN  run address of run_view\SDRAM\.MBX_CommSTS_LO$que  TO  an address with 2 0's in the LSBs -->
+   <instr
+      op="2f"
+      s0="Memory Maps\\c6x\\run_view\\SDRAM\\.MBX_CommSTS_LO$que"
+      u2="3"
+   />
+
+   <!-- CHANGE  force load placement  OF  run_view\SDRAM\.MBX_CommSTS_LO$que  TO  TRUE -->
+   <instr
+      op="55"
+      s0="Memory Maps\\c6x\\run_view\\SDRAM\\.MBX_CommSTS_LO$que"
+      u1="1"
+   />
+
+   <!-- ALIGN  load address of run_view\SDRAM\.MBX_CommSTS_LO$que  TO  an address with 2 0's in the LSBs -->
+   <instr
+      op="30"
+      s0="Memory Maps\\c6x\\run_view\\SDRAM\\.MBX_CommSTS_LO$que"
+      u2="3"
+   />
+
+   <!-- NEW  child output section  OF  run_view\SDRAM\.MBX_CommSTS_LO$que  WITH  name=HOLE_24, data_kind=hole -->
+   <instr
+      op="a"
+      s0="Memory Maps\\c6x\\run_view\\SDRAM\\.MBX_CommSTS_LO$que"
+      s1="HOLE_24"
+      u3="8"
+   />
+
+   <!-- CHANGE  min_size  OF  run_view\SDRAM\.MBX_CommSTS_LO$que\HOLE_24  TO  0c30h -->
+   <instr
+      op="17"
+      s0="Memory Maps\\c6x\\run_view\\SDRAM\\.MBX_CommSTS_LO$que\\HOLE_24"
+      u1="c30"
+   />
+
+   <!-- CHANGE  max_size  OF  run_view\SDRAM\.MBX_CommSTS_LO$que\HOLE_24  TO  0c30h -->
+   <instr
+      op="18"
+      s0="Memory Maps\\c6x\\run_view\\SDRAM\\.MBX_CommSTS_LO$que\\HOLE_24"
+      u1="c30"
+   />
+
+   <!-- NEW  child output section  OF  run_view\SDRAM  WITH  name=.MBX_Task_Triggers$que, data_kind=hole, alloc_kind=struct -->
+   <instr
+      op="22"
+      s0="Memory Maps\\c6x\\run_view\\SDRAM"
+      s1=".MBX_Task_Triggers$que"
+      u3="a"
+   />
+
+   <!-- CHANGE  dont inherit fill  OF  run_view\SDRAM\.MBX_Task_Triggers$que  TO  TRUE -->
+   <instr
+      op="3c"
+      s0="Memory Maps\\c6x\\run_view\\SDRAM\\.MBX_Task_Triggers$que"
+      u1="1"
+   />
+
+   <!-- ALIGN  run address of run_view\SDRAM\.MBX_Task_Triggers$que  TO  an address with 2 0's in the LSBs -->
+   <instr
+      op="2f"
+      s0="Memory Maps\\c6x\\run_view\\SDRAM\\.MBX_Task_Triggers$que"
+      u2="3"
+   />
+
+   <!-- CHANGE  force load placement  OF  run_view\SDRAM\.MBX_Task_Triggers$que  TO  TRUE -->
+   <instr
+      op="55"
+      s0="Memory Maps\\c6x\\run_view\\SDRAM\\.MBX_Task_Triggers$que"
+      u1="1"
+   />
+
+   <!-- ALIGN  load address of run_view\SDRAM\.MBX_Task_Triggers$que  TO  an address with 2 0's in the LSBs -->
+   <instr
+      op="30"
+      s0="Memory Maps\\c6x\\run_view\\SDRAM\\.MBX_Task_Triggers$que"
+      u2="3"
+   />
+
+   <!-- NEW  child output section  OF  run_view\SDRAM\.MBX_Task_Triggers$que  WITH  name=HOLE_25, data_kind=hole -->
+   <instr
+      op="a"
+      s0="Memory Maps\\c6x\\run_view\\SDRAM\\.MBX_Task_Triggers$que"
+      s1="HOLE_25"
+      u3="8"
+   />
+
+   <!-- CHANGE  min_size  OF  run_view\SDRAM\.MBX_Task_Triggers$que\HOLE_25  TO  0280h -->
+   <instr
+      op="17"
+      s0="Memory Maps\\c6x\\run_view\\SDRAM\\.MBX_Task_Triggers$que\\HOLE_25"
+      u1="280"
+   />
+
+   <!-- CHANGE  max_size  OF  run_view\SDRAM\.MBX_Task_Triggers$que\HOLE_25  TO  0280h -->
+   <instr
+      op="18"
+      s0="Memory Maps\\c6x\\run_view\\SDRAM\\.MBX_Task_Triggers$que\\HOLE_25"
+      u1="280"
+   />
+
+   <!-- NEW  child output section  OF  run_view\SDRAM  WITH  name=.MBX_Estimator$que, data_kind=hole, alloc_kind=struct -->
+   <instr
+      op="22"
+      s0="Memory Maps\\c6x\\run_view\\SDRAM"
+      s1=".MBX_Estimator$que"
+      u3="a"
+   />
+
+   <!-- CHANGE  dont inherit fill  OF  run_view\SDRAM\.MBX_Estimator$que  TO  TRUE -->
+   <instr
+      op="3c"
+      s0="Memory Maps\\c6x\\run_view\\SDRAM\\.MBX_Estimator$que"
+      u1="1"
+   />
+
+   <!-- ALIGN  run address of run_view\SDRAM\.MBX_Estimator$que  TO  an address with 2 0's in the LSBs -->
+   <instr
+      op="2f"
+      s0="Memory Maps\\c6x\\run_view\\SDRAM\\.MBX_Estimator$que"
+      u2="3"
+   />
+
+   <!-- CHANGE  force load placement  OF  run_view\SDRAM\.MBX_Estimator$que  TO  TRUE -->
+   <instr
+      op="55"
+      s0="Memory Maps\\c6x\\run_view\\SDRAM\\.MBX_Estimator$que"
+      u1="1"
+   />
+
+   <!-- ALIGN  load address of run_view\SDRAM\.MBX_Estimator$que  TO  an address with 2 0's in the LSBs -->
+   <instr
+      op="30"
+      s0="Memory Maps\\c6x\\run_view\\SDRAM\\.MBX_Estimator$que"
+      u2="3"
+   />
+
+   <!-- NEW  child output section  OF  run_view\SDRAM\.MBX_Estimator$que  WITH  name=HOLE_26, data_kind=hole -->
+   <instr
+      op="a"
+      s0="Memory Maps\\c6x\\run_view\\SDRAM\\.MBX_Estimator$que"
+      s1="HOLE_26"
+      u3="8"
+   />
+
+   <!-- CHANGE  min_size  OF  run_view\SDRAM\.MBX_Estimator$que\HOLE_26  TO  055f0h -->
+   <instr
+      op="17"
+      s0="Memory Maps\\c6x\\run_view\\SDRAM\\.MBX_Estimator$que\\HOLE_26"
+      u1="55f0"
+   />
+
+   <!-- CHANGE  max_size  OF  run_view\SDRAM\.MBX_Estimator$que\HOLE_26  TO  055f0h -->
+   <instr
+      op="18"
+      s0="Memory Maps\\c6x\\run_view\\SDRAM\\.MBX_Estimator$que\\HOLE_26"
+      u1="55f0"
+   />
+
+   <!-- NEW  child output section  OF  run_view\SDRAM  WITH  name=.pip1, data_kind=hole -->
+   <instr
+      op="22"
+      s0="Memory Maps\\c6x\\run_view\\SDRAM"
+      s1=".pip1"
+      u3="8"
+   />
+
+   <!-- CHANGE  dont inherit fill  OF  run_view\SDRAM\.pip1  TO  TRUE -->
+   <instr
+      op="3c"
+      s0="Memory Maps\\c6x\\run_view\\SDRAM\\.pip1"
+      u1="1"
+   />
+
+   <!-- CHANGE  comment  OF  run_view\SDRAM\.pip1  TO  " PIP_comm_RX buffer " -->
+   <instr
+      op="46"
+      s0="Memory Maps\\c6x\\run_view\\SDRAM\\.pip1"
+      s1=" PIP_comm_RX buffer "
+   />
+
+   <!-- CHANGE  force load placement  OF  run_view\SDRAM\.pip1  TO  TRUE -->
+   <instr
+      op="55"
+      s0="Memory Maps\\c6x\\run_view\\SDRAM\\.pip1"
+      u1="1"
+   />
+
+   <!-- NEW  child output section  OF  run_view\SDRAM  WITH  name=.TSK_bkg_flash_write$stk, data_kind=hole -->
+   <instr
+      op="22"
+      s0="Memory Maps\\c6x\\run_view\\SDRAM"
+      s1=".TSK_bkg_flash_write$stk"
+      u3="8"
+   />
+
+   <!-- CHANGE  dont inherit fill  OF  run_view\SDRAM\.TSK_bkg_flash_write$stk  TO  TRUE -->
+   <instr
+      op="3c"
+      s0="Memory Maps\\c6x\\run_view\\SDRAM\\.TSK_bkg_flash_write$stk"
+      u1="1"
+   />
+
+   <!-- CHANGE  force load placement  OF  run_view\SDRAM\.TSK_bkg_flash_write$stk  TO  TRUE -->
+   <instr
+      op="55"
+      s0="Memory Maps\\c6x\\run_view\\SDRAM\\.TSK_bkg_flash_write$stk"
+      u1="1"
+   />
+
+   <!-- ADD  children of run_view\Not Yet Placed  WITH  kind=any section, base name=.TSK_bkg_flash_write$stk  TO  run_view\SDRAM\.TSK_bkg_flash_write$stk -->
+   <instr
+      op="8"
+      s0="Memory Maps\\c6x\\run_view\\SDRAM\\.TSK_bkg_flash_write$stk"
+      s1="Memory Maps\\c6x\\run_view\\Not Yet Placed"
+      u2="4"
+      u3="40000054"
+      u4="1"
+      s5="TEMPLATE"
+      s6=".TSK_bkg_flash_write$stk"
+      u8="6014"
+      u17="0"
+   />
+
+   <!-- NEW  child output section  OF  run_view\SDRAM  WITH  name=.sysinit, data_kind=hole -->
+   <instr
+      op="22"
+      s0="Memory Maps\\c6x\\run_view\\SDRAM"
+      s1=".sysinit"
+      u3="8"
+   />
+
+   <!-- CHANGE  dont inherit fill  OF  run_view\SDRAM\.sysinit  TO  TRUE -->
+   <instr
+      op="3c"
+      s0="Memory Maps\\c6x\\run_view\\SDRAM\\.sysinit"
+      u1="1"
+   />
+
+   <!-- CHANGE  force load placement  OF  run_view\SDRAM\.sysinit  TO  TRUE -->
+   <instr
+      op="55"
+      s0="Memory Maps\\c6x\\run_view\\SDRAM\\.sysinit"
+      u1="1"
+   />
+
+   <!-- NEW  child output section  OF  run_view\SDRAM  WITH  name=.TSK_gsp_task$stk, data_kind=hole -->
+   <instr
+      op="22"
+      s0="Memory Maps\\c6x\\run_view\\SDRAM"
+      s1=".TSK_gsp_task$stk"
+      u3="8"
+   />
+
+   <!-- CHANGE  dont inherit fill  OF  run_view\SDRAM\.TSK_gsp_task$stk  TO  TRUE -->
+   <instr
+      op="3c"
+      s0="Memory Maps\\c6x\\run_view\\SDRAM\\.TSK_gsp_task$stk"
+      u1="1"
+   />
+
+   <!-- CHANGE  force load placement  OF  run_view\SDRAM\.TSK_gsp_task$stk  TO  TRUE -->
+   <instr
+      op="55"
+      s0="Memory Maps\\c6x\\run_view\\SDRAM\\.TSK_gsp_task$stk"
+      u1="1"
+   />
+
+   <!-- ADD  children of run_view\Not Yet Placed  WITH  kind=any section, base name=.TSK_gsp_task$stk  TO  run_view\SDRAM\.TSK_gsp_task$stk -->
+   <instr
+      op="8"
+      s0="Memory Maps\\c6x\\run_view\\SDRAM\\.TSK_gsp_task$stk"
+      s1="Memory Maps\\c6x\\run_view\\Not Yet Placed"
+      u2="4"
+      u3="40000054"
+      u4="1"
+      s5="TEMPLATE"
+      s6=".TSK_gsp_task$stk"
+      u8="4014"
+      u17="0"
+   />
+
+   <!-- NEW  child output section  OF  run_view\SDRAM  WITH  name=.SDRAM$heap, data_kind=hole, alloc_kind=struct -->
+   <instr
+      op="22"
+      s0="Memory Maps\\c6x\\run_view\\SDRAM"
+      s1=".SDRAM$heap"
+      u3="a"
+   />
+
+   <!-- CHANGE  dont inherit fill  OF  run_view\SDRAM\.SDRAM$heap  TO  TRUE -->
+   <instr
+      op="3c"
+      s0="Memory Maps\\c6x\\run_view\\SDRAM\\.SDRAM$heap"
+      u1="1"
+   />
+
+   <!-- CHANGE  force load placement  OF  run_view\SDRAM\.SDRAM$heap  TO  TRUE -->
+   <instr
+      op="55"
+      s0="Memory Maps\\c6x\\run_view\\SDRAM\\.SDRAM$heap"
+      u1="1"
+   />
+
+   <!-- NEW  child output section  OF  run_view\SDRAM\.SDRAM$heap  WITH  name=HOLE_29, data_kind=hole -->
+   <instr
+      op="a"
+      s0="Memory Maps\\c6x\\run_view\\SDRAM\\.SDRAM$heap"
+      s1="HOLE_29"
+      u3="8"
+   />
+
+   <!-- CHANGE  min_size  OF  run_view\SDRAM\.SDRAM$heap\HOLE_29  TO  0600000h -->
+   <instr
+      op="17"
+      s0="Memory Maps\\c6x\\run_view\\SDRAM\\.SDRAM$heap\\HOLE_29"
+      u1="600000"
+   />
+
+   <!-- CHANGE  max_size  OF  run_view\SDRAM\.SDRAM$heap\HOLE_29  TO  0600000h -->
+   <instr
+      op="18"
+      s0="Memory Maps\\c6x\\run_view\\SDRAM\\.SDRAM$heap\\HOLE_29"
+      u1="600000"
+   />
+
+   <!-- ADD  children of run_view\Not Yet Placed  WITH  kind=any section, base name=.vers  TO  run_view\Need Not Place\.vers -->
+   <instr
+      op="8"
+      s0="Memory Maps\\c6x\\run_view\\Need Not Place\\.vers"
+      s1="Memory Maps\\c6x\\run_view\\Not Yet Placed"
+      u2="4"
+      u3="40000054"
+      u4="1"
+      s5="TEMPLATE"
+      s6=".vers"
+      u8="1014"
+      u17="0"
+   />
+
+   <!-- ADD  children of run_view\Not Yet Placed  WITH  kind=any section, base name=.sysdata  TO  run_view\IDRAM\.sysdata -->
+   <instr
+      op="8"
+      s0="Memory Maps\\c6x\\run_view\\IDRAM\\.sysdata"
+      s1="Memory Maps\\c6x\\run_view\\Not Yet Placed"
+      u2="4"
+      u3="40000054"
+      u4="1"
+      s5="TEMPLATE"
+      s6=".sysdata"
+      u8="2014"
+      u17="0"
+   />
+
+   <!-- CHANGE  force load placement  OF  run_view\IDRAM\.sysdata  TO  FALSE -->
+   <instr
+      op="55"
+      s0="Memory Maps\\c6x\\run_view\\IDRAM\\.sysdata"
+   />
+
+   <!-- CHANGE  force load placement  OF  run_view\IDRAM\.args  TO  FALSE -->
+   <instr
+      op="55"
+      s0="Memory Maps\\c6x\\run_view\\IDRAM\\.args"
+   />
+
+   <!-- ADD  children of run_view\Not Yet Placed  WITH  kind=any section, base name=.trcdata  TO  run_view\IDRAM\.trcdata -->
+   <instr
+      op="8"
+      s0="Memory Maps\\c6x\\run_view\\IDRAM\\.trcdata"
+      s1="Memory Maps\\c6x\\run_view\\Not Yet Placed"
+      u2="4"
+      u3="40000054"
+      u4="1"
+      s5="TEMPLATE"
+      s6=".trcdata"
+      u8="2014"
+      u17="0"
+   />
+
+   <!-- CHANGE  force load placement  OF  run_view\IDRAM\.trcdata  TO  FALSE -->
+   <instr
+      op="55"
+      s0="Memory Maps\\c6x\\run_view\\IDRAM\\.trcdata"
+   />
+
+   <!-- ADD  children of run_view\Not Yet Placed  WITH  kind=any section, base name=.trace  TO  run_view\IDRAM\.trace -->
+   <instr
+      op="8"
+      s0="Memory Maps\\c6x\\run_view\\IDRAM\\.trace"
+      s1="Memory Maps\\c6x\\run_view\\Not Yet Placed"
+      u2="4"
+      u3="40000054"
+      u4="1"
+      s5="TEMPLATE"
+      s6=".trace"
+      u8="1014"
+      u17="0"
+   />
+
+   <!-- ADD  children of run_view\Not Yet Placed  WITH  kind=any section, base name=.mem  TO  run_view\IDRAM\.mem -->
+   <instr
+      op="8"
+      s0="Memory Maps\\c6x\\run_view\\IDRAM\\.mem"
+      s1="Memory Maps\\c6x\\run_view\\Not Yet Placed"
+      u2="4"
+      u3="40000054"
+      u4="1"
+      s5="TEMPLATE"
+      s6=".mem"
+      u8="1014"
+      u17="0"
+   />
+
+   <!-- CHANGE  force load placement  OF  run_view\IDRAM\.mem  TO  FALSE -->
+   <instr
+      op="55"
+      s0="Memory Maps\\c6x\\run_view\\IDRAM\\.mem"
+   />
+
+   <!-- ADD  children of run_view\Not Yet Placed  WITH  kind=any section, base name=.sys  TO  run_view\IDRAM\.sys -->
+   <instr
+      op="8"
+      s0="Memory Maps\\c6x\\run_view\\IDRAM\\.sys"
+      s1="Memory Maps\\c6x\\run_view\\Not Yet Placed"
+      u2="4"
+      u3="40000054"
+      u4="1"
+      s5="TEMPLATE"
+      s6=".sys"
+      u8="1014"
+      u17="0"
+   />
+
+   <!-- CHANGE  force load placement  OF  run_view\IDRAM\.sys  TO  FALSE -->
+   <instr
+      op="55"
+      s0="Memory Maps\\c6x\\run_view\\IDRAM\\.sys"
+   />
+
+   <!-- ADD  children of run_view\Not Yet Placed  WITH  kind=any section, base name=.sysregs  TO  run_view\IDRAM\.sysregs -->
+   <instr
+      op="8"
+      s0="Memory Maps\\c6x\\run_view\\IDRAM\\.sysregs"
+      s1="Memory Maps\\c6x\\run_view\\Not Yet Placed"
+      u2="4"
+      u3="40000054"
+      u4="1"
+      s5="TEMPLATE"
+      s6=".sysregs"
+      u8="2014"
+      u17="0"
+   />
+
+   <!-- CHANGE  force load placement  OF  run_view\IDRAM\.sysregs  TO  FALSE -->
+   <instr
+      op="55"
+      s0="Memory Maps\\c6x\\run_view\\IDRAM\\.sysregs"
+   />
+
+   <!-- ADD  children of run_view\Not Yet Placed  WITH  kind=any section, base name=.sts  TO  run_view\IDRAM\.sts -->
+   <instr
+      op="8"
+      s0="Memory Maps\\c6x\\run_view\\IDRAM\\.sts"
+      s1="Memory Maps\\c6x\\run_view\\Not Yet Placed"
+      u2="4"
+      u3="40000054"
+      u4="1"
+      s5="TEMPLATE"
+      s6=".sts"
+      u8="1014"
+      u17="0"
+   />
+
+   <!-- ADD  children of run_view\Not Yet Placed  WITH  kind=any section, base name=.MBX_CommEXPv2$que  TO  run_view\IDRAM\.MBX_CommEXPv2$que -->
+   <instr
+      op="8"
+      s0="Memory Maps\\c6x\\run_view\\IDRAM\\.MBX_CommEXPv2$que"
+      s1="Memory Maps\\c6x\\run_view\\Not Yet Placed"
+      u2="4"
+      u3="40000054"
+      u4="1"
+      s5="TEMPLATE"
+      s6=".MBX_CommEXPv2$que"
+      u8="4014"
+      u17="0"
+   />
+
+   <!-- ADD  children of run_view\Not Yet Placed  WITH  kind=any section, base name=.MBX_CommSTS_HI$que  TO  run_view\IDRAM\.MBX_CommSTS_HI$que -->
+   <instr
+      op="8"
+      s0="Memory Maps\\c6x\\run_view\\IDRAM\\.MBX_CommSTS_HI$que"
+      s1="Memory Maps\\c6x\\run_view\\Not Yet Placed"
+      u2="4"
+      u3="40000054"
+      u4="1"
+      s5="TEMPLATE"
+      s6=".MBX_CommSTS_HI$que"
+      u8="4014"
+      u17="0"
+   />
+
+   <!-- ADD  children of run_view\Not Yet Placed  WITH  kind=any section, base name=.MBX_CommSTL_HI$que  TO  run_view\IDRAM\.MBX_CommSTL_HI$que -->
+   <instr
+      op="8"
+      s0="Memory Maps\\c6x\\run_view\\IDRAM\\.MBX_CommSTL_HI$que"
+      s1="Memory Maps\\c6x\\run_view\\Not Yet Placed"
+      u2="4"
+      u3="40000054"
+      u4="1"
+      s5="TEMPLATE"
+      s6=".MBX_CommSTL_HI$que"
+      u8="4014"
+      u17="0"
+   />
+
+   <!-- ADD  children of run_view\Not Yet Placed  WITH  kind=any section, base name=.mbx  TO  run_view\IDRAM\.mbx -->
+   <instr
+      op="8"
+      s0="Memory Maps\\c6x\\run_view\\IDRAM\\.mbx"
+      s1="Memory Maps\\c6x\\run_view\\Not Yet Placed"
+      u2="4"
+      u3="40000054"
+      u4="1"
+      s5="TEMPLATE"
+      s6=".mbx"
+      u8="1014"
+      u17="0"
+   />
+
+   <!-- CHANGE  force load placement  OF  run_view\IDRAM\.mbx  TO  FALSE -->
+   <instr
+      op="55"
+      s0="Memory Maps\\c6x\\run_view\\IDRAM\\.mbx"
+   />
+
+   <!-- ADD  children of run_view\Not Yet Placed  WITH  kind=any section, base name=.sem  TO  run_view\IDRAM\.sem -->
+   <instr
+      op="8"
+      s0="Memory Maps\\c6x\\run_view\\IDRAM\\.sem"
+      s1="Memory Maps\\c6x\\run_view\\Not Yet Placed"
+      u2="4"
+      u3="40000054"
+      u4="1"
+      s5="TEMPLATE"
+      s6=".sem"
+      u8="1014"
+      u17="0"
+   />
+
+   <!-- CHANGE  force load placement  OF  run_view\IDRAM\.sem  TO  FALSE -->
+   <instr
+      op="55"
+      s0="Memory Maps\\c6x\\run_view\\IDRAM\\.sem"
+   />
+
+   <!-- ADD  children of run_view\Not Yet Placed  WITH  kind=any section, base name=.switch  TO  run_view\IDRAM\.switch -->
+   <instr
+      op="8"
+      s0="Memory Maps\\c6x\\run_view\\IDRAM\\.switch"
+      s1="Memory Maps\\c6x\\run_view\\Not Yet Placed"
+      u2="4"
+      u3="40000054"
+      u4="1"
+      s5="TEMPLATE"
+      s6=".switch"
+      u8="1014"
+      u17="0"
+   />
+
+   <!-- CHANGE  force load placement  OF  run_view\IDRAM\.switch  TO  FALSE -->
+   <instr
+      op="55"
+      s0="Memory Maps\\c6x\\run_view\\IDRAM\\.switch"
+   />
+
+   <!-- ADD  children of run_view\Not Yet Placed  WITH  kind=any section, base name=.pip0  TO  run_view\IDRAM\.pip0 -->
+   <instr
+      op="8"
+      s0="Memory Maps\\c6x\\run_view\\IDRAM\\.pip0"
+      s1="Memory Maps\\c6x\\run_view\\Not Yet Placed"
+      u2="4"
+      u3="40000054"
+      u4="1"
+      s5="TEMPLATE"
+      s6=".pip0"
+      u8="1014"
+      u17="0"
+   />
+
+   <!-- CHANGE  force load placement  OF  run_view\IDRAM\.pip0  TO  FALSE -->
+   <instr
+      op="55"
+      s0="Memory Maps\\c6x\\run_view\\IDRAM\\.pip0"
+   />
+
+   <!-- ADD  children of run_view\Not Yet Placed  WITH  kind=any section, base name=.trace$buf  TO  run_view\IDRAM\.trace$buf -->
+   <instr
+      op="8"
+      s0="Memory Maps\\c6x\\run_view\\IDRAM\\.trace$buf"
+      s1="Memory Maps\\c6x\\run_view\\Not Yet Placed"
+      u2="4"
+      u3="40000054"
+      u4="1"
+      s5="TEMPLATE"
+      s6=".trace$buf"
+      u8="2014"
+      u17="0"
+   />
+
+   <!-- CHANGE  force load placement  OF  run_view\IDRAM\.trace$buf  TO  FALSE -->
+   <instr
+      op="55"
+      s0="Memory Maps\\c6x\\run_view\\IDRAM\\.trace$buf"
+   />
+
+   <!-- ADD  children of run_view\Not Yet Placed  WITH  kind=any section, base name=.LOG_system$buf  TO  run_view\IDRAM\.LOG_system$buf -->
+   <instr
+      op="8"
+      s0="Memory Maps\\c6x\\run_view\\IDRAM\\.LOG_system$buf"
+      s1="Memory Maps\\c6x\\run_view\\Not Yet Placed"
+      u2="4"
+      u3="40000054"
+      u4="1"
+      s5="TEMPLATE"
+      s6=".LOG_system$buf"
+      u8="3014"
+      u17="0"
+   />
+
+   <!-- CHANGE  force load placement  OF  run_view\IDRAM\.LOG_system$buf  TO  FALSE -->
+   <instr
+      op="55"
+      s0="Memory Maps\\c6x\\run_view\\IDRAM\\.LOG_system$buf"
+   />
+
+   <!-- ADD  children of run_view\Not Yet Placed  WITH  kind=any section, base name=.printf  TO  run_view\IDRAM\.printf -->
+   <instr
+      op="8"
+      s0="Memory Maps\\c6x\\run_view\\IDRAM\\.printf"
+      s1="Memory Maps\\c6x\\run_view\\Not Yet Placed"
+      u2="4"
+      u3="40000054"
+      u4="1"
+      s5="TEMPLATE"
+      s6=".printf"
+      u8="1014"
+      u17="0"
+   />
+
+   <!-- CHANGE  force load placement  OF  run_view\IDRAM\.printf  TO  FALSE -->
+   <instr
+      op="55"
+      s0="Memory Maps\\c6x\\run_view\\IDRAM\\.printf"
+   />
+
+   <!-- ADD  children of run_view\Not Yet Placed  WITH  kind=any section, base name=.hst  TO  run_view\IDRAM\.hst -->
+   <instr
+      op="8"
+      s0="Memory Maps\\c6x\\run_view\\IDRAM\\.hst"
+      s1="Memory Maps\\c6x\\run_view\\Not Yet Placed"
+      u2="4"
+      u3="40000054"
+      u4="1"
+      s5="TEMPLATE"
+      s6=".hst"
+      u8="1014"
+      u17="0"
+   />
+
+   <!-- ADD  children of run_view\Not Yet Placed  WITH  kind=any section, base name=.dsm  TO  run_view\IDRAM\.dsm -->
+   <instr
+      op="8"
+      s0="Memory Maps\\c6x\\run_view\\IDRAM\\.dsm"
+      s1="Memory Maps\\c6x\\run_view\\Not Yet Placed"
+      u2="4"
+      u3="40000054"
+      u4="1"
+      s5="TEMPLATE"
+      s6=".dsm"
+      u8="1014"
+      u17="0"
+   />
+
+   <!-- CHANGE  force load placement  OF  run_view\IDRAM\.dsm  TO  FALSE -->
+   <instr
+      op="55"
+      s0="Memory Maps\\c6x\\run_view\\IDRAM\\.dsm"
+   />
+
+   <!-- CHANGE  force load placement  OF  run_view\IDRAM\.TSK_datacomm_STS$stk  TO  FALSE -->
+   <instr
+      op="55"
+      s0="Memory Maps\\c6x\\run_view\\IDRAM\\.TSK_datacomm_STS$stk"
+   />
+
+   <!-- CHANGE  force load placement  OF  run_view\IDRAM\.tsk  TO  FALSE -->
+   <instr
+      op="55"
+      s0="Memory Maps\\c6x\\run_view\\IDRAM\\.tsk"
+   />
+
+   <!-- CHANGE  force load placement  OF  run_view\IDRAM\.TSK_idle$stk  TO  FALSE -->
+   <instr
+      op="55"
+      s0="Memory Maps\\c6x\\run_view\\IDRAM\\.TSK_idle$stk"
+   />
+
+   <!-- CHANGE  force load placement  OF  run_view\IDRAM\.TSK_cp_monitor$stk  TO  FALSE -->
+   <instr
+      op="55"
+      s0="Memory Maps\\c6x\\run_view\\IDRAM\\.TSK_cp_monitor$stk"
+   />
+
+   <!-- ADD  children of run_view\Not Yet Placed  WITH  kind=any section, base name=.gio  TO  run_view\IDRAM\.gio -->
+   <instr
+      op="8"
+      s0="Memory Maps\\c6x\\run_view\\IDRAM\\.gio"
+      s1="Memory Maps\\c6x\\run_view\\Not Yet Placed"
+      u2="4"
+      u3="40000054"
+      u4="1"
+      s5="TEMPLATE"
+      s6=".gio"
+      u8="1014"
+      u17="0"
+   />
+
+   <!-- CHANGE  force load placement  OF  run_view\IDRAM\.gio  TO  FALSE -->
+   <instr
+      op="55"
+      s0="Memory Maps\\c6x\\run_view\\IDRAM\\.gio"
+   />
+
+   <!-- CHANGE  force load placement  OF  run_view\IDRAM\.TSK_datacomm_STL$stk  TO  FALSE -->
+   <instr
+      op="55"
+      s0="Memory Maps\\c6x\\run_view\\IDRAM\\.TSK_datacomm_STL$stk"
+   />
+
+   <!-- ADD  children of run_view\Not Yet Placed  WITH  kind=any section, base name=.hwi  TO  run_view\IPRAM\.hwi -->
+   <instr
+      op="8"
+      s0="Memory Maps\\c6x\\run_view\\IPRAM\\.hwi"
+      s1="Memory Maps\\c6x\\run_view\\Not Yet Placed"
+      u2="4"
+      u3="40000054"
+      u4="1"
+      s5="TEMPLATE"
+      s6=".hwi"
+      u8="1014"
+      u17="0"
+   />
+
+   <!-- CHANGE  force load placement  OF  run_view\IPRAM\.hwi  TO  FALSE -->
+   <instr
+      op="55"
+      s0="Memory Maps\\c6x\\run_view\\IPRAM\\.hwi"
+   />
+
+   <!-- ADD  children of run_view\Not Yet Placed  WITH  kind=any section, base name=.bios  TO  run_view\IPRAM\.bios -->
+   <instr
+      op="8"
+      s0="Memory Maps\\c6x\\run_view\\IPRAM\\.bios"
+      s1="Memory Maps\\c6x\\run_view\\Not Yet Placed"
+      u2="4"
+      u3="40000054"
+      u4="1"
+      s5="TEMPLATE"
+      s6=".bios"
+      u8="1014"
+      u17="0"
+   />
+
+   <!-- CHANGE  force load placement  OF  run_view\IPRAM\.bios  TO  FALSE -->
+   <instr
+      op="55"
+      s0="Memory Maps\\c6x\\run_view\\IPRAM\\.bios"
+   />
+
+   <!-- ADD  children of run_view\Not Yet Placed  WITH  kind=any section, base name=.bss  TO  run_view\SDRAM\.bss -->
+   <instr
+      op="8"
+      s0="Memory Maps\\c6x\\run_view\\SDRAM\\.bss"
+      s1="Memory Maps\\c6x\\run_view\\Not Yet Placed"
+      u2="4"
+      u3="40000054"
+      u4="1"
+      s5="TEMPLATE"
+      s6=".bss"
+      u8="1014"
+      u17="0"
+   />
+
+   <!-- CHANGE  force load placement  OF  run_view\SDRAM\.bss  TO  FALSE -->
+   <instr
+      op="55"
+      s0="Memory Maps\\c6x\\run_view\\SDRAM\\.bss"
+   />
+
+   <!-- ADD  children of run_view\Not Yet Placed  WITH  kind=any section, base name=.far  TO  run_view\SDRAM\.far -->
+   <instr
+      op="8"
+      s0="Memory Maps\\c6x\\run_view\\SDRAM\\.far"
+      s1="Memory Maps\\c6x\\run_view\\Not Yet Placed"
+      u2="4"
+      u3="40000054"
+      u4="1"
+      s5="TEMPLATE"
+      s6=".far"
+      u8="1014"
+      u17="0"
+   />
+
+   <!-- CHANGE  force load placement  OF  run_view\SDRAM\.far  TO  FALSE -->
+   <instr
+      op="55"
+      s0="Memory Maps\\c6x\\run_view\\SDRAM\\.far"
+   />
+
+   <!-- ADD  children of run_view\Not Yet Placed  WITH  kind=any section, base name=.gblinit  TO  run_view\SDRAM\.gblinit -->
+   <instr
+      op="8"
+      s0="Memory Maps\\c6x\\run_view\\SDRAM\\.gblinit"
+      s1="Memory Maps\\c6x\\run_view\\Not Yet Placed"
+      u2="4"
+      u3="40000054"
+      u4="1"
+      s5="TEMPLATE"
+      s6=".gblinit"
+      u8="2014"
+      u17="0"
+   />
+
+   <!-- CHANGE  force load placement  OF  run_view\SDRAM\.gblinit  TO  FALSE -->
+   <instr
+      op="55"
+      s0="Memory Maps\\c6x\\run_view\\SDRAM\\.gblinit"
+   />
+
+   <!-- CHANGE  force load placement  OF  run_view\SDRAM\.TSK_estimator$stk  TO  FALSE -->
+   <instr
+      op="55"
+      s0="Memory Maps\\c6x\\run_view\\SDRAM\\.TSK_estimator$stk"
+   />
+
+   <!-- ADD  children of run_view\Not Yet Placed  WITH  kind=any section, base name=frt  TO  run_view\SDRAM\frt -->
+   <instr
+      op="8"
+      s0="Memory Maps\\c6x\\run_view\\SDRAM\\frt"
+      s1="Memory Maps\\c6x\\run_view\\Not Yet Placed"
+      u2="4"
+      u3="40000054"
+      u4="1"
+      s5="TEMPLATE"
+      s6="frt"
+      u8="14"
+      u17="0"
+   />
+
+   <!-- CHANGE  force load placement  OF  run_view\SDRAM\frt  TO  FALSE -->
+   <instr
+      op="55"
+      s0="Memory Maps\\c6x\\run_view\\SDRAM\\frt"
+   />
+
+   <!-- ADD  children of run_view\Not Yet Placed  WITH  kind=any section, base name=.text  TO  run_view\SDRAM\.text -->
+   <instr
+      op="8"
+      s0="Memory Maps\\c6x\\run_view\\SDRAM\\.text"
+      s1="Memory Maps\\c6x\\run_view\\Not Yet Placed"
+      u2="4"
+      u3="40000054"
+      u4="1"
+      s5="TEMPLATE"
+      s6=".text"
+      u8="1014"
+      u17="0"
+   />
+
+   <!-- CHANGE  force load placement  OF  run_view\SDRAM\.text  TO  FALSE -->
+   <instr
+      op="55"
+      s0="Memory Maps\\c6x\\run_view\\SDRAM\\.text"
+   />
+
+   <!-- ADD  children of run_view\Not Yet Placed  WITH  kind=any section, base name=.cio  TO  run_view\SDRAM\.cio -->
+   <instr
+      op="8"
+      s0="Memory Maps\\c6x\\run_view\\SDRAM\\.cio"
+      s1="Memory Maps\\c6x\\run_view\\Not Yet Placed"
+      u2="4"
+      u3="40000054"
+      u4="1"
+      s5="TEMPLATE"
+      s6=".cio"
+      u8="1014"
+      u17="0"
+   />
+
+   <!-- CHANGE  force load placement  OF  run_view\SDRAM\.cio  TO  FALSE -->
+   <instr
+      op="55"
+      s0="Memory Maps\\c6x\\run_view\\SDRAM\\.cio"
+   />
+
+   <!-- CHANGE  force load placement  OF  run_view\SDRAM\.TSK_comm_mgr$stk  TO  FALSE -->
+   <instr
+      op="55"
+      s0="Memory Maps\\c6x\\run_view\\SDRAM\\.TSK_comm_mgr$stk"
+   />
+
+   <!-- ADD  children of run_view\Not Yet Placed  WITH  kind=any section, base name=.const  TO  run_view\SDRAM\.const -->
+   <instr
+      op="8"
+      s0="Memory Maps\\c6x\\run_view\\SDRAM\\.const"
+      s1="Memory Maps\\c6x\\run_view\\Not Yet Placed"
+      u2="4"
+      u3="40000054"
+      u4="1"
+      s5="TEMPLATE"
+      s6=".const"
+      u8="1014"
+      u17="0"
+   />
+
+   <!-- CHANGE  force load placement  OF  run_view\SDRAM\.const  TO  FALSE -->
+   <instr
+      op="55"
+      s0="Memory Maps\\c6x\\run_view\\SDRAM\\.const"
+   />
+
+   <!-- ADD  children of run_view\Not Yet Placed  WITH  kind=any section, base name=.data  TO  run_view\SDRAM\.data -->
+   <instr
+      op="8"
+      s0="Memory Maps\\c6x\\run_view\\SDRAM\\.data"
+      s1="Memory Maps\\c6x\\run_view\\Not Yet Placed"
+      u2="4"
+      u3="40000054"
+      u4="1"
+      s5="TEMPLATE"
+      s6=".data"
+      u8="1014"
+      u17="0"
+   />
+
+   <!-- CHANGE  force load placement  OF  run_view\SDRAM\.data  TO  FALSE -->
+   <instr
+      op="55"
+      s0="Memory Maps\\c6x\\run_view\\SDRAM\\.data"
+   />
+
+   <!-- ADD  children of run_view\Not Yet Placed  WITH  kind=any section, base name=.MBX_CommSTL_LO$que  TO  run_view\SDRAM\.MBX_CommSTL_LO$que -->
+   <instr
+      op="8"
+      s0="Memory Maps\\c6x\\run_view\\SDRAM\\.MBX_CommSTL_LO$que"
+      s1="Memory Maps\\c6x\\run_view\\Not Yet Placed"
+      u2="4"
+      u3="40000054"
+      u4="1"
+      s5="TEMPLATE"
+      s6=".MBX_CommSTL_LO$que"
+      u8="4014"
+      u17="0"
+   />
+
+   <!-- ADD  children of run_view\Not Yet Placed  WITH  kind=any section, base name=.MBX_CommSTS_LO$que  TO  run_view\SDRAM\.MBX_CommSTS_LO$que -->
+   <instr
+      op="8"
+      s0="Memory Maps\\c6x\\run_view\\SDRAM\\.MBX_CommSTS_LO$que"
+      s1="Memory Maps\\c6x\\run_view\\Not Yet Placed"
+      u2="4"
+      u3="40000054"
+      u4="1"
+      s5="TEMPLATE"
+      s6=".MBX_CommSTS_LO$que"
+      u8="4014"
+      u17="0"
+   />
+
+   <!-- ADD  children of run_view\Not Yet Placed  WITH  kind=any section, base name=.MBX_Task_Triggers$que  TO  run_view\SDRAM\.MBX_Task_Triggers$que -->
+   <instr
+      op="8"
+      s0="Memory Maps\\c6x\\run_view\\SDRAM\\.MBX_Task_Triggers$que"
+      s1="Memory Maps\\c6x\\run_view\\Not Yet Placed"
+      u2="4"
+      u3="40000054"
+      u4="1"
+      s5="TEMPLATE"
+      s6=".MBX_Task_Triggers$que"
+      u8="5014"
+      u17="0"
+   />
+
+   <!-- ADD  children of run_view\Not Yet Placed  WITH  kind=any section, base name=.MBX_Estimator$que  TO  run_view\SDRAM\.MBX_Estimator$que -->
+   <instr
+      op="8"
+      s0="Memory Maps\\c6x\\run_view\\SDRAM\\.MBX_Estimator$que"
+      s1="Memory Maps\\c6x\\run_view\\Not Yet Placed"
+      u2="4"
+      u3="40000054"
+      u4="1"
+      s5="TEMPLATE"
+      s6=".MBX_Estimator$que"
+      u8="4014"
+      u17="0"
+   />
+
+   <!-- ADD  children of run_view\Not Yet Placed  WITH  kind=any section, base name=.pip1  TO  run_view\SDRAM\.pip1 -->
+   <instr
+      op="8"
+      s0="Memory Maps\\c6x\\run_view\\SDRAM\\.pip1"
+      s1="Memory Maps\\c6x\\run_view\\Not Yet Placed"
+      u2="4"
+      u3="40000054"
+      u4="1"
+      s5="TEMPLATE"
+      s6=".pip1"
+      u8="1014"
+      u17="0"
+   />
+
+   <!-- CHANGE  force load placement  OF  run_view\SDRAM\.pip1  TO  FALSE -->
+   <instr
+      op="55"
+      s0="Memory Maps\\c6x\\run_view\\SDRAM\\.pip1"
+   />
+
+   <!-- CHANGE  force load placement  OF  run_view\SDRAM\.TSK_bkg_flash_write$stk  TO  FALSE -->
+   <instr
+      op="55"
+      s0="Memory Maps\\c6x\\run_view\\SDRAM\\.TSK_bkg_flash_write$stk"
+   />
+
+   <!-- ADD  children of run_view\Not Yet Placed  WITH  kind=any section, base name=.sysinit  TO  run_view\SDRAM\.sysinit -->
+   <instr
+      op="8"
+      s0="Memory Maps\\c6x\\run_view\\SDRAM\\.sysinit"
+      s1="Memory Maps\\c6x\\run_view\\Not Yet Placed"
+      u2="4"
+      u3="40000054"
+      u4="1"
+      s5="TEMPLATE"
+      s6=".sysinit"
+      u8="2014"
+      u17="0"
+   />
+
+   <!-- CHANGE  force load placement  OF  run_view\SDRAM\.sysinit  TO  FALSE -->
+   <instr
+      op="55"
+      s0="Memory Maps\\c6x\\run_view\\SDRAM\\.sysinit"
+   />
+
+   <!-- CHANGE  force load placement  OF  run_view\SDRAM\.TSK_gsp_task$stk  TO  FALSE -->
+   <instr
+      op="55"
+      s0="Memory Maps\\c6x\\run_view\\SDRAM\\.TSK_gsp_task$stk"
+   />
+
+   <!-- ADD  children of run_view\Not Yet Placed  WITH  kind=any section, base name=.SDRAM$heap  TO  run_view\SDRAM\.SDRAM$heap -->
+   <instr
+      op="8"
+      s0="Memory Maps\\c6x\\run_view\\SDRAM\\.SDRAM$heap"
+      s1="Memory Maps\\c6x\\run_view\\Not Yet Placed"
+      u2="4"
+      u3="40000054"
+      u4="1"
+      s5="TEMPLATE"
+      s6=".SDRAM$heap"
+      u8="2014"
+      u17="0"
+   />
+
+   <!-- CHANGE  fill_holes  OF  run_view\Need Not Place\.vers  TO  TRUE -->
+   <instr
+      op="10"
+      s0="Memory Maps\\c6x\\run_view\\Need Not Place\\.vers"
+      u1="1"
+   />
+
+   <!-- CHANGE  fill_holes  OF  run_view\VECS\.hwi_vec  TO  TRUE -->
+   <instr
+      op="10"
+      s0="Memory Maps\\c6x\\run_view\\VECS\\.hwi_vec"
+      u1="1"
+   />
+
+   <!-- CHANGE  fill_holes  OF  run_view\IDRAM\.trcdata  TO  TRUE -->
+   <instr
+      op="10"
+      s0="Memory Maps\\c6x\\run_view\\IDRAM\\.trcdata"
+      u1="1"
+   />
+
+   <!-- CHANGE  fill_holes  OF  run_view\IDRAM\.sts  TO  TRUE -->
+   <instr
+      op="10"
+      s0="Memory Maps\\c6x\\run_view\\IDRAM\\.sts"
+      u1="1"
+   />
+
+   <!-- CHANGE  fill_holes  OF  run_view\IDRAM\.switch  TO  TRUE -->
+   <instr
+      op="10"
+      s0="Memory Maps\\c6x\\run_view\\IDRAM\\.switch"
+      u1="1"
+   />
+
+   <!-- CHANGE  fill_holes  OF  run_view\IDRAM\.log  TO  TRUE -->
+   <instr
+      op="10"
+      s0="Memory Maps\\c6x\\run_view\\IDRAM\\.log"
+      u1="1"
+   />
+
+   <!-- CHANGE  fill_holes  OF  run_view\IPRAM\.bios  TO  TRUE -->
+   <instr
+      op="10"
+      s0="Memory Maps\\c6x\\run_view\\IPRAM\\.bios"
+      u1="1"
+   />
+
+   <!-- CHANGE  fill_holes  OF  run_view\SDRAM\.gblinit  TO  TRUE -->
+   <instr
+      op="10"
+      s0="Memory Maps\\c6x\\run_view\\SDRAM\\.gblinit"
+      u1="1"
+   />
+
+   <!-- CHANGE  fill_holes  OF  run_view\SDRAM\.text  TO  TRUE -->
+   <instr
+      op="10"
+      s0="Memory Maps\\c6x\\run_view\\SDRAM\\.text"
+      u1="1"
+   />
+
+   <!-- CHANGE  fill_holes  OF  run_view\SDRAM\.const  TO  TRUE -->
+   <instr
+      op="10"
+      s0="Memory Maps\\c6x\\run_view\\SDRAM\\.const"
+      u1="1"
+   />
+
+   <!-- CHANGE  fill_holes  OF  run_view\SDRAM\.sysinit  TO  TRUE -->
+   <instr
+      op="10"
+      s0="Memory Maps\\c6x\\run_view\\SDRAM\\.sysinit"
+      u1="1"
+   />
+
+   <!-- CHANGE  alloc_kind  OF  run_view\IPRAM  TO  struct -->
+   <instr
+      op="23"
+      s0="Memory Maps\\c6x\\run_view\\IPRAM"
+      u1="a"
+   />
+
+   <!-- CHANGE  alloc_kind  OF  run_view\SDRAM  TO  struct -->
+   <instr
+      op="23"
+      s0="Memory Maps\\c6x\\run_view\\SDRAM"
+      u1="a"
+   />
+
+   <!-- CHANGE  alloc_kind  OF  run_view\IDRAM  TO  struct -->
+   <instr
+      op="23"
+      s0="Memory Maps\\c6x\\run_view\\IDRAM"
+      u1="a"
+   />
+
+   <!-- NEW  child symbol  OF  Link-Time Absolute Syms  WITH  name=GBL_USERINITFXN, value= _FXN_F_nop -->
+   <instr
+      op="2e"
+      s0="Memory Maps\\c6x\\Link-Time Absolute Syms"
+      s1="GBL_USERINITFXN"
+      s2=" _FXN_F_nop"
+      u3="1"
+   />
+
+   <!-- NEW  child symbol  OF  Link-Time Absolute Syms  WITH  name=MEM_SEGZERO, value= SDRAM -->
+   <instr
+      op="2e"
+      s0="Memory Maps\\c6x\\Link-Time Absolute Syms"
+      s1="MEM_SEGZERO"
+      s2=" SDRAM"
+      u3="1"
+   />
+
+   <!-- NEW  child symbol  OF  Link-Time Absolute Syms  WITH  name=MEM_MALLOCSEG, value= SDRAM -->
+   <instr
+      op="2e"
+      s0="Memory Maps\\c6x\\Link-Time Absolute Syms"
+      s1="MEM_MALLOCSEG"
+      s2=" SDRAM"
+      u3="1"
+   />
+
+   <!-- NEW  child symbol  OF  Link-Time Absolute Syms  WITH  name=CLK_TIMEFXN, value= CLK_F_getshtime -->
+   <instr
+      op="2e"
+      s0="Memory Maps\\c6x\\Link-Time Absolute Syms"
+      s1="CLK_TIMEFXN"
+      s2=" CLK_F_getshtime"
+      u3="1"
+   />
+
+   <!-- NEW  child symbol  OF  Link-Time Absolute Syms  WITH  name=CLK_HOOKFXN, value= HWI_F_dispatch -->
+   <instr
+      op="2e"
+      s0="Memory Maps\\c6x\\Link-Time Absolute Syms"
+      s1="CLK_HOOKFXN"
+      s2=" HWI_F_dispatch"
+      u3="1"
+   />
+
+   <!-- NEW  child symbol  OF  Link-Time Absolute Syms  WITH  name=PRD_THOOKFXN, value= _KNL_tick -->
+   <instr
+      op="2e"
+      s0="Memory Maps\\c6x\\Link-Time Absolute Syms"
+      s1="PRD_THOOKFXN"
+      s2=" _KNL_tick"
+      u3="1"
+   />
+
+   <!-- NEW  child symbol  OF  Link-Time Absolute Syms  WITH  name=RTDX_DATAMEMSEG, value= IDRAM -->
+   <instr
+      op="2e"
+      s0="Memory Maps\\c6x\\Link-Time Absolute Syms"
+      s1="RTDX_DATAMEMSEG"
+      s2=" IDRAM"
+      u3="1"
+   />
+
+   <!-- NEW  child symbol  OF  Link-Time Absolute Syms  WITH  name=HST_DSMBUFSEG, value= IDRAM -->
+   <instr
+      op="2e"
+      s0="Memory Maps\\c6x\\Link-Time Absolute Syms"
+      s1="HST_DSMBUFSEG"
+      s2=" IDRAM"
+      u3="1"
+   />
+
+   <!-- NEW  child symbol  OF  Link-Time Absolute Syms  WITH  name=SWI_EHOOKFXN, value= GBL_NULL -->
+   <instr
+      op="2e"
+      s0="Memory Maps\\c6x\\Link-Time Absolute Syms"
+      s1="SWI_EHOOKFXN"
+      s2=" GBL_NULL"
+      u3="1"
+   />
+
+   <!-- NEW  child symbol  OF  Link-Time Absolute Syms  WITH  name=SWI_IHOOKFXN, value= GBL_NULL -->
+   <instr
+      op="2e"
+      s0="Memory Maps\\c6x\\Link-Time Absolute Syms"
+      s1="SWI_IHOOKFXN"
+      s2=" GBL_NULL"
+      u3="1"
+   />
+
+   <!-- NEW  child symbol  OF  Link-Time Absolute Syms  WITH  name=SWI_EXECFXN, value= SWI_F_iexec -->
+   <instr
+      op="2e"
+      s0="Memory Maps\\c6x\\Link-Time Absolute Syms"
+      s1="SWI_EXECFXN"
+      s2=" SWI_F_iexec"
+      u3="1"
+   />
+
+   <!-- NEW  child symbol  OF  Link-Time Absolute Syms  WITH  name=SWI_RUNFXN, value= SWI_F_run -->
+   <instr
+      op="2e"
+      s0="Memory Maps\\c6x\\Link-Time Absolute Syms"
+      s1="SWI_RUNFXN"
+      s2=" SWI_F_run"
+      u3="1"
+   />
+
+   <!-- NEW  child symbol  OF  Link-Time Absolute Syms  WITH  name=TSK_STACKSEG, value= MEM_NULL -->
+   <instr
+      op="2e"
+      s0="Memory Maps\\c6x\\Link-Time Absolute Syms"
+      s1="TSK_STACKSEG"
+      s2=" MEM_NULL"
+      u3="1"
+   />
+
+   <!-- NEW  child symbol  OF  Link-Time Absolute Syms  WITH  name=TSK_VCREATEFXN, value= _FXN_F_nop -->
+   <instr
+      op="2e"
+      s0="Memory Maps\\c6x\\Link-Time Absolute Syms"
+      s1="TSK_VCREATEFXN"
+      s2=" _FXN_F_nop"
+      u3="1"
+   />
+
+   <!-- NEW  child symbol  OF  Link-Time Absolute Syms  WITH  name=TSK_VDELETEFXN, value= _FXN_F_nop -->
+   <instr
+      op="2e"
+      s0="Memory Maps\\c6x\\Link-Time Absolute Syms"
+      s1="TSK_VDELETEFXN"
+      s2=" _FXN_F_nop"
+      u3="1"
+   />
+
+   <!-- NEW  child symbol  OF  Link-Time Absolute Syms  WITH  name=TSK_VEXITFXN, value= _FXN_F_nop -->
+   <instr
+      op="2e"
+      s0="Memory Maps\\c6x\\Link-Time Absolute Syms"
+      s1="TSK_VEXITFXN"
+      s2=" _FXN_F_nop"
+      u3="1"
+   />
+
+   <!-- NEW  child symbol  OF  Link-Time Absolute Syms  WITH  name=IDL_CALIBRFXN, value= GBL_NULL -->
+   <instr
+      op="2e"
+      s0="Memory Maps\\c6x\\Link-Time Absolute Syms"
+      s1="IDL_CALIBRFXN"
+      s2=" GBL_NULL"
+      u3="1"
+   />
+
+   <!-- NEW  child symbol  OF  Link-Time Absolute Syms  WITH  name=SYS_ABORTFXN, value= _UTL_doAbort -->
+   <instr
+      op="2e"
+      s0="Memory Maps\\c6x\\Link-Time Absolute Syms"
+      s1="SYS_ABORTFXN"
+      s2=" _UTL_doAbort"
+      u3="1"
+   />
+
+   <!-- NEW  child symbol  OF  Link-Time Absolute Syms  WITH  name=SYS_ERRORFXN, value= _UTL_doError -->
+   <instr
+      op="2e"
+      s0="Memory Maps\\c6x\\Link-Time Absolute Syms"
+      s1="SYS_ERRORFXN"
+      s2=" _UTL_doError"
+      u3="1"
+   />
+
+   <!-- NEW  child symbol  OF  Link-Time Absolute Syms  WITH  name=SYS_EXITFXN, value= _UTL_halt -->
+   <instr
+      op="2e"
+      s0="Memory Maps\\c6x\\Link-Time Absolute Syms"
+      s1="SYS_EXITFXN"
+      s2=" _UTL_halt"
+      u3="1"
+   />
+
+   <!-- NEW  child symbol  OF  Link-Time Absolute Syms  WITH  name=SYS_PUTCFXN, value= _UTL_doPutc -->
+   <instr
+      op="2e"
+      s0="Memory Maps\\c6x\\Link-Time Absolute Syms"
+      s1="SYS_PUTCFXN"
+      s2=" _UTL_doPutc"
+      u3="1"
+   />
+
+   <!-- NEW  child symbol  OF  Link-Time Absolute Syms  WITH  name=GIO_CREATEFXN, value= _FXN_F_nop -->
+   <instr
+      op="2e"
+      s0="Memory Maps\\c6x\\Link-Time Absolute Syms"
+      s1="GIO_CREATEFXN"
+      s2=" _FXN_F_nop"
+      u3="1"
+   />
+
+   <!-- NEW  child symbol  OF  Link-Time Absolute Syms  WITH  name=GIO_DELETEFXN, value= _FXN_F_nop -->
+   <instr
+      op="2e"
+      s0="Memory Maps\\c6x\\Link-Time Absolute Syms"
+      s1="GIO_DELETEFXN"
+      s2=" _FXN_F_nop"
+      u3="1"
+   />
+
+   <!-- NEW  child symbol  OF  Link-Time Absolute Syms  WITH  name=GIO_PENDFXN, value= _FXN_F_nop -->
+   <instr
+      op="2e"
+      s0="Memory Maps\\c6x\\Link-Time Absolute Syms"
+      s1="GIO_PENDFXN"
+      s2=" _FXN_F_nop"
+      u3="1"
+   />
+
+   <!-- NEW  child symbol  OF  Link-Time Absolute Syms  WITH  name=GIO_POSTFXN, value= _FXN_F_nop -->
+   <instr
+      op="2e"
+      s0="Memory Maps\\c6x\\Link-Time Absolute Syms"
+      s1="GIO_POSTFXN"
+      s2=" _FXN_F_nop"
+      u3="1"
+   />
+
+   <!-- NEW  child symbol  OF  Link-Time Absolute Syms  WITH  name=_IPRAM, value= IPRAM -->
+   <instr
+      op="2e"
+      s0="Memory Maps\\c6x\\Link-Time Absolute Syms"
+      s1="_IPRAM"
+      s2=" IPRAM"
+      u3="1"
+   />
+
+   <!-- APPEND   OBJECT ALIASES   TO comment OF  Link-Time Absolute Syms\_IPRAM -->
+   <instr
+      op="47"
+      s0="Memory Maps\\c6x\\Link-Time Absolute Syms\\_IPRAM"
+      s1=" OBJECT ALIASES "
+   />
+
+   <!-- NEW  child symbol  OF  Link-Time Absolute Syms  WITH  name=_IDRAM, value= IDRAM -->
+   <instr
+      op="2e"
+      s0="Memory Maps\\c6x\\Link-Time Absolute Syms"
+      s1="_IDRAM"
+      s2=" IDRAM"
+      u3="1"
+   />
+
+   <!-- NEW  child symbol  OF  Link-Time Absolute Syms  WITH  name=_SBSRAM, value= SBSRAM -->
+   <instr
+      op="2e"
+      s0="Memory Maps\\c6x\\Link-Time Absolute Syms"
+      s1="_SBSRAM"
+      s2=" SBSRAM"
+      u3="1"
+   />
+
+   <!-- NEW  child symbol  OF  Link-Time Absolute Syms  WITH  name=_SDRAM, value= SDRAM -->
+   <instr
+      op="2e"
+      s0="Memory Maps\\c6x\\Link-Time Absolute Syms"
+      s1="_SDRAM"
+      s2=" SDRAM"
+      u3="1"
+   />
+
+   <!-- NEW  child symbol  OF  Link-Time Absolute Syms  WITH  name=_VECS, value= VECS -->
+   <instr
+      op="2e"
+      s0="Memory Maps\\c6x\\Link-Time Absolute Syms"
+      s1="_VECS"
+      s2=" VECS"
+      u3="1"
+   />
+
+   <!-- NEW  child symbol  OF  Link-Time Absolute Syms  WITH  name=_Propulsion, value= Propulsion -->
+   <instr
+      op="2e"
+      s0="Memory Maps\\c6x\\Link-Time Absolute Syms"
+      s1="_Propulsion"
+      s2=" Propulsion"
+      u3="1"
+   />
+
+   <!-- NEW  child symbol  OF  Link-Time Absolute Syms  WITH  name=_Comm_TDMA_Mgr, value= Comm_TDMA_Mgr -->
+   <instr
+      op="2e"
+      s0="Memory Maps\\c6x\\Link-Time Absolute Syms"
+      s1="_Comm_TDMA_Mgr"
+      s2=" Comm_TDMA_Mgr"
+      u3="1"
+   />
+
+   <!-- NEW  child symbol  OF  Link-Time Absolute Syms  WITH  name=_Control_Dispatch, value= Control_Dispatch -->
+   <instr
+      op="2e"
+      s0="Memory Maps\\c6x\\Link-Time Absolute Syms"
+      s1="_Control_Dispatch"
+      s2=" Control_Dispatch"
+      u3="1"
+   />
+
+   <!-- NEW  child symbol  OF  Link-Time Absolute Syms  WITH  name=_FastHousekeeping, value= FastHousekeeping -->
+   <instr
+      op="2e"
+      s0="Memory Maps\\c6x\\Link-Time Absolute Syms"
+      s1="_FastHousekeeping"
+      s2=" FastHousekeeping"
+      u3="1"
+   />
+
+   <!-- NEW  child symbol  OF  Link-Time Absolute Syms  WITH  name=_Telemetry, value= Telemetry -->
+   <instr
+      op="2e"
+      s0="Memory Maps\\c6x\\Link-Time Absolute Syms"
+      s1="_Telemetry"
+      s2=" Telemetry"
+      u3="1"
+   />
+
+   <!-- NEW  child symbol  OF  Link-Time Absolute Syms  WITH  name=_HWI_RESET, value= HWI_RESET -->
+   <instr
+      op="2e"
+      s0="Memory Maps\\c6x\\Link-Time Absolute Syms"
+      s1="_HWI_RESET"
+      s2=" HWI_RESET"
+      u3="1"
+   />
+
+   <!-- NEW  child symbol  OF  Link-Time Absolute Syms  WITH  name=_HWI_NMI, value= HWI_NMI -->
+   <instr
+      op="2e"
+      s0="Memory Maps\\c6x\\Link-Time Absolute Syms"
+      s1="_HWI_NMI"
+      s2=" HWI_NMI"
+      u3="1"
+   />
+
+   <!-- NEW  child symbol  OF  Link-Time Absolute Syms  WITH  name=_HWI_RESERVED0, value= HWI_RESERVED0 -->
+   <instr
+      op="2e"
+      s0="Memory Maps\\c6x\\Link-Time Absolute Syms"
+      s1="_HWI_RESERVED0"
+      s2=" HWI_RESERVED0"
+      u3="1"
+   />
+
+   <!-- NEW  child symbol  OF  Link-Time Absolute Syms  WITH  name=_HWI_RESERVED1, value= HWI_RESERVED1 -->
+   <instr
+      op="2e"
+      s0="Memory Maps\\c6x\\Link-Time Absolute Syms"
+      s1="_HWI_RESERVED1"
+      s2=" HWI_RESERVED1"
+      u3="1"
+   />
+
+   <!-- NEW  child symbol  OF  Link-Time Absolute Syms  WITH  name=_HWI_INT4, value= HWI_INT4 -->
+   <instr
+      op="2e"
+      s0="Memory Maps\\c6x\\Link-Time Absolute Syms"
+      s1="_HWI_INT4"
+      s2=" HWI_INT4"
+      u3="1"
+   />
+
+   <!-- NEW  child symbol  OF  Link-Time Absolute Syms  WITH  name=_HWI_INT5, value= HWI_INT5 -->
+   <instr
+      op="2e"
+      s0="Memory Maps\\c6x\\Link-Time Absolute Syms"
+      s1="_HWI_INT5"
+      s2=" HWI_INT5"
+      u3="1"
+   />
+
+   <!-- NEW  child symbol  OF  Link-Time Absolute Syms  WITH  name=_HWI_INT6, value= HWI_INT6 -->
+   <instr
+      op="2e"
+      s0="Memory Maps\\c6x\\Link-Time Absolute Syms"
+      s1="_HWI_INT6"
+      s2=" HWI_INT6"
+      u3="1"
+   />
+
+   <!-- NEW  child symbol  OF  Link-Time Absolute Syms  WITH  name=_HWI_INT7, value= HWI_INT7 -->
+   <instr
+      op="2e"
+      s0="Memory Maps\\c6x\\Link-Time Absolute Syms"
+      s1="_HWI_INT7"
+      s2=" HWI_INT7"
+      u3="1"
+   />
+
+   <!-- NEW  child symbol  OF  Link-Time Absolute Syms  WITH  name=_HWI_INT8, value= HWI_INT8 -->
+   <instr
+      op="2e"
+      s0="Memory Maps\\c6x\\Link-Time Absolute Syms"
+      s1="_HWI_INT8"
+      s2=" HWI_INT8"
+      u3="1"
+   />
+
+   <!-- NEW  child symbol  OF  Link-Time Absolute Syms  WITH  name=_HWI_INT9, value= HWI_INT9 -->
+   <instr
+      op="2e"
+      s0="Memory Maps\\c6x\\Link-Time Absolute Syms"
+      s1="_HWI_INT9"
+      s2=" HWI_INT9"
+      u3="1"
+   />
+
+   <!-- NEW  child symbol  OF  Link-Time Absolute Syms  WITH  name=_HWI_INT10, value= HWI_INT10 -->
+   <instr
+      op="2e"
+      s0="Memory Maps\\c6x\\Link-Time Absolute Syms"
+      s1="_HWI_INT10"
+      s2=" HWI_INT10"
+      u3="1"
+   />
+
+   <!-- NEW  child symbol  OF  Link-Time Absolute Syms  WITH  name=_HWI_INT11, value= HWI_INT11 -->
+   <instr
+      op="2e"
+      s0="Memory Maps\\c6x\\Link-Time Absolute Syms"
+      s1="_HWI_INT11"
+      s2=" HWI_INT11"
+      u3="1"
+   />
+
+   <!-- NEW  child symbol  OF  Link-Time Absolute Syms  WITH  name=_HWI_INT12, value= HWI_INT12 -->
+   <instr
+      op="2e"
+      s0="Memory Maps\\c6x\\Link-Time Absolute Syms"
+      s1="_HWI_INT12"
+      s2=" HWI_INT12"
+      u3="1"
+   />
+
+   <!-- NEW  child symbol  OF  Link-Time Absolute Syms  WITH  name=_HWI_INT13, value= HWI_INT13 -->
+   <instr
+      op="2e"
+      s0="Memory Maps\\c6x\\Link-Time Absolute Syms"
+      s1="_HWI_INT13"
+      s2=" HWI_INT13"
+      u3="1"
+   />
+
+   <!-- NEW  child symbol  OF  Link-Time Absolute Syms  WITH  name=_HWI_INT14, value= HWI_INT14 -->
+   <instr
+      op="2e"
+      s0="Memory Maps\\c6x\\Link-Time Absolute Syms"
+      s1="_HWI_INT14"
+      s2=" HWI_INT14"
+      u3="1"
+   />
+
+   <!-- NEW  child symbol  OF  Link-Time Absolute Syms  WITH  name=_HWI_INT15, value= HWI_INT15 -->
+   <instr
+      op="2e"
+      s0="Memory Maps\\c6x\\Link-Time Absolute Syms"
+      s1="_HWI_INT15"
+      s2=" HWI_INT15"
+      u3="1"
+   />
+
+   <!-- NEW  child symbol  OF  Link-Time Absolute Syms  WITH  name=_PRD_swi, value= PRD_swi -->
+   <instr
+      op="2e"
+      s0="Memory Maps\\c6x\\Link-Time Absolute Syms"
+      s1="_PRD_swi"
+      s2=" PRD_swi"
+      u3="1"
+   />
+
+   <!-- NEW  child symbol  OF  Link-Time Absolute Syms  WITH  name=_KNL_swi, value= KNL_swi -->
+   <instr
+      op="2e"
+      s0="Memory Maps\\c6x\\Link-Time Absolute Syms"
+      s1="_KNL_swi"
+      s2=" KNL_swi"
+      u3="1"
+   />
+
+   <!-- NEW  child symbol  OF  Link-Time Absolute Syms  WITH  name=_packet_TX_swi, value= packet_TX_swi -->
+   <instr
+      op="2e"
+      s0="Memory Maps\\c6x\\Link-Time Absolute Syms"
+      s1="_packet_TX_swi"
+      s2=" packet_TX_swi"
+      u3="1"
+   />
+
+   <!-- NEW  child symbol  OF  Link-Time Absolute Syms  WITH  name=_PADS, value= PADS -->
+   <instr
+      op="2e"
+      s0="Memory Maps\\c6x\\Link-Time Absolute Syms"
+      s1="_PADS"
+      s2=" PADS"
+      u3="1"
+   />
+
+   <!-- NEW  child symbol  OF  Link-Time Absolute Syms  WITH  name=_Controller, value= Controller -->
+   <instr
+      op="2e"
+      s0="Memory Maps\\c6x\\Link-Time Absolute Syms"
+      s1="_Controller"
+      s2=" Controller"
+      u3="1"
+   />
+
+   <!-- NEW  child symbol  OF  Link-Time Absolute Syms  WITH  name=_TSK_idle, value= TSK_idle -->
+   <instr
+      op="2e"
+      s0="Memory Maps\\c6x\\Link-Time Absolute Syms"
+      s1="_TSK_idle"
+      s2=" TSK_idle"
+      u3="1"
+   />
+
+   <!-- NEW  child symbol  OF  Link-Time Absolute Syms  WITH  name=_TSK_comm_mgr, value= TSK_comm_mgr -->
+   <instr
+      op="2e"
+      s0="Memory Maps\\c6x\\Link-Time Absolute Syms"
+      s1="_TSK_comm_mgr"
+      s2=" TSK_comm_mgr"
+      u3="1"
+   />
+
+   <!-- NEW  child symbol  OF  Link-Time Absolute Syms  WITH  name=_TSK_gsp_task, value= TSK_gsp_task -->
+   <instr
+      op="2e"
+      s0="Memory Maps\\c6x\\Link-Time Absolute Syms"
+      s1="_TSK_gsp_task"
+      s2=" TSK_gsp_task"
+      u3="1"
+   />
+
+   <!-- NEW  child symbol  OF  Link-Time Absolute Syms  WITH  name=_TSK_datacomm_STL, value= TSK_datacomm_STL -->
+   <instr
+      op="2e"
+      s0="Memory Maps\\c6x\\Link-Time Absolute Syms"
+      s1="_TSK_datacomm_STL"
+      s2=" TSK_datacomm_STL"
+      u3="1"
+   />
+
+   <!-- NEW  child symbol  OF  Link-Time Absolute Syms  WITH  name=_TSK_bkg_flash_write, value= TSK_bkg_flash_write -->
+   <instr
+      op="2e"
+      s0="Memory Maps\\c6x\\Link-Time Absolute Syms"
+      s1="_TSK_bkg_flash_write"
+      s2=" TSK_bkg_flash_write"
+      u3="1"
+   />
+
+   <!-- NEW  child symbol  OF  Link-Time Absolute Syms  WITH  name=_TSK_cp_monitor, value= TSK_cp_monitor -->
+   <instr
+      op="2e"
+      s0="Memory Maps\\c6x\\Link-Time Absolute Syms"
+      s1="_TSK_cp_monitor"
+      s2=" TSK_cp_monitor"
+      u3="1"
+   />
+
+   <!-- NEW  child symbol  OF  Link-Time Absolute Syms  WITH  name=_TSK_datacomm_STS, value= TSK_datacomm_STS -->
+   <instr
+      op="2e"
+      s0="Memory Maps\\c6x\\Link-Time Absolute Syms"
+      s1="_TSK_datacomm_STS"
+      s2=" TSK_datacomm_STS"
+      u3="1"
+   />
+
+   <!-- NEW  child symbol  OF  Link-Time Absolute Syms  WITH  name=_TSK_estimator, value= TSK_estimator -->
+   <instr
+      op="2e"
+      s0="Memory Maps\\c6x\\Link-Time Absolute Syms"
+      s1="_TSK_estimator"
+      s2=" TSK_estimator"
+      u3="1"
+   />
+
+   <!-- NEW  child symbol  OF  Link-Time Absolute Syms  WITH  name=_LOG_system, value= LOG_system -->
+   <instr
+      op="2e"
+      s0="Memory Maps\\c6x\\Link-Time Absolute Syms"
+      s1="_LOG_system"
+      s2=" LOG_system"
+      u3="1"
+   />
+
+   <!-- NEW  child symbol  OF  Link-Time Absolute Syms  WITH  name=_trace, value= trace -->
+   <instr
+      op="2e"
+      s0="Memory Maps\\c6x\\Link-Time Absolute Syms"
+      s1="_trace"
+      s2=" trace"
+      u3="1"
+   />
+
+   <!-- NEW  child symbol  OF  Link-Time Absolute Syms  WITH  name=_PIP_comm_TX, value= PIP_comm_TX -->
+   <instr
+      op="2e"
+      s0="Memory Maps\\c6x\\Link-Time Absolute Syms"
+      s1="_PIP_comm_TX"
+      s2=" PIP_comm_TX"
+      u3="1"
+   />
+
+   <!-- NEW  child symbol  OF  Link-Time Absolute Syms  WITH  name=_PIP_comm_RX, value= PIP_comm_RX -->
+   <instr
+      op="2e"
+      s0="Memory Maps\\c6x\\Link-Time Absolute Syms"
+      s1="_PIP_comm_RX"
+      s2=" PIP_comm_RX"
+      u3="1"
+   />
+
+   <!-- NEW  child symbol  OF  Link-Time Absolute Syms  WITH  name=_SEM_Comm_TX_enable_STS, value= SEM_Comm_TX_enable_STS -->
+   <instr
+      op="2e"
+      s0="Memory Maps\\c6x\\Link-Time Absolute Syms"
+      s1="_SEM_Comm_TX_enable_STS"
+      s2=" SEM_Comm_TX_enable_STS"
+      u3="1"
+   />
+
+   <!-- NEW  child symbol  OF  Link-Time Absolute Syms  WITH  name=_SEM_Comm_Activity, value= SEM_Comm_Activity -->
+   <instr
+      op="2e"
+      s0="Memory Maps\\c6x\\Link-Time Absolute Syms"
+      s1="_SEM_Comm_Activity"
+      s2=" SEM_Comm_Activity"
+      u3="1"
+   />
+
+   <!-- NEW  child symbol  OF  Link-Time Absolute Syms  WITH  name=_SEM_Comm_TX_enable_STL, value= SEM_Comm_TX_enable_STL -->
+   <instr
+      op="2e"
+      s0="Memory Maps\\c6x\\Link-Time Absolute Syms"
+      s1="_SEM_Comm_TX_enable_STL"
+      s2=" SEM_Comm_TX_enable_STL"
+      u3="1"
+   />
+
+   <!-- NEW  child symbol  OF  Link-Time Absolute Syms  WITH  name=_SEM_gsp_task, value= SEM_gsp_task -->
+   <instr
+      op="2e"
+      s0="Memory Maps\\c6x\\Link-Time Absolute Syms"
+      s1="_SEM_gsp_task"
+      s2=" SEM_gsp_task"
+      u3="1"
+   />
+
+   <!-- NEW  child symbol  OF  Link-Time Absolute Syms  WITH  name=_SEM_global_pads_request, value= SEM_global_pads_request -->
+   <instr
+      op="2e"
+      s0="Memory Maps\\c6x\\Link-Time Absolute Syms"
+      s1="_SEM_global_pads_request"
+      s2=" SEM_global_pads_request"
+      u3="1"
+   />
+
+   <!-- NEW  child symbol  OF  Link-Time Absolute Syms  WITH  name=_SEM_datacomm_STL, value= SEM_datacomm_STL -->
+   <instr
+      op="2e"
+      s0="Memory Maps\\c6x\\Link-Time Absolute Syms"
+      s1="_SEM_datacomm_STL"
+      s2=" SEM_datacomm_STL"
+      u3="1"
+   />
+
+   <!-- NEW  child symbol  OF  Link-Time Absolute Syms  WITH  name=_SEM_update_flash, value= SEM_update_flash -->
+   <instr
+      op="2e"
+      s0="Memory Maps\\c6x\\Link-Time Absolute Syms"
+      s1="_SEM_update_flash"
+      s2=" SEM_update_flash"
+      u3="1"
+   />
+
+   <!-- NEW  child symbol  OF  Link-Time Absolute Syms  WITH  name=_SEM_datacomm_STS, value= SEM_datacomm_STS -->
+   <instr
+      op="2e"
+      s0="Memory Maps\\c6x\\Link-Time Absolute Syms"
+      s1="_SEM_datacomm_STS"
+      s2=" SEM_datacomm_STS"
+      u3="1"
+   />
+
+   <!-- NEW  child symbol  OF  Link-Time Absolute Syms  WITH  name=_MBX_CommSTL_LO, value= MBX_CommSTL_LO -->
+   <instr
+      op="2e"
+      s0="Memory Maps\\c6x\\Link-Time Absolute Syms"
+      s1="_MBX_CommSTL_LO"
+      s2=" MBX_CommSTL_LO"
+      u3="1"
+   />
+
+   <!-- NEW  child symbol  OF  Link-Time Absolute Syms  WITH  name=_MBX_CommSTL_HI, value= MBX_CommSTL_HI -->
+   <instr
+      op="2e"
+      s0="Memory Maps\\c6x\\Link-Time Absolute Syms"
+      s1="_MBX_CommSTL_HI"
+      s2=" MBX_CommSTL_HI"
+      u3="1"
+   />
+
+   <!-- NEW  child symbol  OF  Link-Time Absolute Syms  WITH  name=_MBX_CommSTS_HI, value= MBX_CommSTS_HI -->
+   <instr
+      op="2e"
+      s0="Memory Maps\\c6x\\Link-Time Absolute Syms"
+      s1="_MBX_CommSTS_HI"
+      s2=" MBX_CommSTS_HI"
+      u3="1"
+   />
+
+   <!-- NEW  child symbol  OF  Link-Time Absolute Syms  WITH  name=_MBX_CommSTS_LO, value= MBX_CommSTS_LO -->
+   <instr
+      op="2e"
+      s0="Memory Maps\\c6x\\Link-Time Absolute Syms"
+      s1="_MBX_CommSTS_LO"
+      s2=" MBX_CommSTS_LO"
+      u3="1"
+   />
+
+   <!-- NEW  child symbol  OF  Link-Time Absolute Syms  WITH  name=_MBX_Task_Triggers, value= MBX_Task_Triggers -->
+   <instr
+      op="2e"
+      s0="Memory Maps\\c6x\\Link-Time Absolute Syms"
+      s1="_MBX_Task_Triggers"
+      s2=" MBX_Task_Triggers"
+      u3="1"
+   />
+
+   <!-- NEW  child symbol  OF  Link-Time Absolute Syms  WITH  name=_MBX_Estimator, value= MBX_Estimator -->
+   <instr
+      op="2e"
+      s0="Memory Maps\\c6x\\Link-Time Absolute Syms"
+      s1="_MBX_Estimator"
+      s2=" MBX_Estimator"
+      u3="1"
+   />
+
+   <!-- NEW  child symbol  OF  Link-Time Absolute Syms  WITH  name=_MBX_CommEXPv2, value= MBX_CommEXPv2 -->
+   <instr
+      op="2e"
+      s0="Memory Maps\\c6x\\Link-Time Absolute Syms"
+      s1="_MBX_CommEXPv2"
+      s2=" MBX_CommEXPv2"
+      u3="1"
+   />
+
+   <!-- NEW  child symbol  OF  Link-Time Absolute Syms  WITH  name=_GBL_CACHE, value= GBL_CACHE -->
+   <instr
+      op="2e"
+      s0="Memory Maps\\c6x\\Link-Time Absolute Syms"
+      s1="_GBL_CACHE"
+      s2=" GBL_CACHE"
+      u3="1"
+   />
+
+   <!-- NEW  child symbol  OF  Link-Time Absolute Syms  WITH  name=_CLK_start, value= _CLK_start6x -->
+   <instr
+      op="2e"
+      s0="Memory Maps\\c6x\\Link-Time Absolute Syms"
+      s1="_CLK_start"
+      s2=" _CLK_start6x"
+      u3="1"
+   />
+
+   <!-- NEW  child symbol  OF  Link-Time Absolute Syms  WITH  name=CLK_F_gethtime, value= CLK_F_getshtime -->
+   <instr
+      op="2e"
+      s0="Memory Maps\\c6x\\Link-Time Absolute Syms"
+      s1="CLK_F_gethtime"
+      s2=" CLK_F_getshtime"
+      u3="1"
+   />
+
+   <!-- NEW  child symbol  OF  run_view\IDRAM\.clk  WITH  name=CLK_A_TABBEG -->
+   <instr
+      op="b"
+      s0="Memory Maps\\c6x\\run_view\\IDRAM\\.clk"
+      s1="CLK_A_TABBEG"
+   />
+
+   <!-- NEW  child symbol  OF  run_view\IDRAM\.clk  WITH  name=CLK_A_TABEND, offset=sizeof(Memory Maps\c6x\run_view\IDRAM\.clk) -->
+   <instr
+      op="2d"
+      s0="Memory Maps\\c6x\\run_view\\IDRAM\\.clk"
+      s1="CLK_A_TABEND"
+      s2="sizeof(Memory Maps\\c6x\\run_view\\IDRAM\\.clk)"
+   />
+
+   <!-- NEW  child symbol  OF  Link-Time Absolute Syms  WITH  name=CLK_A_TABLEN, value= ((naddr(Memory Maps\c6x\run_view\IDRAM\.clk)) - CLK_A_TABBEG) / 1 -->
+   <instr
+      op="2e"
+      s0="Memory Maps\\c6x\\Link-Time Absolute Syms"
+      s1="CLK_A_TABLEN"
+      s2=" ((naddr(Memory Maps\\c6x\\run_view\\IDRAM\\.clk)) - CLK_A_TABBEG) / 1"
+      u3="1"
+   />
+
+   <!-- NEW  child symbol  OF  Link-Time Absolute Syms  WITH  name=_CLK_PRD, value= CLK_PRD -->
+   <instr
+      op="2e"
+      s0="Memory Maps\\c6x\\Link-Time Absolute Syms"
+      s1="_CLK_PRD"
+      s2=" CLK_PRD"
+      u3="1"
+   />
+
+   <!-- NEW  child symbol  OF  Link-Time Absolute Syms  WITH  name=_CLK_COUNTSPMS, value= CLK_COUNTSPMS -->
+   <instr
+      op="2e"
+      s0="Memory Maps\\c6x\\Link-Time Absolute Syms"
+      s1="_CLK_COUNTSPMS"
+      s2=" CLK_COUNTSPMS"
+      u3="1"
+   />
+
+   <!-- NEW  child symbol  OF  Link-Time Absolute Syms  WITH  name=_CLK_REGS, value= CLK_REGS -->
+   <instr
+      op="2e"
+      s0="Memory Maps\\c6x\\Link-Time Absolute Syms"
+      s1="_CLK_REGS"
+      s2=" CLK_REGS"
+      u3="1"
+   />
+
+   <!-- NEW  child symbol  OF  Link-Time Absolute Syms  WITH  name=_CLK_USETIMER, value= CLK_USETIMER -->
+   <instr
+      op="2e"
+      s0="Memory Maps\\c6x\\Link-Time Absolute Syms"
+      s1="_CLK_USETIMER"
+      s2=" CLK_USETIMER"
+      u3="1"
+   />
+
+   <!-- NEW  child symbol  OF  Link-Time Absolute Syms  WITH  name=_CLK_TIMERNUM, value= CLK_TIMERNUM -->
+   <instr
+      op="2e"
+      s0="Memory Maps\\c6x\\Link-Time Absolute Syms"
+      s1="_CLK_TIMERNUM"
+      s2=" CLK_TIMERNUM"
+      u3="1"
+   />
+
+   <!-- NEW  child symbol  OF  Link-Time Absolute Syms  WITH  name=_CLK_TDDR, value= CLK_TDDR -->
+   <instr
+      op="2e"
+      s0="Memory Maps\\c6x\\Link-Time Absolute Syms"
+      s1="_CLK_TDDR"
+      s2=" CLK_TDDR"
+      u3="1"
+   />
+
+   <!-- NEW  child symbol  OF  run_view\IDRAM\.prd  WITH  name=PRD_A_TABBEG -->
+   <instr
+      op="b"
+      s0="Memory Maps\\c6x\\run_view\\IDRAM\\.prd"
+      s1="PRD_A_TABBEG"
+   />
+
+   <!-- NEW  child symbol  OF  run_view\IDRAM\.prd  WITH  name=PRD_A_TABEND, offset=sizeof(Memory Maps\c6x\run_view\IDRAM\.prd) -->
+   <instr
+      op="2d"
+      s0="Memory Maps\\c6x\\run_view\\IDRAM\\.prd"
+      s1="PRD_A_TABEND"
+      s2="sizeof(Memory Maps\\c6x\\run_view\\IDRAM\\.prd)"
+   />
+
+   <!-- NEW  child symbol  OF  Link-Time Absolute Syms  WITH  name=PRD_A_TABLEN, value= ((naddr(Memory Maps\c6x\run_view\IDRAM\.prd)) - PRD_A_TABBEG) / 32 -->
+   <instr
+      op="2e"
+      s0="Memory Maps\\c6x\\Link-Time Absolute Syms"
+      s1="PRD_A_TABLEN"
+      s2=" ((naddr(Memory Maps\\c6x\\run_view\\IDRAM\\.prd)) - PRD_A_TABBEG) / 32"
+      u3="1"
+   />
+
+   <!-- NEW  child symbol  OF  run_view\VECS\.hwi_vec  WITH  name=HWI_A_VECS -->
+   <instr
+      op="b"
+      s0="Memory Maps\\c6x\\run_view\\VECS\\.hwi_vec"
+      s1="HWI_A_VECS"
+   />
+
+   <!-- NEW  child symbol  OF  run_view\IDRAM\.swi  WITH  name=SWI_A_TABBEG -->
+   <instr
+      op="b"
+      s0="Memory Maps\\c6x\\run_view\\IDRAM\\.swi"
+      s1="SWI_A_TABBEG"
+   />
+
+   <!-- NEW  child symbol  OF  run_view\IDRAM\.swi  WITH  name=SWI_A_TABEND, offset=sizeof(Memory Maps\c6x\run_view\IDRAM\.swi) -->
+   <instr
+      op="2d"
+      s0="Memory Maps\\c6x\\run_view\\IDRAM\\.swi"
+      s1="SWI_A_TABEND"
+      s2="sizeof(Memory Maps\\c6x\\run_view\\IDRAM\\.swi)"
+   />
+
+   <!-- NEW  child symbol  OF  Link-Time Absolute Syms  WITH  name=SWI_A_TABLEN, value= ((naddr(Memory Maps\c6x\run_view\IDRAM\.swi)) - SWI_A_TABBEG) / 44 -->
+   <instr
+      op="2e"
+      s0="Memory Maps\\c6x\\Link-Time Absolute Syms"
+      s1="SWI_A_TABLEN"
+      s2=" ((naddr(Memory Maps\\c6x\\run_view\\IDRAM\\.swi)) - SWI_A_TABBEG) / 44"
+      u3="1"
+   />
+
+   <!-- NEW  child symbol  OF  run_view\IDRAM\.idl\FROM_ALL_FILES_5  WITH  name=IDL_A_TABBEG -->
+   <instr
+      op="b"
+      s0="Memory Maps\\c6x\\run_view\\IDRAM\\.idl\\FROM_ALL_FILES_5"
+      s1="IDL_A_TABBEG"
+   />
+
+   <!-- NEW  child symbol  OF  run_view\IDRAM\.idl\FROM_ALL_FILES_5  WITH  name=IDL_A_TABEND, offset=sizeof(Memory Maps\c6x\run_view\IDRAM\.idl\FROM_ALL_FILES_5) -->
+   <instr
+      op="2d"
+      s0="Memory Maps\\c6x\\run_view\\IDRAM\\.idl\\FROM_ALL_FILES_5"
+      s1="IDL_A_TABEND"
+      s2="sizeof(Memory Maps\\c6x\\run_view\\IDRAM\\.idl\\FROM_ALL_FILES_5)"
+   />
+
+   <!-- NEW  child symbol  OF  Link-Time Absolute Syms  WITH  name=IDL_A_TABLEN, value= ((addr(Memory Maps\c6x\run_view\IDRAM\.idl\FROM_ALL_FILES_6)) - IDL_A_TABBEG) / 8 -->
+   <instr
+      op="2e"
+      s0="Memory Maps\\c6x\\Link-Time Absolute Syms"
+      s1="IDL_A_TABLEN"
+      s2=" ((addr(Memory Maps\\c6x\\run_view\\IDRAM\\.idl\\FROM_ALL_FILES_6)) - IDL_A_TABBEG) / 8"
+      u3="1"
+   />
+
+   <!-- NEW  child symbol  OF  run_view\IDRAM\.idl\FROM_ALL_FILES_6  WITH  name=IDL_A_CALBEG -->
+   <instr
+      op="b"
+      s0="Memory Maps\\c6x\\run_view\\IDRAM\\.idl\\FROM_ALL_FILES_6"
+      s1="IDL_A_CALBEG"
+   />
+
+   <!-- NEW  child symbol  OF  run_view\IDRAM\.idl\FROM_ALL_FILES_6  WITH  name=IDL_A_CALEND, offset=sizeof(Memory Maps\c6x\run_view\IDRAM\.idl\FROM_ALL_FILES_6) -->
+   <instr
+      op="2d"
+      s0="Memory Maps\\c6x\\run_view\\IDRAM\\.idl\\FROM_ALL_FILES_6"
+      s1="IDL_A_CALEND"
+      s2="sizeof(Memory Maps\\c6x\\run_view\\IDRAM\\.idl\\FROM_ALL_FILES_6)"
+   />
+
+   <!-- NEW  child symbol  OF  Link-Time Absolute Syms  WITH  name=IDL_A_CALLEN, value= ((naddr(Memory Maps\c6x\run_view\IDRAM\.idl\FROM_ALL_FILES_6)) - IDL_A_CALBEG) / 8 -->
+   <instr
+      op="2e"
+      s0="Memory Maps\\c6x\\Link-Time Absolute Syms"
+      s1="IDL_A_CALLEN"
+      s2=" ((naddr(Memory Maps\\c6x\\run_view\\IDRAM\\.idl\\FROM_ALL_FILES_6)) - IDL_A_CALBEG) / 8"
+      u3="1"
+   />
+
+   <!-- NEW  child symbol  OF  run_view\IDRAM\.trace  WITH  name=_SYS_PUTCBEG -->
+   <instr
+      op="b"
+      s0="Memory Maps\\c6x\\run_view\\IDRAM\\.trace"
+      s1="_SYS_PUTCBEG"
+   />
+
+   <!-- NEW  child symbol  OF  Link-Time Absolute Syms  WITH  name=_SYS_PUTCEND, value= (naddr(Memory Maps\c6x\run_view\IDRAM\.trace)) - 1 -->
+   <instr
+      op="2e"
+      s0="Memory Maps\\c6x\\Link-Time Absolute Syms"
+      s1="_SYS_PUTCEND"
+      s2=" (naddr(Memory Maps\\c6x\\run_view\\IDRAM\\.trace)) - 1"
+      u3="1"
+   />
+
+   <!-- NEW  child symbol  OF  run_view\IDRAM\.sts  WITH  name=STS_A_TABBEG -->
+   <instr
+      op="b"
+      s0="Memory Maps\\c6x\\run_view\\IDRAM\\.sts"
+      s1="STS_A_TABBEG"
+   />
+
+   <!-- NEW  child symbol  OF  run_view\IDRAM\.sts  WITH  name=_STS_A_TABBEG -->
+   <instr
+      op="b"
+      s0="Memory Maps\\c6x\\run_view\\IDRAM\\.sts"
+      s1="_STS_A_TABBEG"
+   />
+
+   <!-- NEW  child symbol  OF  run_view\IDRAM\.sts  WITH  name=STS_A_TABEND -->
+   <instr
+      op="b"
+      s0="Memory Maps\\c6x\\run_view\\IDRAM\\.sts"
+      s1="STS_A_TABEND"
+   />
+
+   <!-- CHANGE  comment  OF  run_view\IDRAM\.sts\STS_A_TABEND  TO  " no STS objects " -->
+   <instr
+      op="46"
+      s0="Memory Maps\\c6x\\run_view\\IDRAM\\.sts\\STS_A_TABEND"
+      s1=" no STS objects "
+   />
+
+   <!-- NEW  child symbol  OF  run_view\IDRAM\.sts  WITH  name=_STS_A_TABEND -->
+   <instr
+      op="b"
+      s0="Memory Maps\\c6x\\run_view\\IDRAM\\.sts"
+      s1="_STS_A_TABEND"
+   />
+
+   <!-- NEW  child symbol  OF  Link-Time Absolute Syms  WITH  name=STS_A_TABLEN, value= ((addr(Memory Maps\c6x\run_view\IDRAM\.sts)) - _STS_A_TABBEG) / 16 -->
+   <instr
+      op="2e"
+      s0="Memory Maps\\c6x\\Link-Time Absolute Syms"
+      s1="STS_A_TABLEN"
+      s2=" ((addr(Memory Maps\\c6x\\run_view\\IDRAM\\.sts)) - _STS_A_TABBEG) / 16"
+      u3="1"
+   />
+
+   <!-- NEW  child symbol  OF  Link-Time Absolute Syms  WITH  name=_STS_A_TABLEN, value= ((addr(Memory Maps\c6x\run_view\IDRAM\.sts)) - _STS_A_TABBEG) / 16 -->
+   <instr
+      op="2e"
+      s0="Memory Maps\\c6x\\Link-Time Absolute Syms"
+      s1="_STS_A_TABLEN"
+      s2=" ((addr(Memory Maps\\c6x\\run_view\\IDRAM\\.sts)) - _STS_A_TABBEG) / 16"
+      u3="1"
+   />
+
+   <!-- NEW  child symbol  OF  run_view\IDRAM\.MBX_CommEXPv2$que  WITH  name=MBX_CommEXPv2$queElems -->
+   <instr
+      op="b"
+      s0="Memory Maps\\c6x\\run_view\\IDRAM\\.MBX_CommEXPv2$que"
+      s1="MBX_CommEXPv2$queElems"
+   />
+
+   <!-- NEW  child symbol  OF  run_view\IDRAM\.MBX_CommSTS_HI$que  WITH  name=MBX_CommSTS_HI$queElems -->
+   <instr
+      op="b"
+      s0="Memory Maps\\c6x\\run_view\\IDRAM\\.MBX_CommSTS_HI$que"
+      s1="MBX_CommSTS_HI$queElems"
+   />
+
+   <!-- NEW  child symbol  OF  run_view\IDRAM\.MBX_CommSTL_HI$que  WITH  name=MBX_CommSTL_HI$queElems -->
+   <instr
+      op="b"
+      s0="Memory Maps\\c6x\\run_view\\IDRAM\\.MBX_CommSTL_HI$que"
+      s1="MBX_CommSTL_HI$queElems"
+   />
+
+   <!-- NEW  child symbol  OF  run_view\IDRAM\.pip  WITH  name=PIP_A_TABBEG -->
+   <instr
+      op="b"
+      s0="Memory Maps\\c6x\\run_view\\IDRAM\\.pip"
+      s1="PIP_A_TABBEG"
+   />
+
+   <!-- NEW  child symbol  OF  run_view\IDRAM\.pip  WITH  name=_PIP_A_TABBEG -->
+   <instr
+      op="b"
+      s0="Memory Maps\\c6x\\run_view\\IDRAM\\.pip"
+      s1="_PIP_A_TABBEG"
+   />
+
+   <!-- NEW  child symbol  OF  run_view\IDRAM\.pip  WITH  name=PIP_A_TABEND, offset=sizeof(Memory Maps\c6x\run_view\IDRAM\.pip) -->
+   <instr
+      op="2d"
+      s0="Memory Maps\\c6x\\run_view\\IDRAM\\.pip"
+      s1="PIP_A_TABEND"
+      s2="sizeof(Memory Maps\\c6x\\run_view\\IDRAM\\.pip)"
+   />
+
+   <!-- NEW  child symbol  OF  run_view\IDRAM\.pip  WITH  name=_PIP_A_TABEND, offset=sizeof(Memory Maps\c6x\run_view\IDRAM\.pip) -->
+   <instr
+      op="2d"
+      s0="Memory Maps\\c6x\\run_view\\IDRAM\\.pip"
+      s1="_PIP_A_TABEND"
+      s2="sizeof(Memory Maps\\c6x\\run_view\\IDRAM\\.pip)"
+   />
+
+   <!-- NEW  child symbol  OF  Link-Time Absolute Syms  WITH  name=PIP_A_TABLEN, value= ((naddr(Memory Maps\c6x\run_view\IDRAM\.pip)) - _PIP_A_TABBEG) / 100 -->
+   <instr
+      op="2e"
+      s0="Memory Maps\\c6x\\Link-Time Absolute Syms"
+      s1="PIP_A_TABLEN"
+      s2=" ((naddr(Memory Maps\\c6x\\run_view\\IDRAM\\.pip)) - _PIP_A_TABBEG) / 100"
+      u3="1"
+   />
+
+   <!-- NEW  child symbol  OF  Link-Time Absolute Syms  WITH  name=_PIP_A_TABLEN, value= ((naddr(Memory Maps\c6x\run_view\IDRAM\.pip)) - _PIP_A_TABBEG) / 100 -->
+   <instr
+      op="2e"
+      s0="Memory Maps\\c6x\\Link-Time Absolute Syms"
+      s1="_PIP_A_TABLEN"
+      s2=" ((naddr(Memory Maps\\c6x\\run_view\\IDRAM\\.pip)) - _PIP_A_TABBEG) / 100"
+      u3="1"
+   />
+
+   <!-- NEW  child symbol  OF  run_view\IDRAM\.log  WITH  name=LOG_A_TABBEG -->
+   <instr
+      op="b"
+      s0="Memory Maps\\c6x\\run_view\\IDRAM\\.log"
+      s1="LOG_A_TABBEG"
+   />
+
+   <!-- NEW  child symbol  OF  run_view\IDRAM\.log  WITH  name=_LOG_A_TABBEG -->
+   <instr
+      op="b"
+      s0="Memory Maps\\c6x\\run_view\\IDRAM\\.log"
+      s1="_LOG_A_TABBEG"
+   />
+
+   <!-- NEW  child symbol  OF  run_view\IDRAM\.log  WITH  name=LOG_A_TABEND, offset=sizeof(Memory Maps\c6x\run_view\IDRAM\.log) -->
+   <instr
+      op="2d"
+      s0="Memory Maps\\c6x\\run_view\\IDRAM\\.log"
+      s1="LOG_A_TABEND"
+      s2="sizeof(Memory Maps\\c6x\\run_view\\IDRAM\\.log)"
+   />
+
+   <!-- NEW  child symbol  OF  run_view\IDRAM\.log  WITH  name=_LOG_A_TABEND, offset=sizeof(Memory Maps\c6x\run_view\IDRAM\.log) -->
+   <instr
+      op="2d"
+      s0="Memory Maps\\c6x\\run_view\\IDRAM\\.log"
+      s1="_LOG_A_TABEND"
+      s2="sizeof(Memory Maps\\c6x\\run_view\\IDRAM\\.log)"
+   />
+
+   <!-- NEW  child symbol  OF  Link-Time Absolute Syms  WITH  name=LOG_A_TABLEN, value= ((naddr(Memory Maps\c6x\run_view\IDRAM\.log)) - _LOG_A_TABBEG) / 24 -->
+   <instr
+      op="2e"
+      s0="Memory Maps\\c6x\\Link-Time Absolute Syms"
+      s1="LOG_A_TABLEN"
+      s2=" ((naddr(Memory Maps\\c6x\\run_view\\IDRAM\\.log)) - _LOG_A_TABBEG) / 24"
+      u3="1"
+   />
+
+   <!-- NEW  child symbol  OF  Link-Time Absolute Syms  WITH  name=_LOG_A_TABLEN, value= ((naddr(Memory Maps\c6x\run_view\IDRAM\.log)) - _LOG_A_TABBEG) / 24 -->
+   <instr
+      op="2e"
+      s0="Memory Maps\\c6x\\Link-Time Absolute Syms"
+      s1="_LOG_A_TABLEN"
+      s2=" ((naddr(Memory Maps\\c6x\\run_view\\IDRAM\\.log)) - _LOG_A_TABBEG) / 24"
+      u3="1"
+   />
+
+   <!-- NEW  child symbol  OF  run_view\IDRAM\.hst  WITH  name=HST_A_TABBEG -->
+   <instr
+      op="b"
+      s0="Memory Maps\\c6x\\run_view\\IDRAM\\.hst"
+      s1="HST_A_TABBEG"
+   />
+
+   <!-- NEW  child symbol  OF  run_view\IDRAM\.hst  WITH  name=_HST_A_TABBEG -->
+   <instr
+      op="b"
+      s0="Memory Maps\\c6x\\run_view\\IDRAM\\.hst"
+      s1="_HST_A_TABBEG"
+   />
+
+   <!-- NEW  child symbol  OF  run_view\IDRAM\.hst  WITH  name=HST_A_TABEND -->
+   <instr
+      op="b"
+      s0="Memory Maps\\c6x\\run_view\\IDRAM\\.hst"
+      s1="HST_A_TABEND"
+   />
+
+   <!-- CHANGE  comment  OF  run_view\IDRAM\.hst\HST_A_TABEND  TO  " no HST objects " -->
+   <instr
+      op="46"
+      s0="Memory Maps\\c6x\\run_view\\IDRAM\\.hst\\HST_A_TABEND"
+      s1=" no HST objects "
+   />
+
+   <!-- NEW  child symbol  OF  run_view\IDRAM\.hst  WITH  name=_HST_A_TABEND -->
+   <instr
+      op="b"
+      s0="Memory Maps\\c6x\\run_view\\IDRAM\\.hst"
+      s1="_HST_A_TABEND"
+   />
+
+   <!-- NEW  child symbol  OF  Link-Time Absolute Syms  WITH  name=HST_A_TABLEN, value= ((addr(Memory Maps\c6x\run_view\IDRAM\.hst)) - _HST_A_TABBEG) / 20 -->
+   <instr
+      op="2e"
+      s0="Memory Maps\\c6x\\Link-Time Absolute Syms"
+      s1="HST_A_TABLEN"
+      s2=" ((addr(Memory Maps\\c6x\\run_view\\IDRAM\\.hst)) - _HST_A_TABBEG) / 20"
+      u3="1"
+   />
+
+   <!-- NEW  child symbol  OF  Link-Time Absolute Syms  WITH  name=_HST_A_TABLEN, value= ((addr(Memory Maps\c6x\run_view\IDRAM\.hst)) - _HST_A_TABBEG) / 20 -->
+   <instr
+      op="2e"
+      s0="Memory Maps\\c6x\\Link-Time Absolute Syms"
+      s1="_HST_A_TABLEN"
+      s2=" ((addr(Memory Maps\\c6x\\run_view\\IDRAM\\.hst)) - _HST_A_TABBEG) / 20"
+      u3="1"
+   />
+
+   <!-- NEW  child symbol  OF  run_view\SBSRAM\.stack  WITH  name=GBL_stackbeg -->
+   <instr
+      force_allocate="1"
+      op="b"
+      s0="Memory Maps\\c6x\\run_view\\SBSRAM\\.stack"
+      s1="GBL_stackbeg"
+   />
+
+   <!-- NEW  child symbol  OF  Link-Time Absolute Syms  WITH  name=GBL_stackend, value= GBL_stackbeg + 0x8000 - 1 -->
+   <instr
+      op="2e"
+      s0="Memory Maps\\c6x\\Link-Time Absolute Syms"
+      s1="GBL_stackend"
+      s2=" GBL_stackbeg + 0x8000 - 1"
+      u3="1"
+   />
+
+   <!-- NEW  child symbol  OF  Link-Time Absolute Syms  WITH  name=_HWI_STKBOTTOM, value= GBL_stackbeg + 0x8000 - 4 & ~7 -->
+   <instr
+      op="2e"
+      s0="Memory Maps\\c6x\\Link-Time Absolute Syms"
+      s1="_HWI_STKBOTTOM"
+      s2=" GBL_stackbeg + 0x8000 - 4 \046 ~7"
+      u3="1"
+   />
+
+   <!-- NEW  child symbol  OF  Link-Time Absolute Syms  WITH  name=_HWI_STKTOP, value= GBL_stackbeg -->
+   <instr
+      op="2e"
+      s0="Memory Maps\\c6x\\Link-Time Absolute Syms"
+      s1="_HWI_STKTOP"
+      s2=" GBL_stackbeg"
+      u3="1"
+   />
+
+   <!-- NEW  child symbol  OF  run_view\SDRAM\.MBX_CommSTL_LO$que  WITH  name=MBX_CommSTL_LO$queElems -->
+   <instr
+      op="b"
+      s0="Memory Maps\\c6x\\run_view\\SDRAM\\.MBX_CommSTL_LO$que"
+      s1="MBX_CommSTL_LO$queElems"
+   />
+
+   <!-- NEW  child symbol  OF  run_view\SDRAM\.MBX_CommSTS_LO$que  WITH  name=MBX_CommSTS_LO$queElems -->
+   <instr
+      op="b"
+      s0="Memory Maps\\c6x\\run_view\\SDRAM\\.MBX_CommSTS_LO$que"
+      s1="MBX_CommSTS_LO$queElems"
+   />
+
+   <!-- NEW  child symbol  OF  run_view\SDRAM\.MBX_Task_Triggers$que  WITH  name=MBX_Task_Triggers$queElems -->
+   <instr
+      op="b"
+      s0="Memory Maps\\c6x\\run_view\\SDRAM\\.MBX_Task_Triggers$que"
+      s1="MBX_Task_Triggers$queElems"
+   />
+
+   <!-- NEW  child symbol  OF  run_view\SDRAM\.MBX_Estimator$que  WITH  name=MBX_Estimator$queElems -->
+   <instr
+      op="b"
+      s0="Memory Maps\\c6x\\run_view\\SDRAM\\.MBX_Estimator$que"
+      s1="MBX_Estimator$queElems"
+   />
+
+   <!-- NEW  child symbol  OF  run_view\SDRAM\.SDRAM$heap  WITH  name=SDRAM$B -->
+   <instr
+      op="b"
+      s0="Memory Maps\\c6x\\run_view\\SDRAM\\.SDRAM$heap"
+      s1="SDRAM$B"
+   />
+
+   <!-- NEW  child symbol  OF  run_view\SDRAM\.SDRAM$heap  WITH  name=_SDRAM_base -->
+   <instr
+      op="b"
+      s0="Memory Maps\\c6x\\run_view\\SDRAM\\.SDRAM$heap"
+      s1="_SDRAM_base"
+   />
+
+   <!-- NEW  child symbol  OF  Link-Time Absolute Syms  WITH  name=SDRAM$L, value= 0x600000 -->
+   <instr
+      op="2e"
+      s0="Memory Maps\\c6x\\Link-Time Absolute Syms"
+      s1="SDRAM$L"
+      s2=" 0x600000"
+      u3="1"
+   />
+
+   <!-- NEW  child symbol  OF  Link-Time Absolute Syms  WITH  name=_SDRAM_length, value= 0x600000 -->
+   <instr
+      op="2e"
+      s0="Memory Maps\\c6x\\Link-Time Absolute Syms"
+      s1="_SDRAM_length"
+      s2=" 0x600000"
+      u3="1"
+   />
+
+   <!-- CHANGE  trampoline model  OF  c6x  TO  region_tramp -->
+   <instr
+      op="57"
+      s0="Memory Maps\\c6x"
+      u1="1"
+   />
+
+   <!-- END  espv2_het_test_ -->
+   <instr
+      op="0"
+   />
+</strategy>

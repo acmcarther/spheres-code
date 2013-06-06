@@ -1,0 +1,19 @@
+[Globals]
+ProgramName=35 (1 Sat): Smartphone IVA Survey
+ProgramNumber=381
+NumRoles=1
+NumTests=2
+
+[Role1]
+RoleName=Primary
+ImagePath='espv2_het_test.img'
+
+[Test1]
+TestName=1. Quick Checkout
+Location1=Center of test volume
+OverviewPath=1_QuickCheck.html
+
+[Test2]
+TestName=2. IVA Survey
+Location1=Center of test volume
+OverviewPath=2_IvaSurvey.html

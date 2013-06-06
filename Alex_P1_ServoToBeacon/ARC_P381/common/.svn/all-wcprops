@@ -1,0 +1,35 @@
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/svn/spheres/!svn/ver/395/trunk/TestProjects/ISS_TS035/ARC_P381/common
+END
+smartphone_comm_utils.h
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/svn/spheres/!svn/ver/395/trunk/TestProjects/ISS_TS035/ARC_P381/common/smartphone_comm_utils.h
+END
+spheres_physical_ISS_SMARTPHONE.c
+K 25
+svn:wc:ra_dav:version-url
+V 104
+/svn/spheres/!svn/ver/395/trunk/TestProjects/ISS_TS035/ARC_P381/common/spheres_physical_ISS_SMARTPHONE.c
+END
+spheres_physical_LAB_SINGLE_PUCK_SMARTPHONE.c
+K 25
+svn:wc:ra_dav:version-url
+V 116
+/svn/spheres/!svn/ver/395/trunk/TestProjects/ISS_TS035/ARC_P381/common/spheres_physical_LAB_SINGLE_PUCK_SMARTPHONE.c
+END
+gsp.c
+K 25
+svn:wc:ra_dav:version-url
+V 76
+/svn/spheres/!svn/ver/395/trunk/TestProjects/ISS_TS035/ARC_P381/common/gsp.c
+END
+smartphone_comm_utils.c
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/svn/spheres/!svn/ver/395/trunk/TestProjects/ISS_TS035/ARC_P381/common/smartphone_comm_utils.c
+END

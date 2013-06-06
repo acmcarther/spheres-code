@@ -1,0 +1,28 @@
+<html>
+<body>
+<big><b>Objective: </b></big>Test the global estimation system and the satellite thrusters.</p>
+<big><b>Approximate Run Time: </b></big><br>
+<ul>
+<li>Dynamic phase: 30s<br>
+</ul>
+The test terminates automatically.
+<p>
+<big><b>Approximate Positioning:</b></big><br>
+
+<p>Please follow the table and figure below:</p><table border = "1">
+<tr>
+<td>Satellite</td> <td><h3 style="text-align: center;">&nbsp ORIENTATION &nbsp</h3></td> <td><h3 style="text-align: center;">POSITION </h3></td>
+</tr><tr>
+<td><h3>PRIMARY</h3></td> <td><b>Tank</b>: OVHD <br /><b>Phone</b>: FWD</td> <td>Center of Volume</td>
+</tr>
+</table><p>
+<img src='QuickCheckFig.jpg' height=390 width =520>
+</p><p>
+<big><b>Test Synopsis:</b></big><br>This test has three parts which run in sequence automatically:
+<ol>
+<li>Initial test of the global metrology system (free drift for ~10 seconds)
+<li>Open loop thruster firings to check thrusters, listen for even spacing (~3 seconds)
+<li>Closed loop reorientation to check thrusters and estimation together (~13 seconds)
+</ol>
+Following the test please notify the POIC of the satellite return value.<br><br>
+<p>

@@ -1,0 +1,65 @@
+<?xml version="1.0"?>
+<!-- Used by the espv2_het_test recipe. Created on March 23, 2012. -->
+
+
+<strategy
+   version="6"
+   host="windows"
+   name="espv2_het_test"
+   full_path="Z:\\SPHERES\\SCode\\Ames_repo\\TestProjects\\SmartphoneIva\\ExpV2_HET_Test\\sphere1\\espv2_het_test.str"
+   comment="Used by the espv2_het_test recipe. Created on March 23, 2012."
+   dont_expand_iterators="1"
+>
+
+   <!-- CHANGE  vectors  OF  flight_projectcfg.obj\.hwi_vec  TO  TRUE -->
+   <instr
+      dont_undo="1"
+      op="48"
+      s0="All Input Files\\iority\\flight_projectcfg.obj\\.hwi_vec"
+      u1="1"
+   />
+
+   <!-- CHANGE  entry  OF  bios.a62\boot.o62\.sysinit\_c_int00  TO  TRUE -->
+   <instr
+      dont_undo="1"
+      op="1d"
+      s0="All Input Files\\iority\\bios.a62\\boot.o62\\.sysinit\\_c_int00"
+      u1="1"
+   />
+
+   <!-- REQUIRE  flight_projectcfg.obj\.vers  BE IN  run_view -->
+   <instr
+      dont_undo="1"
+      op="25"
+      s0="Memory Maps\\c6x\\run_view"
+      s1="All Input Files\\iority\\flight_projectcfg.obj\\.vers"
+      u2="1"
+   />
+
+   <!-- CALL  .\espv2_het_test_.str -->
+   <instr
+      dont_undo="1"
+      op="1"
+      s0=".\\espv2_het_test_.str"
+   />
+
+   <!-- CHANGE  fill_holes  OF  run_view\SBSRAM\.stack  TO  FALSE -->
+   <instr
+      force_allocate="1"
+      op="10"
+      s0="Memory Maps\\c6x\\run_view\\SBSRAM\\.stack"
+   />
+
+   <!-- MOVE  .switch  FROM  run_view\IDRAM  TO  run_view\SDRAM -->
+   <instr
+      op="2"
+      s0="Memory Maps\\c6x\\run_view\\IDRAM\\.switch"
+      s1="Memory Maps\\c6x\\run_view\\SDRAM"
+      s2="Memory Maps\\c6x\\run_view\\IDRAM"
+   />
+
+   <!-- END  espv2_het_test -->
+   <instr
+      op="0"
+   />
+</strategy>

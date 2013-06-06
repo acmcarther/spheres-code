@@ -1,0 +1,62 @@
+; Code Composer Project File, Version 2.0 (do not modify or remove this line)
+
+[Project Settings]
+ProjectName="csac"
+ProjectDir="Z:\ma\projects\sph\repo\arc\trunk\TestProjects\ISS_TS035\ARC_P381\sphere1\"
+ProjectType=Executable
+CPUFamily=TMS320C67XX
+Tool="Compiler"
+Tool="DspBiosBuilder"
+Tool="Linker"
+Config="Release"
+
+[Source Files]
+Source="..\..\..\..\SpheresCore\comm.c"
+Source="..\..\..\..\SpheresCore\comm_background.c"
+Source="..\..\..\..\SpheresCore\comm_driver.c"
+Source="..\..\..\..\SpheresCore\comm_interrupt.c"
+Source="..\..\..\..\SpheresCore\comm_process_rx_packet.c"
+Source="..\..\..\..\SpheresCore\control.c"
+Source="..\..\..\..\SpheresCore\exp_v2.c"
+Source="..\..\..\..\SpheresCore\flight_project.cdb"
+Source="..\..\..\..\SpheresCore\fpga.c"
+Source="..\..\..\..\SpheresCore\gsp_task.c"
+Source="..\..\..\..\SpheresCore\housekeeping.c"
+Source="..\..\..\..\SpheresCore\init_sphere.c"
+Source="..\..\..\..\SpheresCore\main.c"
+Source="..\..\..\..\SpheresCore\pads.c"
+Source="..\..\..\..\SpheresCore\pads_convert.c"
+Source="..\..\..\..\SpheresCore\pads_estimator_EKF.c"
+Source="..\..\..\..\SpheresCore\prop.c"
+Source="..\..\..\..\SpheresCore\Science\controllers\ctrl_attitude.c"
+Source="..\..\..\..\SpheresCore\Science\controllers\ctrl_position.c"
+Source="..\..\..\..\SpheresCore\Science\estimators\est_USsubfunc.c"
+Source="..\..\..\..\SpheresCore\Science\Mixers\ctrl_mix.c"
+Source="..\..\..\..\SpheresCore\spheres_physical_parameters.c"
+Source="..\..\..\..\SpheresCore\system.c"
+Source="..\..\..\..\SpheresCore\util_BranchTo.asm"
+Source="..\..\..\..\SpheresCore\util_FlashLib.c"
+Source="..\..\..\..\SpheresCore\util_memory.c"
+Source="..\..\..\..\SpheresCore\Utilities\find_state_error.c"
+Source="..\..\..\..\SpheresCore\Utilities\gsutil_checkout.c"
+Source="..\..\..\..\SpheresCore\Utilities\math_inv_methods.c"
+Source="..\..\..\..\SpheresCore\Utilities\math_matrix.c"
+Source="..\..\..\..\SpheresCore\Utilities\util_serial_printf.c"
+Source="..\common\gsp.c"
+Source="..\common\smartphone_comm_utils.c"
+Source="..\common\spheres_physical_ISS_SMARTPHONE.c"
+Source="espv2_het_test.rcp"
+
+[Generated Files]
+Source="..\..\..\..\SpheresCore\flight_projectcfg.s62"
+Source="..\..\..\..\SpheresCore\flight_projectcfg_c.c"
+
+["Compiler" Settings: "Release"]
+Options=-q -pdse225 -fr"Z:\ma\projects\sph\repo\arc\trunk\TestProjects\ISS_TS035\ARC_P381\sphere1\Release" -i"$(Proj_dir)" -i"$(Proj_dir)\.Z:\SPHERES\SCode\Ames_repo\TestProjects\SmartphoneIva\ExpV2_CSAC_Dev\sphere1\common\" -i"%SPHERESCORE_DIR%" -i"%SPHERESCORE_DIR%\Utilities" -i"%SPHERESCORE_DIR%\Science" -i"%SPHERESCORE_DIR%\Science\Maneuvers\" -i"%SPHERESCORE_DIR%\Science\Controllers\" -i"%SPHERESCORE_DIR%\Science\Mixers\" -i"%SPHERESCORE_DIR%\Science\Estimators\" -i"%SPHERESCORE_DIR%\Science\Terminators\" -i"%SPHERESCORE_DIR%\ExpansionPort" -d"CHIP_6701" -ml3 -ms3 -mv6700
+
+["DspBiosBuilder" Settings: "Release"]
+Options=-v6x
+
+["Linker" Settings: "Release"]
+Options=-x -o".\Release\espv2_het_test.out" -q -m"./Release/espv2_het_test.map"
+
