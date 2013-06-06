@@ -63,13 +63,6 @@
 #define QZ 2
 #define QW 3
 
-// TODO : Determine if I need this stuff
-/*
-#define MAX MANEUVERS 21
-#define ESTIMATOR_TIME 10000
-#define MANEUVER_TIME_OUT 600000
-*/
-
 // translation margin could be 0.05 in orbit, but with the sphere sideways, want it bigger
 // especially for testing now
 // was 0.09
@@ -88,29 +81,22 @@
 #define EPSILON 0.01
 #define TIMED_OUT 2
 
-// for debugging
-#define SPIRAL_SIZE 0.4
-#define BIAS_QX 0.0
-#define BIAS_QY 0.7
-#define BIAS_QZ 0.0
-#define BIAS_QW 0.7
-//////////////////
-
-#define CHECKOUT 33
-#define NOT_CHECKOUT 44
-#define ROTATION_TEST 55
-
-// TODO: Determine if I need this stuff
-/*#define CONVERGE_MODE 1
-#define DRIFT_MODE 2
-#define WAYPOINT_MODE 3
-*/
 #ifndef _TMS320C6X
 	#define DEBUG(arg)  mexprintf arg
 #else
 	#define DEBUG(arg)
 #endif
 // then write: DEBUG(("  ", ui));
+
+
+/*	This is where my own defines start	 */
+
+#define SERVO_TO_BEACON_TEST 1
+#define FLOATING_IPAD_HOLDER_TEST 2
+#define AUTONOMOUS_CAMERA_TEST 3
+
+/*	This is where my own defines stop	*/
+
 
 int maneuver_nums[MAX_MANEUVERS];
 int maneuver_num_index;
@@ -124,6 +110,10 @@ unsigned char global_sphere_error = FALSE;
 unsigned short global_last_cmd = 0;
 unsigned char global_add_translate = TRUE;
 
+unsigned char cnt;
+unsigned char gpio_out[16];
+extern state_vector initState;
+
 // callback function prototype
 void gspProcessPhoneCommand(unsigned char channel, unsigned char* buffer, unsigned int len);
 
@@ -133,19 +123,18 @@ void gspIdentitySet()
 	sysIdentitySet(SPHERE_ID);
 }
 
-/* TODO for gspInitProgram()
- *	-Identify components of function
- *	-Remove unneeded elements
- */
 void gspInitProgram()
 {
 	// set the unique program identifier (to be assigned by MIT)
 	sysProgramIDSet(THE_PROGRAM_NUMBER);
 
 	// set up communications TDMA frames
-	commTdmaStandardInit(COMM_CHANNEL_STL, sysIdentityGet(), NUM_SPHERES);
-	commTdmaStandardInit(COMM_CHANNEL_STS, sysIdentityGet(), NUM_SPHERES);
-	commTdmaStandardInit(COMM_CHANNEL_EXP, sysIdentityGet(), NUM_SPHERES);
+	commTdmaStandardInit(COMM_CHANNEL_STL, sysIdentityGet(), 
+		NUM_SPHERES);
+	commTdmaStandardInit(COMM_CHANNEL_STS, sysIdentityGet(), 
+		NUM_SPHERES);
+	commTdmaStandardInit(COMM_CHANNEL_EXP, sysIdentityGet(), 
+		NUM_SPHERES);
 
 	// enable communications channels
 	commTdmaEnable(COMM_CHANNEL_STL);
@@ -167,26 +156,26 @@ void gspInitProgram()
 	expv2_uart_cbk_register(1,&gspProcessPhoneCommand);
 	expv2_uart_baud_set(1,115200);
 }
-
-//------------
-// TODO: Find out what this stuff is doing here.
-unsigned char cnt;
-unsigned char gpio_out[16];
-extern state_vector initState;
-//------------
     	
-// static unsigned char sent = 0;
 void gspInitTest(unsigned int test_number)
 {
+	/* TODO:
+	 *	Ideally this function should handle all of the different 
+	 *	experiments, therefore we need to set up the test numbers
+	 *	
+	 *	Test1: Servo to Beacon or "Chase the human"
+	 *	Test2: Floating iPad holder
+	 *	Test3: Autonomus free flying camera holder
+	 *
+	 */
 
+	// Set the control query period
 	ctrlPeriodSet(1000);
-	cnt = 0;
 
-	//expv2_init();
-    
+	// TODO: Determine what this does
 	memset(gpio_out,0,sizeof(gpio_out));
 
-
+	// TODO: Find out the analogue of this estimator in the old code
 	#if (SPHERE_ID == SPHERE1)
 		padsEstimatorInitWaitAndSet(initState, 50, 200, 105,
 		PADS_INIT_THRUST_INT_ENABLE,PADS_BEACONS_SET_1TO9); // ISS 
@@ -195,50 +184,38 @@ void gspInitTest(unsigned int test_number)
 		PADS_INIT_THRUST_INT_ENABLE,PADS_BEACONS_SET_1TO9); // ISS
 	#endif
 
-	ctrlPeriodSet(1000);
+	// TODO: Determine what this does
 	memset(ctrlStateTarget,0,sizeof(state_vector));
 	ctrlStateTarget[POS_X] = DEFAULT_X;
-	ctrlStateTarget[QUAT_1] = BIAS_QX;
-	ctrlStateTarget[QUAT_2] = BIAS_QY;
-	ctrlStateTarget[QUAT_3] = BIAS_QZ;
-	ctrlStateTarget[QUAT_4] = BIAS_QW;
+	ctrlStateTarget[QUAT_1] = 0;
+	ctrlStateTarget[QUAT_2] = 0;
+	ctrlStateTarget[QUAT_3] = 0;
+	ctrlStateTarget[QUAT_4] = 0;
 	memcpy(commandStateTarget, ctrlStateTarget, sizeof(state_vector));
     
-	maneuver_num_index = 0;
-	testclass = NOT_CHECKOUT;
-	
+	// Initialize individual tests
 	switch (test_number)
 	{
-		case 1: // Quick Checkout
-			testclass = CHECKOUT;
-//			TODO: will need to find this and put back in ....
-			gspInitTest_Checkout(test_number);
+		case SERVO_TO_BEACON_TEST: 
 			break;
-		case 2:
-			global_target_reached = FALSE;
-			global_sphere_error = FALSE;
-			global_last_cmd = 0;
-
-			maneuver_nums[ 0] =  CONVERGE_MODE;
-			maneuver_nums[ 1] =  DRIFT_MODE;
-			maneuver_nums[ 2] =  WAYPOINT_MODE;
-			stopAtEnd = TRUE;
-			// I don't think the sphere ever needs to terminate the test itself
+		case FLOATING_IPAD_HOLDER_TEST:
+			break;
+		case AUTONOMOUS_CAMERA_TEST:
 			break;
 	}
 }
 
 void gspInitTask()
 {
+	// TODO: Initialize some specific subtasks
 }
 
 void gspPadsInertial(IMU_sample *accel, IMU_sample *gyro, unsigned int num_samples)
 {
+	// TODO: Act on the new inertial data based on the current test
 	switch (testclass)
 	{
 		case CHECKOUT:
-//			TODO: will need to find this and put back in ....
-			gspPadsInertial_Checkout(accel, gyro, num_samples);
 			break;
 		default:
 			break;
@@ -247,10 +224,12 @@ void gspPadsInertial(IMU_sample *accel, IMU_sample *gyro, unsigned int num_sampl
 
 void gspPadsGlobal(unsigned int beacon, beacon_measurement_matrix measurements)
 {
+	// TODO: Act on the new global data based on the current test
 }
 
 void gspTaskRun(unsigned int gsp_task_trigger, unsigned int extra_data)
 {
+	// TODO: Execute some task
 	switch (testclass)
 	{
 		case CHECKOUT:
@@ -262,55 +241,9 @@ void gspTaskRun(unsigned int gsp_task_trigger, unsigned int extra_data)
 	}
 }
 
-float getQuaternionMagnitude(float qw) {
-	//bank = atan2(2*qx*qw-2*qy*qz , 1 - 2*qx^2 - 2*qz^2) = roll
-	//return atan2(2*qx*qw-2*qy*qz , 1 - 2*qx*qx - 2*qz*qz);
-	return 2*acos(qw);
-}
-
-
-int atPositionRotation(state_vector error)
-{
-	#ifdef ISS_VERSION
-	if( (fabs(error[POS_Y]) < TRANSLATION_MARGIN) && 
-		(fabs(error[POS_Z]) < TRANSLATION_MARGIN) &&
-		(fabs(error[POS_X]) < TRANSLATION_MARGIN) &&
-		(fabs(getQuaternionMagnitude(error[QUAT_4])) < QUAT_AXIS_MARGIN))
-	#else // on ground, only care about roll
-	if( (fabs(error[POS_Y]) < TRANSLATION_MARGIN) && 
-		(fabs(error[POS_Z]) < TRANSLATION_MARGIN) &&
-		(fabs(getQuaternionMagnitude(error[QUAT_4])) < QUAT_AXIS_MARGIN))
-	#endif
-	{
-		return TRUE;
-	} else {
-		return FALSE;
-	}
-}
-
-int atZeroVelocity(state_vector error)
-{
-	#ifdef ISS_VERSION
-	if( (fabs(error[VEL_X]) < VELOCITY_MARGIN) && 
-		(fabs(error[VEL_Y]) < VELOCITY_MARGIN) &&
-		(fabs(error[VEL_Z]) < VELOCITY_MARGIN) &&
-    		(fabs(error[RATE_X]) < RATE_MARGIN) &&
-		(fabs(error[RATE_Y]) < RATE_MARGIN) &&
-        	(fabs(error[RATE_Z]) < RATE_MARGIN) )
-	#else
-	if( (fabs(error[VEL_Y]) < VELOCITY_MARGIN) && 
-		(fabs(error[VEL_Z]) < VELOCITY_MARGIN) &&
-		(fabs(error[RATE_Z]) < RATE_MARGIN) ) 
-	#endif
-	{
-		return TRUE;
-	} else {
-		return FALSE;
-	}
-}
-
-
 void send_SOH_packet_to_phone() {
+	// TODO: I assume I do not have to change any of this code
+
 	comm_payload_soh my_soh;
 	comm_payload_telemetry my_position;
  	
@@ -337,6 +270,7 @@ void send_SOH_packet_to_phone() {
 
 void gspControl(unsigned int test_number, unsigned int test_time, unsigned int maneuver_number, unsigned int maneuver_time)
 {	
+	// TODO: cut the stuff I dont need out of here
 	state_vector ctrlState; // current state vector of the sphere
 	state_vector ctrlStateError; // difference btwn ctrlState and ctrlStateTarget
 	float ctrlControl[6];
@@ -487,19 +421,9 @@ int checksumChecks(unsigned char* buffer, unsigned int len) {
 	return FALSE;
 }
 
-// rotates quaternion 1 by quaternion 2 and returns as total (xyzw)
-void gspRotateByQuaternion(float x2, float y2, float z2, float w2,
-						   float x1, float y1, float z1, float w1, float* answer)
-{
-	// quats are xyzw
-	answer[0] = w1*x2 + x1*w2 + y1*z2 - z1*y2;
-	answer[1] = w1*y2 - x1*z2 + y1*w2 + z1*x2;
-	answer[2] = w1*z2 + x1*y2 - y1*x2 + z1*w2;
-	answer[3] = w1*w2 - x1*x2 - y1*y2 - z1*z2;
-}
-
 void gspProcessPhoneCommand(unsigned char channel, unsigned char* buffer, unsigned int len)
 {
+	// TODO: Find out if this is this necessary
 	state_vector ctrlState; // current state vector of the sphere
 	phone_cmd* cmd = (phone_cmd*)buffer;
 	float x2, y2, z2, w2;
