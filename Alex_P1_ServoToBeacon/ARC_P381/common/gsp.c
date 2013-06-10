@@ -137,6 +137,9 @@ void gspInitProgram()
 
 	/* custom program initialization goes below this point */	
 
+	// Turn ON IR reflash
+	padsInitializeIR_Reflash();
+
 	// turn off onboard beacon
 	padsBeaconNumberSet(0);
 }
@@ -180,40 +183,16 @@ void gspInitTest(unsigned int test_number)
 
 }
 
-/* Function Name: 	gspControl()
+/* Function Name: 	gspInitTask()
  * 
- * Input:			Test number identifying a specific set of maneuvers
- *					Time identifying execution period
- *					Index indicating which maneuver to execute
- *					Time indicating maneuver period
- *				
- * Purpose:			Executes control sequences specific to particular tests
+ * Purpose:			Set the triggers for event driven code segments.	
  *
  */
-void gspControl(unsigned int test_number, unsigned int test_time, unsigned int maneuver_number, 
-	unsigned int maneuver_time)
-{	
-	/* NOTICE: This function misbehaves if you run it before gspInitTest */
-
-	// Run control routines for the specific test classes
-	//		TODO: Build the subfunctions required for this
-	switch(testClass)
-	{
-		case(checkout_tests):
-			gspControl_Checkout(testnum, test_time, maneuver_number, maneuver_time);
-			break;
-		case(beacon_follow_test):
-			gspControl_BeaconFollow(testnum, test_time, maneuver_number, maneuver_time);
-			break;
-		case(ipad_holder_test):
-			gspControl_IpadHolder(testnum, test_time, maneuver_number, maneuver_time);
-			break;
-		case(auto_camera_test):
-			gspControl_AutoCamera(testnum, test_time, maneuver_number, maneuver_time);
-			break;
-		default:
-			break;
-	}
+void gspInitTask() 
+{
+	// Task trigger on finished estimator or new global beacon data
+	//		TODO: Ensure that we do not need any more events
+	taskTriggerMaskSet(PADS_ESTIMATOR_DONE_TRIG | PADS_GLOBAL_BEACON_TRIG);
 }
 
 /* Function Name: 	gspPadsInertial()
@@ -285,10 +264,75 @@ void gspPadsGlobal(unsigned int beacon, beacon_measurement_matrix measurements)
 	}
 }
 
+/* Function Name: 	gspTaskRun()
+ * 
+ * Input:			Number representing the event that triggered the function call.
+ *					Additional data for the task response function.
+ *				
+ * Purpose:			Delegates task responses based on events that fired.
+ *
+ */
+void gspTaskRun(unsigned int gsp_task_trigger, unsigned int extra_data) 
+{
+	switch(testClass)
+	{
+		case(checkout_tests):
+			gspTaskRun_Checkout(gsp_task_trigger, extra_data);
+			break;
+		case(beacon_follow_test):
+			gspTaskRun_BeaconFollow(gsp_task_trigger, extra_data);
+			break;
+		case(ipad_holder_test):
+			gspTaskRun_IpadHolder(gsp_task_trigger, extra_data);
+			break;
+		case(auto_camera_test):
+			gspTaskRun_AutoCamera(gsp_task_trigger, extra_data);
+			break;
+		default:
+			break;
+	}
+}
+
+/* Function Name: 	gspControl()
+ * 
+ * Input:			Test number identifying a specific set of maneuvers
+ *					Time identifying execution period
+ *					Index indicating which maneuver to execute
+ *					Time indicating maneuver period
+ *				
+ * Purpose:			Executes control sequences specific to particular tests
+ *
+ */
+void gspControl(unsigned int test_number, unsigned int test_time, unsigned int maneuver_number, 
+	unsigned int maneuver_time)
+{	
+	/* NOTICE: This function misbehaves if you run it before gspInitTest */
+
+	// Run control routines for the specific test classes
+	//		TODO: Build the subfunctions required for this
+	switch(testClass)
+	{
+		case(checkout_tests):
+			gspControl_Checkout(testnum, test_time, maneuver_number, maneuver_time);
+			break;
+		case(beacon_follow_test):
+			gspControl_BeaconFollow(testnum, test_time, maneuver_number, maneuver_time);
+			break;
+		case(ipad_holder_test):
+			gspControl_IpadHolder(testnum, test_time, maneuver_number, maneuver_time);
+			break;
+		case(auto_camera_test):
+			gspControl_AutoCamera(testnum, test_time, maneuver_number, maneuver_time);
+			break;
+		default:
+			break;
+	}
+}
+
 // Unneeded functions required for compilation
-void gspInitTask() {}
+
+}
 void gspProcessRXData() {}
-void gspTaskRun(unsigned int gsp_task_trigger, unsigned int extra_data) {}
 
 void send_SOH_packet_to_phone() {}
 int checksumChecks(unsigned char* buffer, unsigned int len) {}
