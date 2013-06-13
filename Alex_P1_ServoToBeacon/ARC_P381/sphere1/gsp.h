@@ -20,6 +20,7 @@ extern "C" {
 #define REMOTE_BEACON		1
 
 #define IMU_BUFFER_LENGTH	50
+#define MAX_BEACON_SAMPLES		(4*360*4)	// 4 samples/second for 6 minutes for 4 beacons
 
 /*----------------------------------------------------------------------------*/
 /*                         End user-modifiable section                        */

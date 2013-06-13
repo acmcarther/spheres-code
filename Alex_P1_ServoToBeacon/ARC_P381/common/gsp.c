@@ -47,8 +47,10 @@
 #include "math.h"
 
 #include "pads_internal.h"
-#include "gsutil_checkout.h"
-#include "gsutil_PadsImu.h"
+//#include "gsutil_PadsImu.h"
+
+//#include "comm_datacomm.h"
+//#include "gsutil_PadsUS.h"
 
 #include "gspBeaconFollow.h"
 #include "gspIpadHolder.h"
@@ -76,21 +78,21 @@ static int testClass;
 const unsigned int refTestNumber[] = {1,201,301,401};
 static unsigned int testNum = 1;
 
-typedef enum _test_class {invalid_test, checkout_tests, beacon_follow_test
+typedef enum _test_class {invalid_test, checkout_tests, beacon_follow_test,
 	ipad_holder_test, auto_camera_test} test_class;
 
 test_class getTestClass(unsigned int test_num)
 {
-	if ((test_num >= CHECKOUT_TESTNUM_OFFSET) && (test_num < CHECKOUT_TESTNUM_OFFSET + 100))
+	if ((test_num > CHECKOUT_TESTNUM_OFFSET) && (test_num <= CHECKOUT_TESTNUM_OFFSET + 100))
 		return checkout_tests;
 
-	if ((test_num >= BEACON_FOLLOW_TESTNUM_OFFSET) && (test_num < BEACON_FOLLOW_TESTNUM_OFFSET + 100))
+	if ((test_num > BEACON_FOLLOW_TESTNUM_OFFSET) && (test_num <= BEACON_FOLLOW_TESTNUM_OFFSET + 100))
 		return beacon_follow_test;
 
-	if ((test_num >= IPAD_HOLDER_TESTNUM_OFFSET) && (test_num < IPAD_HOLDER_TESTNUM_OFFSET + 100))
+	if ((test_num > IPAD_HOLDER_TESTNUM_OFFSET) && (test_num <= IPAD_HOLDER_TESTNUM_OFFSET + 100))
 		return ipad_holder_test;	
 
-	if ((test_num >= AUTO_CAMERA_TESTNUM_OFFSET) && (test_num < AUTO_CAMERA_TESTNUM_OFFSET + 100))
+	if ((test_num > AUTO_CAMERA_TESTNUM_OFFSET) && (test_num <= AUTO_CAMERA_TESTNUM_OFFSET + 100))
 		return auto_camera_test;
 
 	return invalid_test;
@@ -137,11 +139,16 @@ void gspInitProgram()
 
 	/* custom program initialization goes below this point */	
 
-	// Turn ON IR reflash
-	padsInitializeIR_Reflash();
+	// set up global and inertial sensors
+	padsInertialPeriodSet(SYS_FOREVER,SYS_FOREVER);
+	padsGlobalPeriodSet(SYS_FOREVER);
+
+	// turn off background telemetry by default
+	commBackgroundTelemetryPeriodSet(SYS_FOREVER);
 
 	// turn off onboard beacon
 	padsBeaconNumberSet(0);
+
 }
 
 /* Function Name:	gspInitTest()
@@ -165,16 +172,16 @@ void gspInitTest(unsigned int test_number)
 	switch(testClass)
 	{
 		case(checkout_tests):
-			gspInitTest_Checkout(testNum);
+			//gspInitTest_Checkout(testNum);
 			break;
 		case(beacon_follow_test):
 			gspInitTest_BeaconFollow(testNum);
 			break;
 		case(ipad_holder_test):
-			gspInitTest_IpadHolder(testNum);
+			//gspInitTest_IpadHolder(testNum);
 			break;
 		case(auto_camera_test):
-			gspInitTest_AutoCamera(testNum);
+			//gspInitTest_AutoCamera(testNum);
 			break;
 		default:
 			ctrlTestTerminate(TEST_RESULT_UNKNOWN_TEST);
@@ -192,7 +199,7 @@ void gspInitTask()
 {
 	// Task trigger on finished estimator or new global beacon data
 	//		TODO: Ensure that we do not need any more events
-	taskTriggerMaskSet(PADS_ESTIMATOR_DONE_TRIG | PADS_GLOBAL_BEACON_TRIG);
+	taskTriggerMaskSet(PADS_GLOBAL_BEACON_TRIG|PADS_INERTIAL_TRIG|TEST_START_TRIG);
 }
 
 /* Function Name: 	gspPadsInertial()
@@ -214,16 +221,16 @@ void gspPadsInertial(IMU_sample *accel, IMU_sample *gyro, unsigned int num_sampl
 	switch(testClass)
 	{
 		case(checkout_tests):
-			gspPadsInertial_Checkout(accel, gyro, num_samples);
+			//gspPadsInertial_Checkout(accel, gyro, num_samples);
 			break;
 		case(beacon_follow_test):
 			gspPadsInertial_BeaconFollow(accel, gyro, num_samples);
 			break;
 		case(ipad_holder_test):
-			gspPadsInertial_IpadHolder(accel, gyro, num_samples);
+			//gspPadsInertial_IpadHolder(accel, gyro, num_samples);
 			break;
 		case(auto_camera_test):
-			gspPadsInertial_AutoCamera(accel, gyro, num_samples);
+			//gspPadsInertial_AutoCamera(accel, gyro, num_samples);
 			break;
 		default:
 			break;
@@ -248,16 +255,16 @@ void gspPadsGlobal(unsigned int beacon, beacon_measurement_matrix measurements)
 	switch(testClass)
 	{
 		case(checkout_tests):
-			gspPadsGlobal_Checkout(beacon, measurements);
+			//gspPadsGlobal_Checkout(beacon, measurements);
 			break;
 		case(beacon_follow_test):
 			gspPadsGlobal_BeaconFollow(beacon, measurements);
 			break;
 		case(ipad_holder_test):
-			gspPadsGlobal_IpadHolder(beacon, measurements);
+			//gspPadsGlobal_IpadHolder(beacon, measurements);
 			break;
 		case(auto_camera_test):
-			gspPadsGlobal_AutoCamera(beacon, measurements);
+			//gspPadsGlobal_AutoCamera(beacon, measurements);
 			break;
 		default:
 			break;
@@ -313,16 +320,16 @@ void gspControl(unsigned int test_number, unsigned int test_time, unsigned int m
 	switch(testClass)
 	{
 		case(checkout_tests):
-			gspControl_Checkout(testnum, test_time, maneuver_number, maneuver_time);
+			gspControl_Checkout(testNum, test_time, maneuver_number, maneuver_time);
 			break;
 		case(beacon_follow_test):
-			gspControl_BeaconFollow(testnum, test_time, maneuver_number, maneuver_time);
+			gspControl_BeaconFollow(testNum, test_time, maneuver_number, maneuver_time);
 			break;
 		case(ipad_holder_test):
-			gspControl_IpadHolder(testnum, test_time, maneuver_number, maneuver_time);
+			gspControl_IpadHolder(testNum, test_time, maneuver_number, maneuver_time);
 			break;
 		case(auto_camera_test):
-			gspControl_AutoCamera(testnum, test_time, maneuver_number, maneuver_time);
+			gspControl_AutoCamera(testNum, test_time, maneuver_number, maneuver_time);
 			break;
 		default:
 			break;
@@ -331,9 +338,7 @@ void gspControl(unsigned int test_number, unsigned int test_time, unsigned int m
 
 // Unneeded functions required for compilation
 
+int checksumChecks(unsigned char* buffer, unsigned int len) {
+	return 0;
 }
-void gspProcessRXData() {}
-
-void send_SOH_packet_to_phone() {}
-int checksumChecks(unsigned char* buffer, unsigned int len) {}
 void gspProcessPhoneCommand(unsigned char channel, unsigned char* buffer, unsigned int len) {}

@@ -12,8 +12,6 @@ extern "C" {
 #include "spheres_types.h"
 #include "pads.h"
 
-extern dbg_short_packet DebugVec;
-
 /*	Function Name:	gspTaskRun_BeaconFollow()
  *
  *	Input:			The event identifier that called this function

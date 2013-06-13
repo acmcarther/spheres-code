@@ -17,7 +17,6 @@
 #include "comm.h"
 #include "commands.h"
 #include "control.h"
-#include "gspFluidSlosh.h"
 #include "gsp_task.h"
 #include "pads.h"
 #include "prop.h"
@@ -36,8 +35,8 @@
 
 #include "pads.h"
 #include "pads_internal.h"
-#include "est_StateProp.h"
 #include "pads_convert.h"
+//#include "gsutil_PadsUS.h"
 
 #include "ctrl_attitude.h"
 #include "ctrl_position.h"
@@ -47,19 +46,25 @@
 
 #include "math_matrix.h"
 
-#include "gsutil_PadsIMU.h"
+//#include "gsutil_PadsIMU.h"
+
+#include "gspCustom_glideslope.h"
+
+// Estimator files
+#include "est_USRangeBearingPvarEKF.h"
+#include "est_StateProp.h"
+#include "est_IMUPssEKF.h"
 
 #define MANEUVER_END	 0
 #define MANEUVER_KALMAN  1
 #define MANEUVER_CHASE   2
 
 // Control variable definitions
-static state_vector currentState = {0};
-static state_vector targetState = {0};
+static state_vector ctrlState = {0};
 
-static unsigned int targetBeaconNumber = 0;
+static unsigned int targetBeaconNumber = 0, currentManeuver = 1;
 	
-static float bearingToPrimaryBeacon[10] = {0};
+static float bearingToBeacon[10] = {0};
 
 static float xyzPrimary[BEARING_STATE_LENGTH] = {0}, 
 	xyzRefPrimary[BEARING_STATE_LENGTH] = {0}, 
@@ -67,13 +72,12 @@ static float xyzPrimary[BEARING_STATE_LENGTH] = {0},
 
 static beacon_measurement_matrix saved_measurements;
 
-static unsigned int fInitFlag = TRUE, fGyroOnly = FALSE;
+static unsigned int fInitFlag = TRUE, index = 0;
+
+static int fGyroOnly = FALSE, fGl_docking_done = FALSE;
 
 const float sphere_radius = 0.10f;
 
-extern const unsigned int bManSeq_selectObe[21], 
-	bReconfig_selectObe[21], 
-	bPrimaryBeacon[21];
 extern const float Kp_attitude_selectObe[21], 
 	Kd_attitude_selectObe[21], 
 	Kp_position_selectObe[21], 
@@ -81,7 +85,18 @@ extern const float Kp_attitude_selectObe[21],
 	RHO_DOT_0_selectObe[21], 
 	RHO_DOT_T_selectObe[21];
 
-dbg_short_packet DebugVecShort;
+void gspSetTarget_BeaconFollow(unsigned int test_number, unsigned int maneuver_time, 
+	float *ctrlStateTarget, unsigned int *maneuver_timeout)
+{
+	// Declare function variables
+	const float range_berth = /*0.10f*/ 1.0f;
+
+	// TODO: Set the target 1-2m away from the target beacon (modify this for that)
+	memcpy(ctrlStateTarget, xyzRefPrimary, sizeof(float)*3);
+	ctrlStateTarget[POS_Y] = ctrlStateTarget[POS_Y] + range_berth + sphere_radius;
+	ctrlStateTarget[QUAT_3] = 0.7071068f;
+	ctrlStateTarget[QUAT_4] = 0.7071068f;	
+}
 
 
 void gspInitTest_BeaconFollow(unsigned int test_number)
@@ -103,16 +118,14 @@ void gspInitTest_BeaconFollow(unsigned int test_number)
 	// Initialize the beacon estimator
 	initStateBearingEKF(targetBeaconNumber);
 
-	// TODO: Initialize glidescope algorithm (custom build a glidescope for this)
-	ctrl_initGlidescope();
+	// TODO: Initialize glideslope algorithm (custom build a glidescope for this)
+	ctrl_initGlideslope();
 
 	// Reset state vectors
-	memset(currentState,0,sizeof(state_vector));
+	memset(ctrlState,0,sizeof(state_vector));
 	ctrlState[QUAT_4] = 1.0f;
-	memset(targetState,0,sizeof(state_vector));
-	ctrlState[QUAT_4] = 1.0f;
-	memset(bearingToPrimaryBeacon,0,sizeof(bearingToPrimaryBeacon));
-	bearingToPrimaryBeacon[6] = 1.0f;
+	memset(bearingToBeacon,0,sizeof(bearingToBeacon));
+	bearingToBeacon[6] = 1.0f;
 	fInitFlag = TRUE;
 	
 	// set the control period
@@ -139,7 +152,7 @@ void gspTaskRun_BeaconFollow(unsigned int gsp_task_trigger, unsigned int extra_d
 	if ((gsp_task_trigger == PADS_GLOBAL_BEACON_TRIG) && !fGyroOnly)
 	{
 		// Copy the new data into our saved measurements buffer
-		gsutilPadsUSPadsGlobal(extra_data, saved_measurements);
+		//gsutilPadsUSPadsGlobal(extra_data, saved_measurements);
 
 		// Determine if the beacon data is relevant to our target beacon
 		if (extra_data == targetBeaconNumber)
@@ -159,7 +172,7 @@ void gspTaskRun_BeaconFollow(unsigned int gsp_task_trigger, unsigned int extra_d
 			}
 			
 			// Disable global if we're taking too long, are too close, or is not applicable
-			if ((ctrlTestTimeGet() > 5000) && ((bearingToPrimaryBeacon[1] - sphere_radius) < range_gyro_only) && (ctrlManeuverNumGet() >= 7)) // Only when docking
+			if ((ctrlTestTimeGet() > 5000) && ((bearingToBeacon[1] - sphere_radius) < range_gyro_only) && (ctrlManeuverNumGet() >= 7)) // Only when docking
 				fGyroOnly = TRUE;
 		}
 	}
@@ -169,14 +182,9 @@ void gspControl_BeaconFollow(unsigned int test_time, unsigned int maneuver_numbe
 {
 	// TODO: Declare function variables (remove extra variables)
 	int init_delay = 10000, 
-		min_pulse = 10, 
-		combo = 0;
-	float randnum = 0.0f, 
-		ctrlControl[6] = {0}, 
-		duty_cycle = 40.0f, 
-		ctrlDV[3] = {0}, 
-		u[2] = {0}, 
-		del = 0.0f;
+		min_pulse = 10;
+	float ctrlControl[6] = {0}, 
+		duty_cycle = 40.0f;
 	state_vector ctrlStateError = {0}, 
 		ctrlStateTarget = {0};
 	dbg_ushort_packet DebugVecUShort;
@@ -188,8 +196,7 @@ void gspControl_BeaconFollow(unsigned int test_time, unsigned int maneuver_numbe
 		Kd_attitude = 0.0f, 
 		Kp_position = 0.0f, 
 		Kd_position = 0.0f;
-	static unsigned int fUSCompressedDataTransferDone=FALSE;
-	unsigned int i = 0, maneuver_timeout = 0;
+	unsigned int maneuver_timeout = 0;
 
 	memset(ctrlControl, 0, sizeof(ctrlControl));
 	memset(&firing_times, 0, sizeof(prop_time));
@@ -234,7 +241,7 @@ void gspControl_BeaconFollow(unsigned int test_time, unsigned int maneuver_numbe
 	memcpy(ctrlState, dxyzPrimary, sizeof(float)*6);
 
 	// TODO: Set our target state (I need to make a custom version of this)
-	gspSetTarget_BeaconFollow(test_number, maneuver_time, 
+	gspSetTarget_BeaconFollow(0, maneuver_time, 
 		ctrlStateTarget, &maneuver_timeout);
 
 	// Find our difference in state between current and target
@@ -309,7 +316,7 @@ void gspControl_BeaconFollow(unsigned int test_time, unsigned int maneuver_numbe
 
 		case MANEUVER_END:
 			// TODO: Do something befitting of the end of the test
-
+			break;
 		// TODO: Post test data analysis 
 
 	}
@@ -324,7 +331,7 @@ void gspPadsInertial_BeaconFollow(IMU_sample *accel,IMU_sample *gyro, unsigned i
 void gspPadsGlobal_BeaconFollow(unsigned int beacon, beacon_measurement_matrix measurements)
 {
 	// Determine if the beacon from this measurement is the one we care about
-	if (beacon == targetPrimaryBeaconNumber)
+	if (beacon == targetBeaconNumber)
 	{
 		// Store this beacon data for later
 		memcpy(saved_measurements, measurements, sizeof(beacon_measurement_matrix));
@@ -332,19 +339,6 @@ void gspPadsGlobal_BeaconFollow(unsigned int beacon, beacon_measurement_matrix m
 		// Pass this data to the estimator
 		setUSBeacon_Data(beacon, measurements);
 	}
-}
-
-void gspSetTarget_BeaconFollow(unsigned int test_number, unsigned int maneuver_time, 
-	float *ctrlStateTarget, unsigned int *maneuver_timeout)
-{
-	// Declare function variables
-	const float range_berth = 0.10f;
-
-	// TODO: Set the target 1-2m away from the target beacon (modify this for that)
-	memcpy(ctrlStateTarget, xyzRefPrimary, sizeof(float)*3);
-	ctrlStateTarget[POS_Y] = ctrlStateTarget[POS_Y] + range_berth + sphere_radius;
-	ctrlStateTarget[QUAT_3] = 0.7071068f;
-	ctrlStateTarget[QUAT_4] = 0.7071068f;	
 }
 
 // Unimplemented functions
