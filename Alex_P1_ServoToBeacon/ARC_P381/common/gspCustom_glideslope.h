@@ -23,7 +23,7 @@ extern "C" {
 extern const float VEHICLE_THRUST_FORCE;
 extern const float VEHICLE_MASS;
 
-extern dbg_short_packet DebugVecShort;
+//extern dbg_short_packet DebugVecShort;
 
 void ctrl_glideslope(unsigned int maneuver_time, float *ctrlStateError, float *ctrlControl, float duty_cycle, int *fGl_docking_done, float RHO_DOT_0, float RHO_DOT_T, int P_MAX, unsigned int fDOF);
 void ctrl_initGlideslope();

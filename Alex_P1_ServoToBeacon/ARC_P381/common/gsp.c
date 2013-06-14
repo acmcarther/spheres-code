@@ -55,7 +55,7 @@
 #include "gspBeaconFollow.h"
 #include "gspIpadHolder.h"
 #include "gspAutoCamera.h"
-
+ 
 // pick ONE
 #define LAB_VERSION
 //#define ISS_VERSION
@@ -76,7 +76,7 @@ static int testClass;
 #define AUTO_CAMERA_TESTNUM_OFFSET		(400)
 
 const unsigned int refTestNumber[] = {1,201,301,401};
-static unsigned int testNum = 1;
+static unsigned int testNum = 201;
 
 typedef enum _test_class {invalid_test, checkout_tests, beacon_follow_test,
 	ipad_holder_test, auto_camera_test} test_class;
@@ -146,7 +146,7 @@ void gspInitProgram()
 	// turn off background telemetry by default
 	commBackgroundTelemetryPeriodSet(SYS_FOREVER);
 
-	// turn off onboard beacon
+	// TODO: turn off onboard beacon
 	padsBeaconNumberSet(0);
 
 }

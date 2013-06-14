@@ -205,16 +205,16 @@ void ctrl_glideslope(unsigned int maneuver_time, float *ctrlStateError, float *c
 	else
 		ctrlControl[FORCE_Y] = dv[1] * 1000 / ctrlPeriodGet() * VEHICLE_MASS; // in N
 	
-	DebugVecShort[6] = (short) (N_P);	
-	DebugVecShort[7] = (short) (m);
-	DebugVecShort[8] = (short) (p);
-	DebugVecShort[9] = (short) (T * 100.f);
-	DebugVecShort[10] = (short) (rho0 * 10000.f);
-	DebugVecShort[11] = (short) (tManStart*100.f);
-	DebugVecShort[12] = (short) (tt*100.f);
-	DebugVecShort[13] = (short) (nextPulse*100.f);
-	DebugVecShort[14] = (short) (dv[1]*10000.f);
-	DebugVecShort[15] = (short) *fGl_docking_done;
+	//DebugVecShort[6] = (short) (N_P);	
+	//DebugVecShort[7] = (short) (m);
+	//DebugVecShort[8] = (short) (p);
+	//DebugVecShort[9] = (short) (T * 100.f);
+	//DebugVecShort[10] = (short) (rho0 * 10000.f);
+	//DebugVecShort[11] = (short) (tManStart*100.f);
+	//DebugVecShort[12] = (short) (tt*100.f);
+	//DebugVecShort[13] = (short) (nextPulse*100.f);
+	//DebugVecShort[14] = (short) (dv[1]*10000.f);
+	//DebugVecShort[15] = (short) *fGl_docking_done;
 }
 
 

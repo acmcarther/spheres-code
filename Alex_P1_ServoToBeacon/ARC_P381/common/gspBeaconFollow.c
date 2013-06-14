@@ -36,7 +36,6 @@
 #include "pads.h"
 #include "pads_internal.h"
 #include "pads_convert.h"
-//#include "gsutil_PadsUS.h"
 
 #include "ctrl_attitude.h"
 #include "ctrl_position.h"
@@ -46,8 +45,6 @@
 
 #include "math_matrix.h"
 
-//#include "gsutil_PadsIMU.h"
-
 #include "gspCustom_glideslope.h"
 
 // Estimator files
@@ -55,28 +52,34 @@
 #include "est_StateProp.h"
 #include "est_IMUPssEKF.h"
 
-#define MANEUVER_END	 0
-#define MANEUVER_KALMAN  1
-#define MANEUVER_CHASE   2
+// Core Defines
+#define MAX_MANEUVERS 		21		// Is this arbitrary?
+#define MANEUVER_TIME_OUT	6000	// Time in ms (I think)
+
+// Basic maneuvers
+#define MANEUVER_IDLE	 	0		// Don't do anything at all
+#define MANEUVER_HALT	 	1		// Kill any vel or rot
+
+// Complex maneuvers
+#define MANEUVER_KALMAN 	2		// Calibrate kalman for single beacon
+#define MANEUVER_CHASE		3		// Attempt to move to designated target
+#define MANEUVER_HOLD_POS	4		// Continuously kill any vel or rot
+
 
 // Control variable definitions
 static state_vector ctrlState = {0};
-
-static unsigned int targetBeaconNumber = 0, currentManeuver = 1;
-	
+static unsigned int targetBeaconNumber = 1;
 static float bearingToBeacon[10] = {0};
-
 static float xyzPrimary[BEARING_STATE_LENGTH] = {0}, 
 	xyzRefPrimary[BEARING_STATE_LENGTH] = {0}, 
 	dxyzPrimary[BEARING_STATE_LENGTH] = {0};
-
 static beacon_measurement_matrix saved_measurements;
-
-static unsigned int fInitFlag = TRUE, index = 0;
-
+static unsigned int fInitFlag = TRUE;
 static int fGyroOnly = FALSE, fGl_docking_done = FALSE;
 
 const float sphere_radius = 0.10f;
+unsigned int maneuver_nums[MAX_MANEUVERS];
+unsigned int maneuver_num_index;
 
 extern const float Kp_attitude_selectObe[21], 
 	Kd_attitude_selectObe[21], 
@@ -85,6 +88,9 @@ extern const float Kp_attitude_selectObe[21],
 	RHO_DOT_0_selectObe[21], 
 	RHO_DOT_T_selectObe[21];
 
+
+/* Utility Functions */
+
 void gspSetTarget_BeaconFollow(unsigned int test_number, unsigned int maneuver_time, 
 	float *ctrlStateTarget, unsigned int *maneuver_timeout)
 {
@@ -92,20 +98,17 @@ void gspSetTarget_BeaconFollow(unsigned int test_number, unsigned int maneuver_t
 	const float range_berth = /*0.10f*/ 1.0f;
 
 	// TODO: Set the target 1-2m away from the target beacon (modify this for that)
+	// TODO TODO TODO: This seems to target y only, bad bad, needs to be axis indep.
 	memcpy(ctrlStateTarget, xyzRefPrimary, sizeof(float)*3);
 	ctrlStateTarget[POS_Y] = ctrlStateTarget[POS_Y] + range_berth + sphere_radius;
 	ctrlStateTarget[QUAT_3] = 0.7071068f;
 	ctrlStateTarget[QUAT_4] = 0.7071068f;	
 }
 
+/* Required functions */
 
 void gspInitTest_BeaconFollow(unsigned int test_number)
 {
-	
-	// Define function variables
-	targetBeaconNumber = 1;
-	index = test_number - 1;
-
 	// Tell background comm to send this state vector
 	commBackgroundPointerSet(&ctrlState);
 
@@ -130,6 +133,12 @@ void gspInitTest_BeaconFollow(unsigned int test_number)
 	
 	// set the control period
 	ctrlPeriodSet(500);
+
+	// Set the maneuver list (could be variable later)
+	maneuver_nums[0] 	= MANEUVER_KALMAN;		// Calibration
+	maneuver_nums[1] 	= MANEUVER_CHASE;		// Chase test
+	maneuver_num_index 	= 0;
+
 }
 
 void gspTaskRun_BeaconFollow(unsigned int gsp_task_trigger, unsigned int extra_data)
@@ -137,6 +146,8 @@ void gspTaskRun_BeaconFollow(unsigned int gsp_task_trigger, unsigned int extra_d
 	// Declare function variables 
 	int i;
 	const float range_gyro_only = 0.08f; 
+
+	// TODO: Does ctrlState actually have any novel information? Isnt it extra_data
 
 	// Determine if calling function has inertial task	
 	if (gsp_task_trigger == PADS_INERTIAL_TRIG)
@@ -151,8 +162,6 @@ void gspTaskRun_BeaconFollow(unsigned int gsp_task_trigger, unsigned int extra_d
 	// Determine if calling function has global task and we're not set to ignore it
 	if ((gsp_task_trigger == PADS_GLOBAL_BEACON_TRIG) && !fGyroOnly)
 	{
-		// Copy the new data into our saved measurements buffer
-		//gsutilPadsUSPadsGlobal(extra_data, saved_measurements);
 
 		// Determine if the beacon data is relevant to our target beacon
 		if (extra_data == targetBeaconNumber)
@@ -171,8 +180,8 @@ void gspTaskRun_BeaconFollow(unsigned int gsp_task_trigger, unsigned int extra_d
 				dxyzPrimary[i+3] = -xyzPrimary[i+3];
 			}
 			
-			// Disable global if we're taking too long, are too close, or is not applicable
-			if ((ctrlTestTimeGet() > 5000) && ((bearingToBeacon[1] - sphere_radius) < range_gyro_only) && (ctrlManeuverNumGet() >= 7)) // Only when docking
+			// TODO: Disable global if we're taking too long, are too close, or is not applicable
+			if ((ctrlTestTimeGet() > 5000) && ((bearingToBeacon[1] - sphere_radius) < range_gyro_only)) // Only when docking
 				fGyroOnly = TRUE;
 		}
 	}
@@ -187,8 +196,8 @@ void gspControl_BeaconFollow(unsigned int test_time, unsigned int maneuver_numbe
 		duty_cycle = 40.0f;
 	state_vector ctrlStateError = {0}, 
 		ctrlStateTarget = {0};
-	dbg_ushort_packet DebugVecUShort;
-	dbg_float_packet DebugVecFloat;
+	//dbg_ushort_packet DebugVecUShort;
+	//dbg_float_packet DebugVecFloat;
 	prop_time firing_times = {0};
 	static float RHO_DOT_0 = 0.0f, 
 		RHO_DOT_T = 0.0f, 
@@ -202,25 +211,22 @@ void gspControl_BeaconFollow(unsigned int test_time, unsigned int maneuver_numbe
 	memset(&firing_times, 0, sizeof(prop_time));
 	memset(ctrlStateError, 0, sizeof(state_vector));
 	memset(ctrlStateTarget, 0, sizeof(state_vector));
-	memset(DebugVecShort, 0, sizeof(dbg_short_packet));
-	memset(DebugVecUShort, 0, sizeof(dbg_ushort_packet));
-	memset(DebugVecFloat, 0, sizeof(dbg_float_packet));
 
 	// Initialize state variables
 	if(fInitFlag)
 	{
-		// Define maneuvers
-		currentManeuver = MANEUVER_KALMAN;
+		// TODO: Define maneuvers
+		maneuver_num_index = 0;
 
 		// TODO: Set gains (I need to customize these baselines)
-		Kp_attitude = Kp_attitude_selectObe[index];
-		Kd_attitude = Kd_attitude_selectObe[index];
-		Kp_position = Kp_position_selectObe[index];
-		Kd_position = Kd_position_selectObe[index];
+		Kp_attitude = 0.0036f;	//Kp_attitude_selectObe[index];
+		Kd_attitude = 0.0135f;	//Kd_attitude_selectObe[index];
+		Kp_position = 0.172f;	//Kp_position_selectObe[index];
+		Kd_position = 1.720f;	//Kd_position_selectObe[index];
 				
 		// TODO: set glideslope parameters (I need to customize these baselines)
-		RHO_DOT_0 = RHO_DOT_0_selectObe[index];
-		RHO_DOT_T = RHO_DOT_T_selectObe[index];
+		RHO_DOT_0 = -0.02f;		//RHO_DOT_0_selectObe[index];
+		RHO_DOT_T = -0.0005f;	//RHO_DOT_T_selectObe[index];
 
 		// Inititalize inertial sensors
 		initStateProp();
@@ -234,7 +240,7 @@ void gspControl_BeaconFollow(unsigned int test_time, unsigned int maneuver_numbe
 
 	}
 
-	// Disable global estimator
+	// TODO: Disable global estimator (Can this be done in the test init?)
 	padsGlobalPeriodSet(SYS_FOREVER);
 
 	// Fetch position states
@@ -248,8 +254,10 @@ void gspControl_BeaconFollow(unsigned int test_time, unsigned int maneuver_numbe
 	findStateError(ctrlStateError, ctrlState, ctrlStateTarget);
 
 	// Run through our maneuver
-	switch(currentManeuver)
+	switch(maneuver_number)
 	{
+
+		// TODO TODO TODO:: What does this even do? I have no idea
 		// Initialize the kalman filter and the reference beacon location
 		case MANEUVER_KALMAN:
 
@@ -268,6 +276,7 @@ void gspControl_BeaconFollow(unsigned int test_time, unsigned int maneuver_numbe
 			// Actuates the thrusters
 			propSetThrusterTimes(&firing_times);
 			
+			// Maneuver terminating conditions
 			if (maneuver_time >= init_delay)
 			{
 				// Reset attitude estimator
@@ -279,7 +288,7 @@ void gspControl_BeaconFollow(unsigned int test_time, unsigned int maneuver_numbe
 				// Record reference beacon location
 				memcpy(xyzRefPrimary, xyzPrimary, sizeof(float)*3);
 
-				currentManeuver = MANEUVER_CHASE;
+				maneuver_num_index++;
 			}
 			break;
 
@@ -309,17 +318,19 @@ void gspControl_BeaconFollow(unsigned int test_time, unsigned int maneuver_numbe
 			// TODO: If maneuver is over move to post-test stage (criteria?)
 			if(maneuver_time >= 20000) 
 			{
-				currentManeuver = MANEUVER_END;
+				maneuver_num_index++;
 			}
 
 			break;
 
-		case MANEUVER_END:
+		default:
 			// TODO: Do something befitting of the end of the test
+
+			// Kill all velocity
 			break;
 		// TODO: Post test data analysis 
 
-	}
+}
 }
 
 void gspPadsInertial_BeaconFollow(IMU_sample *accel,IMU_sample *gyro, unsigned int num_stored_samples)
@@ -341,5 +352,6 @@ void gspPadsGlobal_BeaconFollow(unsigned int beacon, beacon_measurement_matrix m
 	}
 }
 
-// Unimplemented functions
+/* Unimplemented functions */
+
 void gspInitProgram_BeaconFollow(){}

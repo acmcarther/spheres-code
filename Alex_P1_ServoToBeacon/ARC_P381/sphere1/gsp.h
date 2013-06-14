@@ -12,12 +12,7 @@ extern "C" {
 // suggested defines
 #define SPHERE_ID       SPHERE1
 #define NUM_SPHERES     1
-#define NUM_BEACONS     7
-#define GSP_RX_DATA
-#define NO_DATACOMM
-
-#define MY_BEACON				0
-#define REMOTE_BEACON		1
+#define NUM_BEACONS     5
 
 #define IMU_BUFFER_LENGTH	50
 #define MAX_BEACON_SAMPLES		(4*360*4)	// 4 samples/second for 6 minutes for 4 beacons

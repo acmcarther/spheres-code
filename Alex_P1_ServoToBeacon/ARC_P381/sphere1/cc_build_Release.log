@@ -1,11 +1,9 @@
 ------------------------  espv2_het_test.pjt - Release  ------------------------
-"c:\ti\c6000\cgtools\bin\cl6x" -q -pdse225 -fr"Z:/VM-Shared/spheres-code/Alex_P1_ServoToBeacon/ARC_P381/sphere1/Release" -i"Z:/VM-Shared/spheres-code/Alex_P1_ServoToBeacon/ARC_P381/sphere1" -i"Z:/VM-Shared/spheres-code/Alex_P1_ServoToBeacon/ARC_P381/sphere1/.E:/spheres-code/Alex_P1_ServoToBeacon/ARC_P381/common" -i"%SPHERESCORE_DIR%" -i"%SPHERESCORE_DIR%/Utilities" -i"%SPHERESCORE_DIR%/Science" -i"%SPHERESCORE_DIR%/Science/maneuvers/" -i"%SPHERESCORE_DIR%/Science/controllers/" -i"%SPHERESCORE_DIR%/Science/mixers/" -i"%SPHERESCORE_DIR%/Science/estimators/" -i"%SPHERESCORE_DIR%/Science/terminators/" -i"%SPHERESCORE_DIR%/ExpansionPort" -d"CHIP_6701" -ml3 -ms3 -mv6700 -@"../spheres-code/Alex_P1_ServoToBeacon/ARC_P381/sphere1/Release.lkf" "comm_datacomm.c"
-"comm_datacomm_internal.h", line 63: error: identifier "default_rfm_packet" is undefined
-"comm_datacomm.c", line 159: error: identifier "default_rfm_packet" is undefined
-"comm_datacomm.c", line 399: error: identifier "default_rfm_payload" is undefined
-3 errors detected in the compilation of "comm_datacomm.c".
-
 "c:\ti\c6000\cgtools\bin\cl6x" -q -pdse225 -fr"Z:/VM-Shared/spheres-code/Alex_P1_ServoToBeacon/ARC_P381/sphere1/Release" -i"Z:/VM-Shared/spheres-code/Alex_P1_ServoToBeacon/ARC_P381/sphere1" -i"Z:/VM-Shared/spheres-code/Alex_P1_ServoToBeacon/ARC_P381/sphere1/.E:/spheres-code/Alex_P1_ServoToBeacon/ARC_P381/common" -i"%SPHERESCORE_DIR%" -i"%SPHERESCORE_DIR%/Utilities" -i"%SPHERESCORE_DIR%/Science" -i"%SPHERESCORE_DIR%/Science/maneuvers/" -i"%SPHERESCORE_DIR%/Science/controllers/" -i"%SPHERESCORE_DIR%/Science/mixers/" -i"%SPHERESCORE_DIR%/Science/estimators/" -i"%SPHERESCORE_DIR%/Science/terminators/" -i"%SPHERESCORE_DIR%/ExpansionPort" -d"CHIP_6701" -ml3 -ms3 -mv6700 -@"../sphere1/Release.lkf" "gspBeaconFollow.c"
 
+vlnk Release.lkv "espv2_het_test.rcp"
+COFF vLinker Version 2.10
+Copyright (c) 1996-2001 Texas Instruments Incorporated
+
 Build Complete,
-  3 Errors, 0 Warnings, 0 Remarks.
+  0 Errors, 0 Warnings, 0 Remarks.
